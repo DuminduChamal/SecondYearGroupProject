@@ -36,19 +36,19 @@ class LoginController extends Controller
         $this->authenticated($request, $this->guard()->user());
         $user = User::where('email', $request->email)->first();
 
-        if($user->is_tutor==1 && $user->is_student==1 )
+        if($user->is_tutor==1 && $user->is_student==1 )  //if user is registered as both tutor and student redirect to /tutor
         {
             return redirect()->intended('/tutor');
         }
-        elseif($user->is_tutor==1 && $user->is_student==0)
+        elseif($user->is_tutor==1 && $user->is_student==0) //if user is registered as tutor redirect to /tutor
         {
             return redirect()->intended('/tutor');
         }
-        elseif($user->is_tutor==0 && $user->is_student==1)
+        elseif($user->is_tutor==0 && $user->is_student==1) //if user is registered as student redirect to /student
         {
             return redirect()->intended('/student');
         }
-        elseif($user->is_admin==1)
+        elseif($user->is_admin==1) //if user is registered as admin redirect to /admin
         {
             return redirect()->intended('/admin');
         }

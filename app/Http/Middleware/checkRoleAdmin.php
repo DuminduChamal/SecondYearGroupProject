@@ -17,7 +17,7 @@ class checkRoleAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(Str::startsWith($request->path(),'admin') == Auth::user()->is_admin){
+        if(Str::startsWith($request->path(),'admin') == Auth::user()->is_admin){  //check path is 'admin' and autherization
             return $next($request);
         }
         abort(403);
