@@ -15,5 +15,4 @@ class Tutor extends Model
         'Qualification', 'user_id','referName','referStatus','referEmail','referNumber','subject_id','rate'
     ];
 
-    
 }

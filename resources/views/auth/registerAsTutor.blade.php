@@ -73,7 +73,7 @@
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-support-16"></i></span>
                     </div>
-                    @if(Auth::user()->NIC=='')
+                    {{-- @if(Auth::user()->NIC=='')
                         <input id="NIC" type="text" placeholder="National Identity Card" class="form-control @error('NIC') is-invalid @enderror" name="NIC" value="{{ old('NIC') }}" required autocomplete="NIC" autofocus>
                         @error('NIC')
                             <span class="invalid-feedback" role="alert">
@@ -82,7 +82,13 @@
                         @enderror
                     @else
                         <label id="NIC" class="form-control" name="NIC">{{Auth::user()->NIC}}</label>
-                    @endif
+                    @endif --}}
+                    <input id="NIC" type="text" placeholder="National Identity Card" class="form-control @error('NIC') is-invalid @enderror" name="NIC" value="{{ old('NIC') }}" required autocomplete="NIC" autofocus>
+                    @error('NIC')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 </div>
                 <div class="form-group">

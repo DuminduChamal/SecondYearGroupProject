@@ -29,6 +29,9 @@
     <link href="{{asset('assets/css/argon-dashboard.css?v=1.1.0')}}" rel="stylesheet" />  
 </head>
 <body class="bg-default">
+        @if(Request::is('admin')||Request::is('admin/*'))
+            @include('inc.adminpanel')
+        @endif
     <div class="main-content">
         @include('inc.navbar')
         @yield('content')
