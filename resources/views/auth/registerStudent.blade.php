@@ -30,20 +30,16 @@
     <div class="col-lg-6 col-md-8">
     <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-        <div class="text-center mt-2 mb-4">Sign up with</div>
+        <div class="text-center mt-2 mb-4">Already registered with us as a Tutor?</div>
         <div class="text-center">
-            <a href="#" class="btn btn-neutral btn-icon mr-4">
-            <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
-            <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="#" class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"></span>
-            <span class="btn-inner--text">Google</span>
+            <a href="{{ route('login') }}" class="btn btn-neutral btn-icon">
+                <span class="btn-inner--icon"><i class="ni ni-single-02"></i></span>
+                <span class="btn-inner--text">Sign In to Tutor Account</span>
             </a>
         </div>
         </div>
         <div class="card-body px-lg-5 py-lg-5">
-        <div class="text-center text mb-4">
+        <div class="text-center mb-4">
             Or sign up with credentials
         </div>
         <form role="form" method="POST" action="{{ route('register.student') }}">

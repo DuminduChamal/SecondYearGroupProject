@@ -71,14 +71,31 @@
                     @endif
                     @if (!Request::is('register/student'))
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="{{ route('register.student') }}">{{ __('Register As Student') }}</a> --}}
-                            <a class="nav-link nav-link-icon" href="{{ route('register.student') }}">
-                                <i class="ni ni-circle-08"></i>
-                                <span class="nav-link-inner--text">{{ __('Register As Student') }}</span>
-                            </a>
+                                <a class="nav-link nav-link-icon" href="{{ route('register.student') }}">
+                                    <i class="ni ni-circle-08"></i>
+                                    <span class="nav-link-inner--text">{{ __('Register As Student') }}</span>
+                                </a>
                         </li>
                     @endif
                 @else
+                    @if (!Request::is('student/registerastutor'))
+                        @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==0)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('registerAsTutor') }}">
+                                    <span class="nav-link-inner--text"><small>{{ __('Want to Register As Tutor also?') }}</small></span>
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if (!Request::is('tutor/registerasstudent'))
+                    @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('registerAsStudent') }}">
+                                <span class="nav-link-inner--text"><small>{{ __('Want to Register As Student also?') }}</small></span>
+                            </a>
+                        </li>
+                    @endif
+                @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->FName }} <span class="caret"></span>
