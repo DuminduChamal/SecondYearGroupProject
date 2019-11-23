@@ -7,10 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- setting a custom title --}}
+    <title>
+        @yield('title','Tutorland')
+    </title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,13 +18,35 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="{{ asset('assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="{{asset('assets/js/plugins/nucleo/css/nucleo.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="{{asset('assets/css/argon-dashboard.css?v=1.1.0')}}" rel="stylesheet" />  
 </head>
-<body>
-    <div id="app">
+<body class="bg-default">
+    <div class="main-content">
+        @include('inc.navbar')
+        @yield('content')
+        @include('inc.footer')
+    </div>
+    <!--   Core   -->
+    <script src="{{asset('assets/js/plugins/jquery/dist/jquery.min.js')}}"></script>
+
+    <script src="{{asset('assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+    <script src="{{('assets/js/argon-dashboard.min.js?v=1.1.0')}}"></script>
+</body>
+</html>
+    {{-- <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Tutorland') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -40,20 +62,13 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (!Request::is('login'))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
-                            @endif
-                            @if (!Request::is('register'))
+                            @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register As Tutor') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
-                            @if (!Request::is('register/student'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="/register/student">{{ __('Register As Student') }}</a>
-                            </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
@@ -62,14 +77,6 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==1)
-                                    <a class="dropdown-item" href="/student">
-                                        {{ __('Student') }}
-                                     </a>
-                                     <a class="dropdown-item" href="/tutor">
-                                        {{ __('Tutor') }}
-                                     </a>
-                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -85,11 +92,4 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
-</html>
+        </nav> --}}

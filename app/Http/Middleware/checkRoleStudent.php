@@ -17,7 +17,7 @@ class checkRoleStudent
      */
     public function handle($request, Closure $next)
     {
-        if(Str::startsWith($request->path(),'student') == Auth::user()->is_student){
+        if(Str::startsWith($request->path(),'student') == Auth::user()->is_student){ //check path is 'student' and autherization
             return $next($request);
         }
         abort(403);

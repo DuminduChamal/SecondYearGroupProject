@@ -84,6 +84,7 @@ class RegisterStudentController extends Controller
             'LName' => $data['LName'],
             'email' => $data['email'],
             'DOB' => $data['DOB'],
+            'NIC' => $data['NIC'],
             'password' => Hash::make($data['password']),
             'is_student' => "1",
             'is_tutor' => "0",

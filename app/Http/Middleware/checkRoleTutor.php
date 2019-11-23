@@ -17,7 +17,7 @@ class checkRoleTutor
      */
     public function handle($request, Closure $next)
     {
-        if(Str::startsWith($request->path(),'tutor') == Auth::user()->is_tutor){
+        if(Str::startsWith($request->path(),'tutor') == Auth::user()->is_tutor){ //check path is 'tutor' and autherization
             return $next($request);
         }
         abort(403);
