@@ -39,7 +39,7 @@
 
     <script src="{{asset('assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
-    <script src="{{('assets/js/argon-dashboard.min.js?v=1.1.0')}}"></script>
+    {{-- <script src="{{asset('assets/js/argon-dashboard.min.js?v=1.1.0')}}"></script> --}}
 </body>
 </html>
     {{-- <div id="app">

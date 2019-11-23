@@ -35,11 +35,8 @@ Route::middleware(['auth','student'])->group( function(){
         return view('student');
     
     });
-    Route::get('/student/a',function(){
-       
-        return view('student');
-    
-    });
+    Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
+    Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
 });
 Route::middleware(['auth','tutor'])->group( function(){
    
@@ -53,6 +50,9 @@ Route::middleware(['auth','tutor'])->group( function(){
         return view('tutor');
     
     });
+
+    Route::get('/tutor/registerasstudent','Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
+    Route::post('/tutor/registerasstudent','Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
 });
 Route::middleware(['auth','both'])->group( function(){
    
