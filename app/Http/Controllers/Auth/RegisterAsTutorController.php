@@ -32,6 +32,7 @@ class RegisterAsTutorController extends Controller
     //method to validate tutor registration form data
     protected function validator(Array $data)
     {
+        // dd($data);
         return Validator::make($data, [
             'NIC' => 'required|string|max:255',
             'Qualification' => 'required|string|max:255',
@@ -50,6 +51,7 @@ class RegisterAsTutorController extends Controller
         $this->validator($request->all())->validate();
         $registeredUser = DB::table('users')->where('email', '=', Auth::user()->email)->get()->first();
         DB::table('users')->where('id', $registeredUser->id)->update(['is_tutor' => 1]);
+        DB::table('users')->where('id', $registeredUser->id)->update(['NIC' => $request['NIC']]);
         // dd($registeredUser);
         Tutor::create([
             'user_id'=> $registeredUser->id,

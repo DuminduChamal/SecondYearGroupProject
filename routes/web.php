@@ -17,14 +17,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth','admin'])->group( function(){
    
-    Route::get('/admin',function(){
-       
-        return view('admin');
-    
-    });
+    Route::get('/admin','AdminController@index')->name('dashboard');
+    Route::get('/admin/profile','AdminController@viewProfile')->name('viewadminprofile');
+    Route::get('/admin/tutors','AdminController@viewTutors')->name('viewtutors');
     Route::get('/admin/a',function(){
        
-        return view('dashboard');
+        return view('admin');
     
     });
 });
@@ -54,19 +52,6 @@ Route::middleware(['auth','tutor'])->group( function(){
     Route::get('/tutor/registerasstudent','Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
     Route::post('/tutor/registerasstudent','Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
 });
-Route::middleware(['auth','both'])->group( function(){
-   
-    Route::get('/select',function(){
-       
-        return view('select');
-    
-    });
-    Route::get('/select/a',function(){
-       
-        return view('select');
-    
-    });
-});
 
 Route::get('/register/student', 'Auth\RegisterStudentController@showRegistrationForm')->name('register.student');
 Route::post('/register/student', 'Auth\RegisterStudentController@register')->name('register.student.submit');
@@ -74,3 +59,18 @@ Route::post('/register/student', 'Auth\RegisterStudentController@register')->nam
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Route::middleware(['auth','both'])->group( function(){
+   
+//     Route::get('/select',function(){
+       
+//         return view('select');
+    
+//     });
+//     Route::get('/select/a',function(){
+       
+//         return view('select');
+    
+//     });
+// });
