@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use \Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,9 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    use AuthenticatesUsers;
+
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
@@ -53,8 +57,6 @@ class LoginController extends Controller
             return redirect()->intended('/admin');
         }
     }
-
-    use AuthenticatesUsers;
 
     /**
      * Create a new controller instance.
