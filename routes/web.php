@@ -20,6 +20,7 @@ Route::middleware(['auth','admin'])->group( function(){
     Route::get('/admin','AdminController@index')->name('dashboard');
     Route::get('/admin/profile','AdminController@viewProfile')->name('viewadminprofile');
     Route::get('/admin/tutors','AdminController@viewTutors')->name('viewtutors');
+    Route::get('/admin/students','AdminController@viewStudents')->name('viewstudents');
     Route::get('/admin/a',function(){
        
         return view('admin');

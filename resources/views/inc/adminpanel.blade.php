@@ -28,7 +28,7 @@
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('viewstudents')}}">
                 <i class="ni ni-hat-3 text-yellow"></i> Students
             </a>
             </li>

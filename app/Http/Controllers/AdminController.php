@@ -23,4 +23,12 @@ class AdminController extends Controller
         // dd($qualification);
         return view('admin/viewTutors')->with('tutors', $tutors);
     }
+
+    public function viewStudents(){
+        $students = DB::table('users')->where('is_student', '1')->get();
+        // dd($tutors);
+        // $qualification = DB::table('tutors')->where('user_id',$tutors[]->id)->value('Qualification');
+        // dd($qualification);
+        return view('admin/viewStudents')->with('students', $students);
+    }
 }
