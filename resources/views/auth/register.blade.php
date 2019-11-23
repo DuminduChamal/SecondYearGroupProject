@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Tutor Registration
+@endsection
+
 @section('content')
 <!-- Header -->
 <div class="header bg-gradient-primary py-7 py-lg-8">

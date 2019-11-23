@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
     <div class="container px-4">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="/">
         <img src="/assets/img/brand/white.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,23 @@
             <!-- Navbar items -->
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#">
+                            <span class="nav-link-inner--text">How it works</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#">
+                        <span class="nav-link-inner--text">About Us</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-icon" href="#">
+                        <span class="nav-link-inner--text">Contact Us</span>
+                        </a>
+                    </li>
+                </ul>
 
             </ul>
 
