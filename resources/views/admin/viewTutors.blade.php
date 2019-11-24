@@ -80,7 +80,7 @@
                           {{$tutor->DOB}}
                       </td>
                       <td>
-                          {{-- {{$tutor->isuser->Qualification}} --}}
+                          {{-- {{$tutor->user->Qualification}} --}}
                       </td>
                       <td class="text-right">
                         <div class="dropdown">
