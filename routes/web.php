@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth','admin'])->group( function(){
    
-    Route::get('/admin','AdminController@index')->name('dashboard');
+    Route::get('/admin','AdminController@index')->name('admin.dashboard');
     Route::get('/admin/profile','AdminController@viewProfile')->name('viewadminprofile');
     Route::get('/admin/tutors','AdminController@viewTutors')->name('viewtutors');
     Route::get('/admin/students','AdminController@viewStudents')->name('viewstudents');
@@ -29,21 +29,16 @@ Route::middleware(['auth','admin'])->group( function(){
 });
 Route::middleware(['auth','student'])->group( function(){
    
-    Route::get('/student',function(){
-       
-        return view('student');
-    
-    });
+    Route::get('/student','StudentController@index')->name('student.dashboard');
+    Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
 });
+
 Route::middleware(['auth','tutor'])->group( function(){
    
-    Route::get('/tutor',function(){
-       
-        return view('tutor');
-    
-    });
+    Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
+    Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
     Route::get('/tutor/a',function(){
        
         return view('tutor');

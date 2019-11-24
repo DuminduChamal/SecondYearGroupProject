@@ -13,7 +13,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
             <li class="nav-item">
-            <a class=" nav-link " href="{{route('dashboard')}}"> <i class="ni ni-tv-2 text-primary"></i> Dashboard</a>
+            <a class=" nav-link " href="{{route('admin.dashboard')}}"> <i class="ni ni-tv-2 text-primary"></i> Dashboard</a>
             </li>
             <li class="nav-item">
             {{-- @auth('admin') --}}
