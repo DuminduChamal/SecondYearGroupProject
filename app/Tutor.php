@@ -15,4 +15,8 @@ class Tutor extends Model
         'Qualification', 'user_id','referName','referStatus','referEmail','referNumber','subject_id','rate'
     ];
 
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    }
+
 }

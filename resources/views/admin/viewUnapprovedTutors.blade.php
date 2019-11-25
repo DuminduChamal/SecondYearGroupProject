@@ -1,25 +1,28 @@
 @extends('layouts.app')
 
 @section('title')
-    Students Details
+    Requested Tutors
 @endsection
 
 @section('content')
 <div class="header bg-gradient-primary py-7 py-lg-8">
   <div class="container">
     <div class="header-body text-center mb-7">
-      {{-- success messege when user removed --}}
-            @if (session('success'))
+      {{-- success messege when tutor removed --}}
+      <div>
+          @if (session('success'))
               <div class="alert alert-danger" role="alert">
                   {{ session('success') }}
               </div>
-            @endif
+          @endif
+      </div>
       <div class="row justify-content-center">
-        <div class="row mt-5">
+      <div class="row mt-5">
+          @if(count($unapprovedtutors)>0)
           <div class="col">
             <div class="card bg-default shadow">
               <div class="card-header bg-transparent border-0">
-                <h3 class="text-white mb-0">Students</h3>
+                <h3 class="text-white mb-0">Requested Tutors</h3>
               </div>
               <div class="table-responsive">
                 <table class="table align-items-center table-dark table-flush">
@@ -30,44 +33,40 @@
                       <th scope="col">Email</th>
                       <th scope="col">NIC</th>
                       <th scope="col">DOB</th>
+                      <th scope="col">Qualification</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                      @foreach ($students as $student)
+                      @foreach ($unapprovedtutors as $unapprovedTutor)
                     <tr>
                       <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            <img alt="Image placeholder" src="/assets/img/avatar/{{$student->avatar}}">
+                            <img alt="Image placeholder" src="/assets/img/avatar/{{$unapprovedTutor->user->avatar}}">
                           </a>
                           <div class="media-body">
-                            <span class="mb-0 text-sm">{{$student->FName}}</span>
+                            <span class="mb-0 text-sm">{{$unapprovedTutor->user->FName}}</span>
                           </div>
                         </div>
                       </th>
                       <td>
-                          {{$student->LName}}
+                          {{$unapprovedTutor->user->LName}}
                       </td>
                       <td>
-                          {{$student->email}}
+                          {{$unapprovedTutor->user->email}}
                       </td>
                       <td>
-                          {{$student->NIC}}
+                          {{$unapprovedTutor->user->NIC}}
                       </td>
                       <td>
-                          {{$student->DOB}}
+                          {{$unapprovedTutor->user->DOB}}
                       </td>
-                      <td class="text-right">
-                        <div class="dropdown">
-                          <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="#">View</a>
-                          <a class="dropdown-item" onclick="return confirm('Are you sure to remove {{$student->FName}}?')" href="#">Remove</a>  
-                          </div>
-                        </div>
+                      <td>
+                          {{$unapprovedTutor->Qualification}}
+                      </td>
+                      <td>
+                        <a href="{{route('viewunapprovedtutordetails',['user'=> $unapprovedTutor->id])}}" class="btn btn-info">View Tutor</a>
                       </td>
                     </tr>
                     @endforeach
@@ -76,6 +75,9 @@
               </div>
             </div>
           </div>
+          @else
+              <h1>No Requested Tutors</h1>
+          @endif
         </div>
       </div>
     </div>
