@@ -97,19 +97,64 @@
                     @endif
                 @endif
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->FName }} <span class="caret"></span>
-                        </a>
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <span class="avatar avatar-sm rounded-circle">
+                                    <img alt="Image placeholder" src="/assets/img/avatar/{{Auth::user()->avatar}}">
+                                    </span>
+                                    <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="mb-0 text-sm  font-weight-bold">{{Auth::user()->FName}}</span>
+                                    </div>
+                                </div>
+                            </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==1)
                                 <a class="dropdown-item" href="/student">
-                                        <i class="ni ni-glasses-2"></i>
-                                        <span>{{ __('Student') }}</span>
-                                    </a>
-                                    <a class="dropdown-item" href="/tutor">
-                                        <i class="ni ni-hat-3"></i>
-                                        <span>{{ __('Tutor') }}</span>
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Student Dashboard') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/tutor">
+                                    <i class="ni ni-hat-3"></i>
+                                    <span>{{ __('Tutor Dashboard') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/student/profile">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Student Profile') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/tutor/profile">
+                                    <i class="ni ni-hat-3"></i>
+                                    <span>{{ __('Tutor Profile') }}</span>
+                                </a>
+                            @endif
+                            @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==0)
+                                <a class="dropdown-item" href="/student">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Dashboard') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/student/profile">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Profile') }}</span>
+                                </a>
+                            @endif
+                            @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==1)
+                                <a class="dropdown-item" href="/tutor">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Dashboard') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/tutor/profile">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Profile') }}</span>
+                                </a>
+                            @endif
+                            @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==0 && Auth::user()->is_admin==1)
+                                <a class="dropdown-item" href="/admin">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Dashboard') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/admin/profile">
+                                    <i class="ni ni-glasses-2"></i>
+                                    <span>{{ __('Profile') }}</span>
                                 </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"

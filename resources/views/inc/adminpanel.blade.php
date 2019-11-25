@@ -33,7 +33,7 @@
             </a>
             </li>
             <li class="nav-item" id="markasread" >
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('viewunapprovedtutors')}}">
                 <i class="ni ni-notification-70 text-red"></i>Requested Tutors 
             </a>
             </li>

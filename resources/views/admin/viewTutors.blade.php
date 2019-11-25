@@ -60,7 +60,7 @@
                       <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            {{-- <img alt="Image placeholder" src="/assets/img/avatar/tutors/{{$tutor->avatar}}"> --}}
+                            <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->avatar}}">
                           </a>
                           <div class="media-body">
                             <span class="mb-0 text-sm">{{$tutor->FName}}</span>
@@ -80,7 +80,7 @@
                           {{$tutor->DOB}}
                       </td>
                       <td>
-                          {{-- {{$tutor->user->Qualification}} --}}
+                          {{-- {{$tutor->tutor->Qualification}} --}}
                       </td>
                       <td class="text-right">
                         <div class="dropdown">
