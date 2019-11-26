@@ -80,7 +80,7 @@
                           {{$tutor->DOB}}
                       </td>
                       <td>
-                          {{-- {{$tutor->tutor->Qualification}} --}}
+                          {!!$tutor->tutor ? $tutor->tutor->Qualification : '' !!}
                       </td>
                       <td class="text-right">
                         <div class="dropdown">
@@ -88,8 +88,8 @@
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="#">View</a>
-                            <a class="dropdown-item" onclick="return confirm('Are you sure to remove {{$tutor->FName}}?')" href="#">Remove</a>
+                            <a class="dropdown-item" href="{{route('admin.viewtutorprofile',['tutor'=>$tutor->id])}}">View</a>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure to remove {{$tutor->FName}}?')" href="{{route('admin.removetutor',['tutor'=>$tutor->id])}}">Remove</a>
                           </div>
                         </div>
                       </td>
