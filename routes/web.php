@@ -25,6 +25,11 @@ Route::middleware(['auth','admin'])->group( function(){
     Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}','AdminController@viewUnapprovedTutorDetails')->name('viewunapprovedtutordetails');
     Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}/approvetutor', 'AdminController@approveTutor')->name('admin.approved');
     Route::get('/admin/rejectTutor/{unapprovedTutor}', 'AdminController@adminRejectTutor')->name('admin.tutor.reject');
+    Route::get('/admin/viewstudents/{student}', 'AdminController@viewStudentProfile')->name('admin.viewstudentprofile');
+    Route::get('/admin/viewstudent/{student}', 'AdminController@viewStudentProfile')->name('admin.viewstudentprofile');
+    Route::get('/admin/removestudent/{student}', 'AdminController@removeStudent')->name('admin.removestudent');
+    Route::get('/admin/viewtutor/{tutor}', 'AdminController@viewTutorProfile')->name('admin.viewtutorprofile');
+    Route::get('/admin/removetutor/{tutor}', 'AdminController@removeTutor')->name('admin.removetutor');
     Route::get('/admin/a',function(){
        
         return view('admin');

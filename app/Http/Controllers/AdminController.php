@@ -18,18 +18,49 @@ class AdminController extends Controller
         return view('admin/profile');
     }
 
-    //method to view all the tutors
-    public function viewTutors(){
-        $tutors = User::where('is_tutor', '1')->get();
-        // dd($tutors);
-        return view('admin/viewTutors')->with('tutors', $tutors);
-    }
-
     //method to view all the students
     public function viewStudents(){
         $students = DB::table('users')->where('is_student', '1')->get();
         return view('admin/viewStudents')->with('students', $students);
     }
+
+    //method to view student profile details
+    public function viewStudentProfile($id)
+    {
+        $student = User::find($id);
+        return view('admin.showStudentProfile', compact('student'));
+    }
+
+    //method to delete student account
+    public function removeStudent($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('admin/students')->with('success', 'Student Removed');
+    }
+
+     //method to view all the tutors
+     public function viewTutors(){
+        $tutors = User::where('is_tutor', '1')->get();
+        // dd($tutors);
+        return view('admin/viewTutors')->with('tutors', $tutors);
+    }
+
+    //method to view tutor profile details
+    public function viewTutorProfile($id)
+    {
+        $tutor = User::find($id);
+        // dd($tutor);
+        return view('admin.showTutorProfile', compact('tutor'));
+    }
+
+     //method to delete tutor account
+     public function removeTutor($id)
+     {
+         $tutor = User::find($id);
+         $tutor->delete();
+         return redirect('admin/tutors')->with('success', 'Tutor Removed');
+     }
 
     //method to view all the unapproved tutors in latest
     public function viewUnapprovedTutors(){
@@ -51,7 +82,7 @@ class AdminController extends Controller
         $approvedTutor = Tutor::find($id);
         $approvedTutor->approved = 1;
         $approvedTutor->save();
-        return redirect('admin/unapprovedtutors')->with('success', 'User Approved');;
+        return redirect('admin/unapprovedtutors')->with('success', 'Tutor Approved');;
     }
 
     //method to reject the tutor
@@ -59,6 +90,6 @@ class AdminController extends Controller
     {
         $tutor = Tutor::find($id);
         $tutor->delete();
-        return redirect('admin/unapprovedtutors')->with('success', 'User Rejected');
+        return redirect('admin/unapprovedtutors')->with('success', 'Tutor Rejected');
     }
 }
