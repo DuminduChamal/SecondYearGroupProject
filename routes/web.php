@@ -40,8 +40,11 @@ Route::middleware(['auth','student'])->group( function(){
    
     Route::get('/student','StudentController@index')->name('student.dashboard');
     Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
+    Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
+    Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
+
 });
 
 Route::middleware(['auth','tutor'])->group( function(){
