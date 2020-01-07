@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Tutor;
+use DB;
+
+
 use Illuminate\Http\Request;
 use App\User;
 
@@ -12,14 +16,24 @@ class StudentController extends Controller
         return view('student/student');
     }
 
-    public function viewProfile(User $user)
+    public function viewProfile()
     {
-        return view('student.profile', compact('user'));
+        return view('student/profile');
     }
 
-    public function editProfile(User $user)
+    //method to view availble tutors when logged into the student account
+    public function showTutorList()
     {
-        // return ('hit');
-        return view('student.editProfile', compact('user'));
+        $tutors = Tutor::where('approved','1')->get();
+        //dd($tutors);
+        return view('student.viewtutors')->with('tutors', $tutors);
+    }
+
+    //view tutor profile details of the available tutor list
+    public function viewTutorProfile($id)
+    {
+        $tutor = Tutor::find($id);
+        //dd($tutor);
+        return view('student.viewtutorprofile')->with('tutor', $tutor);
     }
 }

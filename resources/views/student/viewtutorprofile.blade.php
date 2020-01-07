@@ -1,21 +1,16 @@
 @extends('layouts.app')
 
-@section('title')
-{{Auth::user()->FName}}'s profile
-@endsection
-
 @section('content')
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/student.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(/assets/img/theme/tutor.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
     <span class="mask bg-gradient-default opacity-8"></span>
     <!-- Header container -->
     <div class="container-fluid d-flex align-items-center">
       <div class="row">
         <div class="col-lg-7 col-md-10">
-          <h1 class="display-2 text-white">Hello {{Auth::user()->FName}}</h1>
+          <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-          <a  href="{{route('student.profile.edit',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a>
-          {{-- href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" --}}
+          {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
         </div>
       </div>
     </div>
@@ -29,7 +24,7 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="#">
-                  <img src="/assets/img/avatar/{{Auth::user()->avatar}}" class="rounded-circle">
+                  <img src="/assets/img/avatar/tutors/{{$tutor->user->avatar}}" class="rounded-circle">
                 </a>
               </div>
             </div>
@@ -79,7 +74,7 @@
             </div>
             <div class="text-center">
               <h3>
-                  {{Auth::user()->FName}}<span class="font-weight-light">, 27</span>
+                  {{$tutor->FName}}<span class="font-weight-light">, 27</span>
               </h3>
               <div class="h5 font-weight-300">
                 <i class="ni location_pin mr-2"></i>Bucharest, Romania
@@ -111,13 +106,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-username">Username</label>
-                                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="{{Auth::user()->FName}} {{Auth::user()->LName}}" value="{{Auth::user()->FName}} {{Auth::user()->LName}}"  readonly >
+                                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="{{$tutor->user->FName}} {{$tutor->user->LName}}" value="{{$tutor->user->FName}} {{$tutor->user->LName}}"  readonly >
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-email">Email address</label>
-                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="{{Auth::user()->email}}" readonly >
+                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="{{$tutor->user->email}}" readonly >
                                 </div>
                             </div>
                         </div>
@@ -125,13 +120,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-first-name">First name</label>
-                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{Auth::user()->FName}}" readonly>
+                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{$tutor->user->FName}}" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-last-name">Last name</label>
-                                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{Auth::user()->LName}}" readonly>
+                                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{$tutor->user->LName}}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -139,17 +134,15 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-DOB">Date of Birth</label>
-                                    <input type="text" id="input-DOB" class="form-control form-control-alternative"  value="{{Auth::user()->DOB}}" readonly>
+                                    <input type="text" id="input-DOB" class="form-control form-control-alternative"  value="{{$tutor->user->DOB}}" readonly>
                                 </div>
                             </div>
-                            @if(Auth::user()->NIC!='')
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-NIC">National Identity Card Number</label>
-                                    <input type="text" id="input-NIC" class="form-control form-control-alternative" value="{{Auth::user()->NIC}}" readonly>
+                                    <input type="text" id="input-NIC" class="form-control form-control-alternative" value="{{$tutor->user->NIC}}" readonly>
                                 </div>
                             </div>
-                            @endif
                         </div>
                     </div>
                     <hr class="my-4" />

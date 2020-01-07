@@ -65,7 +65,7 @@ class AdminController extends Controller
     //method to view all the unapproved tutors in latest
     public function viewUnapprovedTutors(){
         $unapprovedtutors = Tutor::where('approved','0')->latest()->get();
-        // dd($unapprovedtutors);
+         dd($unapprovedtutors);
         return view('admin/viewUnapprovedTutors')->with('unapprovedtutors', $unapprovedtutors);
     }
 
