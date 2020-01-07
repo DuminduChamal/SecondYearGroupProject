@@ -15,14 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth','admin'])->group( function(){
-   
-    Route::get('/admin','AdminController@index')->name('admin.dashboard');
-    Route::get('/admin/profile','AdminController@viewProfile')->name('viewadminprofile');
-    Route::get('/admin/tutors','AdminController@viewTutors')->name('viewtutors');
-    Route::get('/admin/students','AdminController@viewStudents')->name('viewstudents');
-    Route::get('/admin/unapprovedtutors','AdminController@viewUnapprovedTutors')->name('viewunapprovedtutors');
-    Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}','AdminController@viewUnapprovedTutorDetails')->name('viewunapprovedtutordetails');
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/admin/profile', 'AdminController@viewProfile')->name('viewadminprofile');
+    Route::get('/admin/tutors', 'AdminController@viewTutors')->name('viewtutors');
+    Route::get('/admin/students', 'AdminController@viewStudents')->name('viewstudents');
+    Route::get('/admin/unapprovedtutors', 'AdminController@viewUnapprovedTutors')->name('viewunapprovedtutors');
+    Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}', 'AdminController@viewUnapprovedTutorDetails')->name('viewunapprovedtutordetails');
     Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}/approvetutor', 'AdminController@approveTutor')->name('admin.approved');
     Route::get('/admin/rejectTutor/{unapprovedTutor}', 'AdminController@adminRejectTutor')->name('admin.tutor.reject');
     Route::get('/admin/viewstudents/{student}', 'AdminController@viewStudentProfile')->name('admin.viewstudentprofile');
@@ -30,10 +30,9 @@ Route::middleware(['auth','admin'])->group( function(){
     Route::get('/admin/removestudent/{student}', 'AdminController@removeStudent')->name('admin.removestudent');
     Route::get('/admin/viewtutor/{tutor}', 'AdminController@viewTutorProfile')->name('admin.viewtutorprofile');
     Route::get('/admin/removetutor/{tutor}', 'AdminController@removeTutor')->name('admin.removetutor');
-    Route::get('/admin/a',function(){
-       
+    Route::get('/admin/a', function () {
+
         return view('admin');
-    
     });
 });
 Route::middleware(['auth','student'])->group( function(){
@@ -47,18 +46,17 @@ Route::middleware(['auth','student'])->group( function(){
 
 });
 
-Route::middleware(['auth','tutor'])->group( function(){
-   
-    Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
-    Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
-    Route::get('/tutor/a',function(){
-       
+Route::middleware(['auth', 'tutor'])->group(function () {
+
+    Route::get('/tutor', 'TutorController@index')->name('tutor.dashboard');
+    Route::get('/tutor/profile', 'TutorController@viewProfile')->name('tutor.profile');
+    Route::get('/tutor/a', function () {
+
         return view('tutor');
-    
     });
 
-    Route::get('/tutor/registerasstudent','Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
-    Route::post('/tutor/registerasstudent','Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
+    Route::get('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
+    Route::post('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
 });
 
 Route::get('/register/student', 'Auth\RegisterStudentController@showRegistrationForm')->name('register.student');

@@ -7,6 +7,7 @@ use DB;
 
 
 use Illuminate\Http\Request;
+use App\User;
 
 class StudentController extends Controller
 {

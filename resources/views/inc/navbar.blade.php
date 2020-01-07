@@ -132,7 +132,7 @@
                                     <i class="ni ni-glasses-2"></i>
                                     <span>{{ __('Dashboard') }}</span>
                                 </a>
-                                <a class="dropdown-item" href="/student/profile">
+                                <a class="dropdown-item" href="/student/{{Auth::user()->id}}">
                                     <i class="ni ni-glasses-2"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
