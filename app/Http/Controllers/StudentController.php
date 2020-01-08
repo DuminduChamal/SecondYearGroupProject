@@ -34,6 +34,15 @@ class StudentController extends Controller
     {
         $tutor = Tutor::find($id);
         //dd($tutor);
-        return view('student.viewtutorprofile')->with('tutor', $tutor);
+        return view('student.viewtutorprofile', compact('tutor'));
     }
+    
+    public function timeslots($id)
+    {
+        $tutor = Tutor::find($id);
+        //dd($tutor);
+        $time = DB::table('timeslots')->where('tutor_id',$id)->get()->toArray();
+        dd($time);
+    }
+
 }
