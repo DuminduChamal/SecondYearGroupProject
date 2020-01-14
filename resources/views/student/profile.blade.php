@@ -51,12 +51,12 @@
                       </div>
                     @endif
                 </div>
-                  {{-- <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
+                  <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
                     <label>Update Your Profile Picture(2MB max)</label><br/>
                     <input type="file" name="avatar">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="submit" class= "btn btn-sm btn-primary" disabled>
-                  </form> --}}
+                  </form>
                 </div>
                 <hr/>
               <div class="col">

@@ -44,6 +44,7 @@ Route::middleware(['auth','student'])->group( function(){
     Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
+    Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
 
 });
 
@@ -51,6 +52,7 @@ Route::middleware(['auth','tutor'])->group( function(){
    
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
     Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
+    Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
     Route::get('/tutor/a',function(){
        
         return view('tutor');

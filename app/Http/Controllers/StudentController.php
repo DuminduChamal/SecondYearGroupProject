@@ -35,4 +35,26 @@ class StudentController extends Controller
         //dd($tutor);
         return view('student.viewtutorprofile')->with('tutor', $tutor);
     }
+
+    //method to update student profile picture 
+    public function updatePicture(Request $request)
+    {
+        // dd($request);
+        //handle the user upload of avatar
+        if ($request->hasFile('avatar')) {
+            request()->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/assets/img/avatar/students/' . $filename));
+
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
+        }
+        // return view('student.showProfile', compact('user'));
+        return redirect()->action('StudentController@showProfile', compact('user'))->with('success', 'Profile Picture Updated');
+    }
 }
