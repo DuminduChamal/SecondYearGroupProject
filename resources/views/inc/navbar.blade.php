@@ -115,11 +115,11 @@
                                     <span>{{ __('Student Dashboard') }}</span>
                                 </a>
                                 <a class="dropdown-item" href="/tutor">
-                                    <i class="ni ni-hat-3"></i>
+                                    <i class="ni ni-atom"></i>
                                     <span>{{ __('Tutor Dashboard') }}</span>
                                 </a>
                                 <a class="dropdown-item" href="/student/profile">
-                                    <i class="ni ni-glasses-2"></i>
+                                    <i class="ni ni-single-02"></i>
                                     <span>{{ __('Student Profile') }}</span>
                                 </a>
                                 <a class="dropdown-item" href="/tutor/profile">
@@ -132,8 +132,8 @@
                                     <i class="ni ni-glasses-2"></i>
                                     <span>{{ __('Dashboard') }}</span>
                                 </a>
-                                <a class="dropdown-item" href="/student/{{Auth::user()->id}}">
-                                    <i class="ni ni-glasses-2"></i>
+                                <a class="dropdown-item" href="/student/profile">
+                                    <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
                             @endif
@@ -143,7 +143,7 @@
                                     <span>{{ __('Dashboard') }}</span>
                                 </a>
                                 <a class="dropdown-item" href="/tutor/profile">
-                                    <i class="ni ni-glasses-2"></i>
+                                    <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
                             @endif
