@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Image;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class StudentController extends Controller
 {
@@ -64,7 +65,7 @@ class StudentController extends Controller
     {
         $tutor = Tutor::find($id);
         //dd($tutor);
-        return view('student.viewtutorprofile')->with('tutor', $tutor);
+        return view('student.viewtutorprofile', compact('tutor'));
     }
 
     //method to update student profile picture 
@@ -87,5 +88,13 @@ class StudentController extends Controller
         }
         // return view('student.showProfile', compact('user'));
         return redirect()->action('StudentController@showProfile', compact('user'))->with('success', 'Profile Picture Updated');
+    }
+    
+    public function timeslots($id)
+    {
+        $tutor = Tutor::find($id);
+        //dd($tutor);
+        $time = DB::table('timeslots')->where('tutor_id',$id)->get()->toArray();
+        dd($time);
     }
 }

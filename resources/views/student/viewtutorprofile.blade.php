@@ -11,6 +11,10 @@
           <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
+          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
+        {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
+        <a href="{{$tutor->id}}/timeslots">details</a>
+        
         </div>
       </div>
     </div>
@@ -193,4 +197,115 @@
     </div>
 </div>
 </div>
+{{-- modal --}}
+<div class="modal fade" id="retModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+      
+          <!-- Modal Header -->
+          <div class="modal-header" style="outline-offset: -13px;
+                                      padding: 30px;
+                                      background: #6819e8;
+                                      background: -moz-linear-gradient(left, #6819e8 0%, #7437d0 35%, #615fde 68%, #6980f2 100%);
+                                      background: -webkit-linear-gradient(left, #6819e8 0%,#7437d0 35%,#615fde 68%,#6980f2 100%);
+                                      background: linear-gradient(to right, #6819e8 0%,#7437d0 35%,#615fde 68%,#6980f2 100%);
+                                      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6819e8', endColorstr='#6980f2',GradientType=1 );
+      ">
+          <h4 class="modal-title" style="color: #FFFFFF;">Time shedule</h4>
+          <button type="button" class="close" data-dismiss="modal" style="margin-top: -45px;margin-right: -40px;">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <h1>select slots</h1>
+              <p>Here you can see the available time slots for</p>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                    <th scope="col">Saturday</th>
+                    <th scope="col">Sunday</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">8-10 AM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_8" class="btn btn-block">Select</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10-12 AM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_10" class="btn btn-block">Select</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">12-2 PM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_12" class="btn btn-block">Select</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2-4 PM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_2" class="btn btn-block">Select</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4-6 PM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_4" class="btn btn-block">Select</button></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6-8 PM</th>
+                    <td style="padding:0px !important"><button type="button" id="Monday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="wednsday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_6" class="btn btn-block">Select</button></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+          
+      </div>
+  </div>
+</div>
+{{--  --}}
+
 @endsection
