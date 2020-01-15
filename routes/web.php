@@ -35,27 +35,36 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return view('admin');
     });
 });
-Route::middleware(['auth', 'student'])->group(function () {
-
-    Route::get('/student', 'StudentController@index')->name('student.dashboard');
-    Route::get('/student/profile', 'StudentController@viewProfile')->name('student.profile');
-    Route::get('/student/viewtutors', 'StudentController@showTutorList')->name('student.viewTutors');
-    Route::get('/student/viewtutors/{tutor}', 'StudentController@viewTutorProfile')->name('student.viewTutorProfile');
+Route::middleware(['auth','student'])->group( function(){
+   
+    Route::get('/student','StudentController@index')->name('student.dashboard');
+    Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
+    Route::get('/student/{student}/editprofile','StudentController@editProfile')->name('student.editProfile');
+    Route::patch('/student/{student}', 'StudentController@updateProfile')->name('student.updateDetails');
+    Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
+    Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
     //testing >
-    Route::get('/student/viewtutors/{tutor}/timeslots', 'StudentController@timeslots')->name('student.viewTimeSlots');
-    Route::post('/student/viewtutors/{tutor}/approve', 'StudentController@timeslotssubmit')->name('student.viewTimeSlotsSubmit');
+    Route::get('/student/viewtutors/{tutor}/timeslots','StudentController@timeslots')->name('student.viewTimeSlots');
+    
+    Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
+    Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
+    Route::post('student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
 
     Route::get('/student/registerastutor', 'Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor', 'Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
 });
 
-Route::middleware(['auth', 'tutor'])->group(function () {
-
-    Route::get('/tutor', 'TutorController@index')->name('tutor.dashboard');
-    Route::get('/tutor/profile', 'TutorController@viewProfile')->name('tutor.profile');
-    Route::get('/tutor/profile/{tutor}', 'TutorController@viewProfileSlots')->name('tutor.profile.timeslots');
-
+    
     Route::get('/tutor/a', function () {
+        Route::middleware(['auth','tutor'])->group( function(){
+            
+            Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
+            Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
+            Route::get('/tutor/profile/{tutor}', 'TutorController@viewProfileSlots')->name('tutor.profile.timeslots');
+    Route::get('/tutor/{tutor}/editprofile','TutorController@editProfile')->name('tutor.editProfile');
+    Route::patch('/tutor/{tutor}', 'TutorController@updateProfile')->name('tutor.updateDetails');
+    Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
+    Route::get('/tutor/a',function(){
 
         return view('tutor');
     });
@@ -69,7 +78,7 @@ Route::post('/register/student', 'Auth\RegisterStudentController@register')->nam
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Route::middleware(['auth','both'])->group( function(){
