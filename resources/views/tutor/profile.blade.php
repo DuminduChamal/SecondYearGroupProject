@@ -233,63 +233,63 @@
                 <tbody>
                   <tr>
                     <th scope="row">8-10 AM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_8" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_8" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_08" onclick="select('Monday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_08" onclick="select('Tuesday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_08" onclick="select('Wednesday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_08" onclick="select('Thursday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_08" onclick="select('Friday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_08" onclick="select('Saturday_08')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_08" onclick="select('Sunday_08')" class="btn btn-block">Select</button></td>
                   </tr>
                   <tr>
                     <th scope="row">10-12 AM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_10" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_10" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_10"  onclick="select('Monday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_10" onclick="select('Tuesday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_10" onclick="select('Wednesday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_10" onclick="select('Thursday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_10" onclick="select('Friday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_10" onclick="select('Saturday_10')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_10" onclick="select('Sunday_10')" class="btn btn-block">Select</button></td>
                   </tr>
                   <tr>
                     <th scope="row">12-2 PM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_12" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_12" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_12" onclick="select('Monday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_12" onclick="select('Tuesday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_12" onclick="select('Wednesday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_12" onclick="select('Thursday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_12" onclick="select('Friday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_12" onclick="select('Saturday_12')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_12" onclick="select('Sunday_12')" class="btn btn-block">Select</button></td>
                   </tr>
                   <tr>
                     <th scope="row">2-4 PM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_2" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_2" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_02" onclick="select('Monday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_02" onclick="select('Tuesday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_02" onclick="select('Wednesday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_02" onclick="select('Thursday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_02" onclick="select('Friday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_02" onclick="select('Saturday_02')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_02" onclick="select('Sunday_02')" class="btn btn-block">Select</button></td>
                   </tr>
                   <tr>
                     <th scope="row">4-6 PM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_4" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_4" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_04" onclick="select('Monday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_04" onclick="select('Tuesday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_04" onclick="select('Wednesday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_04" onclick="select('Thursday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_04" onclick="select('Friday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_04" onclick="select('Saturday_04')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_04" onclick="select('Sunday_04')" class="btn btn-block">Select</button></td>
                   </tr>
                   <tr>
                     <th scope="row">6-8 PM</th>
-                    <td style="padding:0px !important"><button type="button" id="Monday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Tuesday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="wednsday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Thursday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Friday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Saturday_6" class="btn btn-block">Select</button></td>
-                    <td style="padding:0px !important"><button type="button" id="Sunday_6" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Monday_06" onclick="select('Monday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Tuesday_06" onclick="select('Tuesday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Wednesday_06" onclick="select('Wednesday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Thursday_06" onclick="select('Thursday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Friday_06" onclick="select('Friday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Saturday_06" onclick="select('Saturday_06')" class="btn btn-block">Select</button></td>
+                    <td style="padding:0px !important"><button type="button" id="Sunday_06" onclick="select('Sunday_06')" class="btn btn-block">Select</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -297,17 +297,36 @@
           
           <!-- Modal footer -->
           <div class="modal-footer">
+          {{-- <button type="button" class="btn btn-secondary" id='submit' onClick="submit()" data-dismiss="modal">Submit</button> --}}
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
           
       </div>
   </div>
 </div>
-{{--  --}}
-<script>
-  function () {
 
-    var data = <?php echo json_encode()?>
+{{--  --}}
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+  var selected = [];
+  console.log('fghjkl')
+  function datetime() {
+    var data = <?php echo json_encode($time_slots);?>;
+    var date = ''
+    var time = ''
+    var date_time = ''
+    data.map((obj,i)=>{
+      date = obj.day.toString();
+      time = obj.time.split(':')[0].toString();
+      date_time = date+'_'+time;
+      var btn = document.getElementById(date_time);
+      btn.innerHTML = 'Requested'
+      btn.setAttribute('class','btn btn-warning')
+      btn.setAttribute('disabled',true)
+    })
   }
+  datetime();
 </script>
+
 @endsection
