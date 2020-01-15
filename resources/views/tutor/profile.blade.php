@@ -24,7 +24,7 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="#">
-                  <img src="/assets/img/avatar/tutors/{{Auth::user()->avatar}}" class="rounded-circle">
+                  <img src="/assets/img/avatar/{{Auth::user()->avatar}}" class="rounded-circle">
                 </a>
               </div>
             </div>
@@ -94,7 +94,7 @@
                 <h3 class="mb-0">My account</h3>
               </div>
               <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-sm btn-primary">Edit Profile</a>
               </div>
             </div>
           </div>

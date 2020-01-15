@@ -40,11 +40,13 @@ Route::middleware(['auth','student'])->group( function(){
    
     Route::get('/student','StudentController@index')->name('student.dashboard');
     Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
+    Route::get('/student/{student}/editprofile','StudentController@editProfile')->name('student.editProfile');
+    Route::patch('/student/{student}', 'StudentController@updateProfile')->name('student.updateDetails');
     Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
     Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
-    Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
+    Route::post('student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
 
 });
 
@@ -52,6 +54,8 @@ Route::middleware(['auth','tutor'])->group( function(){
    
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
     Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
+    Route::get('/tutor/{tutor}/editprofile','TutorController@editProfile')->name('tutor.editProfile');
+    Route::patch('/tutor/{tutor}', 'TutorController@updateProfile')->name('tutor.updateDetails');
     Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
     Route::get('/tutor/a',function(){
        
@@ -68,7 +72,7 @@ Route::post('/register/student', 'Auth\RegisterStudentController@register')->nam
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Route::middleware(['auth','both'])->group( function(){

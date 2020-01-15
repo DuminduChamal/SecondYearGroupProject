@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Tutor;
+use App\User;
 use DB;
-
+use auth;
+use Illuminate\Support\Facades\Validator;
+use Image;
 
 use Illuminate\Http\Request;
 
@@ -18,6 +21,34 @@ class StudentController extends Controller
     public function viewProfile()
     {
         return view('student/profile');
+    }
+
+    public function editProfile(User $user)
+    {
+        return view('student.editprofile')->with('user',$user);
+    }
+
+    protected function validatorEdit(array $data)
+    {
+        return Validator::make($data, [
+            'FName' => ['required', 'string', 'max:255'],
+            'LName' => ['required', 'string', 'max:255'],
+            'DOB' => ['required', 'date',],
+        ]);
+    }
+    
+    public function updateProfile(Request $request, $id)
+    {
+        $this->validatorEdit($request->all())->validate();
+
+        $student = User::find($id);
+        $student->FName = $request->input('FName');
+        $student->LName = $request->input('LName');
+        $student->DOB = $request->input('DOB');
+
+        $student->save();
+
+        return redirect()->action('StudentController@viewProfile', compact('student'));
     }
 
     //method to view availble tutors when logged into the student account
@@ -48,7 +79,7 @@ class StudentController extends Controller
 
             $avatar = $request->file('avatar');
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save(public_path('/assets/img/avatar/students/' . $filename));
+            Image::make($avatar)->resize(300, 300)->save(public_path('/assets/img/avatar/' . $filename));
 
             $user = Auth::user();
             $user->avatar = $filename;
