@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Timeslot;
-use App\Tutor;
-use DB;
-
 use Illuminate\Http\Request;
+use App\Tutor;
 use App\User;
+use App\Timeslot;
 use Image;
 use auth;
 use DB;
