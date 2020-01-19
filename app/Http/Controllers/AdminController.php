@@ -85,7 +85,7 @@ class AdminController extends Controller
         $approvedTutor = Tutor::find($id);
         $approvedTutor->approved = 1;
         $approvedTutor->save();
-        return redirect('admin/unapprovedtutors')->with('success', 'Tutor Approved');;
+        return redirect('admin/unapprovedtutors')->with('success', 'Tutor Approved');
     }
 
     //method to reject the tutor
@@ -103,15 +103,38 @@ class AdminController extends Controller
 
     public function publishAnnouncementSubmit(Request $request)
     {
-        // $this->validate($request,[
-        //     'announcement' => 'required'
-        // ]);
+        $this->validate($request,[
+            'title'=> 'required',
+            'announcement' => 'required'
+        ]);
         // dd($request);
         $announcement = new Announcement;
         $announcement->title=$request->input('title');
-        $announcement->announcement=$request->input('annouce');
+        $announcement->announcement=$request->input('announcement');
         $announcement->admin_id=Auth::user()->id;
         $announcement->save();
-        return redirect('admin/');
+        return redirect('admin/')->with('success','Announcement Published!');
+    }
+
+    public function publishAnnouncementEdit($id)
+    {
+        $editann = Announcement::find($id);
+        // dd($editann);
+        return view('admin/annoucementEdit', compact('editann'));
+    }
+    
+    public function publishAnnouncementUpdate(Request $request, $id)
+    {
+        $this->validate($request,[
+            'title'=> 'required',
+            'announcement' => 'required'
+        ]);
+        // dd($request);
+        $announcement = Announcement::find($id);
+        $announcement->title=$request->input('title');
+        $announcement->announcement=$request->input('announcement');
+        $announcement->admin_id=Auth::user()->id;
+        $announcement->save();
+        return redirect('admin/')->with('success','Announcement Updated');
     }
 }
