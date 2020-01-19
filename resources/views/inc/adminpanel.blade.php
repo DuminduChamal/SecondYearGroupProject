@@ -38,8 +38,8 @@
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="../examples/login.html">
-                <i class="ni ni-key-25 text-info"></i> Login
+            <a class="nav-link" href="{{route('admin.announcement')}}">
+                <i class="ni ni-key-25 text-info"></i> Publish Announcements
             </a>
             </li>
             <li class="nav-item">

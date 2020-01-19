@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Tutor;
+use App\Announcement;
+use Auth;
 use DB;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin/admin');
+        $anns=Announcement::orderBy('created_at','desc')->paginate(3);
+        return view('admin/admin')->with('anns',$anns);
     }
 
     //method to view admin profile
@@ -65,7 +68,7 @@ class AdminController extends Controller
     //method to view all the unapproved tutors in latest
     public function viewUnapprovedTutors(){
         $unapprovedtutors = Tutor::where('approved','0')->latest()->get();
-         dd($unapprovedtutors);
+        //dd($unapprovedtutors);
         return view('admin/viewUnapprovedTutors')->with('unapprovedtutors', $unapprovedtutors);
     }
 
@@ -91,5 +94,24 @@ class AdminController extends Controller
         $tutor = Tutor::find($id);
         $tutor->delete();
         return redirect('admin/unapprovedtutors')->with('success', 'Tutor Rejected');
+    }
+
+    public function publishAnnouncement()
+    {
+        return view('admin/announcements');
+    }
+
+    public function publishAnnouncementSubmit(Request $request)
+    {
+        // $this->validate($request,[
+        //     'announcement' => 'required'
+        // ]);
+        // dd($request);
+        $announcement = new Announcement;
+        $announcement->title=$request->input('title');
+        $announcement->announcement=$request->input('annouce');
+        $announcement->admin_id=Auth::user()->id;
+        $announcement->save();
+        return redirect('admin/');
     }
 }

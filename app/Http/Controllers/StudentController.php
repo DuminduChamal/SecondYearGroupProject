@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Timeslot;
 use App\Tutor;
 use App\User;
+use App\Announcement;
 use DB;
 use auth;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('student/student');
+        $anns=Announcement::orderBy('created_at','desc')->paginate(3);
+        return view('student/student')->with('anns',$anns);
     }
 
     public function viewProfile()
