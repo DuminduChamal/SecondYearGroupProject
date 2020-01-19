@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tutor;
 use App\User;
+use App\Announcement;
 use App\Timeslot;
 use Image;
 use auth;
@@ -16,7 +17,8 @@ class TutorController extends Controller
 
     public function index()
     {
-        return view('tutor/tutor');
+        $anns=Announcement::orderBy('created_at','desc')->paginate(3);
+        return view('tutor/tutor')->with('anns',$anns);
     }
 
     public function viewProfile()
