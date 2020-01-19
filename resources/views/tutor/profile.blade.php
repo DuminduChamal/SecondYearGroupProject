@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+  {{Auth::user()->FName}}'s profile
+@endsection
+
 @section('content')
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../assets/img/theme/tutor.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
