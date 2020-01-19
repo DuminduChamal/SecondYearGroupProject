@@ -42,4 +42,12 @@ class User extends Authenticatable
     public function tutor(){
         return $this->hasOne('App\Tutor','user_id','id');
     }
+
+    // public function annouce(){
+    //     return $this->hasOne('App\Announcement','admin_id','id');
+    // }
+
+    // public function creator(){
+    //     return $this->belongsTo('App\Announcement','admin_id','id');
+    // }
 }

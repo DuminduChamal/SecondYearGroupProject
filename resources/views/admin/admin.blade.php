@@ -30,9 +30,11 @@
                                     <h3>{{$ann->title}}</h3>
                                     {{$ann->announcement}}
                                     <br/>
-                                    <small>Written on {{$ann->created_at}}</small><br>
+                                    <small>Published on {{$ann->created_at}} by {{$ann->creator->FName}} {{$ann->creator->LName}}</small><br>
+                                    @if(Auth::user()->id==$ann->admin_id)
                                     <a href="{{route('admin.editAnnouncement',['ann'=>$ann->id])}}" class="btn btn-primary btn-sm">Edit</a>
                                     <a href="{{route('admin.deleteAnnouncement',['ann'=>$ann->id])}}" onclick="return confirm('Are you sure to remove {{$ann->title}}?')" class="btn btn-danger btn-sm">Delete</a>
+                                    @endif
                                     <hr/>
                                 </div>
                             @endforeach
