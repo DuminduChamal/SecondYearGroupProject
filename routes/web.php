@@ -20,6 +20,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', 'AdminController@index')->name('admin.dashboard');
     Route::get('/admin/announcement', 'AdminController@publishAnnouncement')->name('admin.announcement');
     Route::post('/admin/announcement/submit', 'AdminController@publishAnnouncementSubmit')->name('admin.announcement.submit');
+    Route::get('/admin/announcement/edit/{ann}', 'AdminController@announcementEdit')->name('admin.editAnnouncement');
+    Route::post('/admin/announcement/edit/{ann}/update', 'AdminController@announcementUpdate')->name('admin.announcement.edit');
+    Route::get('/admin/announcement/delete/{ann}', 'AdminController@announcementDelete')->name('admin.deleteAnnouncement');
     Route::get('/admin/profile', 'AdminController@viewProfile')->name('viewadminprofile');
     Route::get('/admin/tutors', 'AdminController@viewTutors')->name('viewtutors');
     Route::get('/admin/students', 'AdminController@viewStudents')->name('viewstudents');

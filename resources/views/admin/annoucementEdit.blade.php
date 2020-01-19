@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Publish Announcements 
+    Edit Announcement
 @endsection
 
 @section('content')
@@ -12,16 +12,11 @@
                 <div class="card">
                     <div class="card-header"><b>Announcements</b></div>
                     <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <form role="form" method="POST" action="{{ route('admin.announcement.submit') }}">
+                        <form role="form" method="POST" action="{{ route('admin.announcement.edit',['ann'=>$editann->id]) }}">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Announcement Title</label>
-                                <input name="title" class="form-control @error('title') is-invalid @enderror">
+                                <input name="title" class="form-control @error('title') is-invalid @enderror" value="{{$editann->title}}">
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -30,14 +25,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="announcement">Announcement</label>
-                                <textarea name="announcement" class="form-control @error('announcement') is-invalid @enderror" rows="4"></textarea>
+                                <textarea name="announcement" class="form-control @error('announcement') is-invalid @enderror" placeholder="{{$editann->announcement}}"  rows="4"></textarea>
                                 @error('announcement')
                                     <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Publish</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>
