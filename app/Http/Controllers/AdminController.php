@@ -116,14 +116,14 @@ class AdminController extends Controller
         return redirect('admin/')->with('success','Announcement Published!');
     }
 
-    public function publishAnnouncementEdit($id)
+    public function announcementEdit($id)
     {
         $editann = Announcement::find($id);
         // dd($editann);
         return view('admin/annoucementEdit', compact('editann'));
     }
     
-    public function publishAnnouncementUpdate(Request $request, $id)
+    public function announcementUpdate(Request $request, $id)
     {
         $this->validate($request,[
             'title'=> 'required',
@@ -136,5 +136,13 @@ class AdminController extends Controller
         $announcement->admin_id=Auth::user()->id;
         $announcement->save();
         return redirect('admin/')->with('success','Announcement Updated');
+    }
+
+    public function announcementDelete($id)
+    {
+        $deleteann = Announcement::find($id);
+        // dd($editann);
+        $deleteann->delete();
+        return redirect('admin/')->with('danger','Announcement Deleted');
     }
 }

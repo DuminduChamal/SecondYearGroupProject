@@ -15,6 +15,11 @@
                             {{ session('success') }}
                         </div>
                     @endif
+                    @if (session('danger'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session('danger') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="card">
                     <div class="card-header"><h2>Announcements</h2></div>
@@ -27,7 +32,7 @@
                                     <br/>
                                     <small>Written on {{$ann->created_at}}</small><br>
                                     <a href="{{route('admin.editAnnouncement',['ann'=>$ann->id])}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="{{route('admin.deleteAnnouncement',['ann'=>$ann->id])}}" onclick="return confirm('Are you sure to remove {{$ann->title}}?')" class="btn btn-danger btn-sm">Delete</a>
                                     <hr/>
                                 </div>
                             @endforeach
