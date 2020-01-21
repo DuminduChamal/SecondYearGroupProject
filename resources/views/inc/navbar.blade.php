@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="#">
+                        <a class="nav-link nav-link-icon" href="/contact">
                         <span class="nav-link-inner--text">Contact Us</span>
                         </a>
                     </li>
