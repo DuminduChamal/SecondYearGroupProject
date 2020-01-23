@@ -15,7 +15,7 @@
           <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
-          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
+          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>Available Timeslots</a>
         {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
         <a href="{{$tutor->id}}/timeslots">details</a>
         

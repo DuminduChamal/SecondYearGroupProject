@@ -58,7 +58,7 @@ class StudentController extends Controller
     //method to view availble tutors when logged into the student account
     public function showTutorList()
     {
-        $tutors = Tutor::where('approved', '1')->get();
+        $tutors = Tutor::where('approved', '1')->paginate(3);
         //dd($tutors);
         return view('student.viewtutors')->with('tutors', $tutors);
     }
