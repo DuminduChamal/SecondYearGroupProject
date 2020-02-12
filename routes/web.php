@@ -47,7 +47,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     });
 });
-Route::middleware(['auth','student'])->group( function(){
+Route::middleware(['auth','student','verified'])->group( function(){
     
     Route::get('/student','StudentController@index')->name('student.dashboard');
     Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
@@ -66,7 +66,7 @@ Route::middleware(['auth','student'])->group( function(){
 
     
     //Route::get('/tutor/a', function () {
-    Route::middleware(['auth','tutor'])->group( function(){
+    Route::middleware(['auth','tutor','verified'])->group( function(){
             
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
     Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
@@ -86,7 +86,7 @@ Route::middleware(['auth','student'])->group( function(){
 Route::get('/register/student', 'Auth\RegisterStudentController@showRegistrationForm')->name('register.student');
 Route::post('/register/student', 'Auth\RegisterStudentController@register')->name('register.student.submit');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
