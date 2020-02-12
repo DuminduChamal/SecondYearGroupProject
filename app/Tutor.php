@@ -19,4 +19,9 @@ class Tutor extends Model
         return $this->belongsTo('App\User','user_id','id');
     }
 
+    public function subject()
+    {
+        return $this->belongsTo(subject::class);
+    }
+
 }

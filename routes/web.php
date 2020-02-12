@@ -57,6 +57,8 @@ Route::middleware(['auth','student'])->group( function(){
     //testing >
     Route::get('/student/viewtutors/{tutor}/timeslots','StudentController@timeslots')->name('student.viewTimeSlots');
     Route::post('/student/viewtutors/{tutor}/approve', 'StudentController@timeslotssubmit')->name('student.viewTimeSlotsSubmit');
+    Route::post('/student/viewtutors/{tutor}/remove', 'StudentController@timeslotsremove')->name('student.viewTimeSlotsRemove');
+
     
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
