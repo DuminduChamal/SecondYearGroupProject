@@ -65,12 +65,23 @@ class AdminController extends Controller
          return redirect('admin/tutors')->with('success', 'Tutor Removed');
      }
 
+     //method to Mark as read notification
+    public function markAsRead()
+    {
+        $admin = auth()->user();
+        $admin->unreadNotifications->markAsRead();
+        // return redirect()->back();
+        return redirect()->route('viewunapprovedtutors');
+    }
+
     //method to view all the unapproved tutors in latest
     public function viewUnapprovedTutors(){
         $unapprovedtutors = Tutor::where('approved','0')->latest()->get();
         //dd($unapprovedtutors);
         return view('admin/viewUnapprovedTutors')->with('unapprovedtutors', $unapprovedtutors);
     }
+
+
 
     //method to view unapproved tutor's details
     public function viewUnapprovedTutorDetails($id)
