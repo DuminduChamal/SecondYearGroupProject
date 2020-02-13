@@ -142,10 +142,54 @@
             </div>
             <div class="text-center">
               <h3>
-                  {{$tutor->FName}}<span class="font-weight-light">, 27</span>
+                  {{$tutor->user->FName}} {{$tutor->user->LName}}
               </h3>
               <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                @if(($tutor->user->rating)=='1')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='2')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='3')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='4')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                        <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='5')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                        <label for="demo-4" aria-label="4 stars" title="4 stars"></label>
+                        <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                    </div>
+                  </fieldset>
+                @endif
               </div>
               <hr class="my-4" />
               <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
