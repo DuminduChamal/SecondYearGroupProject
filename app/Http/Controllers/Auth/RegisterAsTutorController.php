@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Notifications\TutorRequest;
 
 class RegisterAsTutorController extends Controller
 {
@@ -63,6 +64,11 @@ class RegisterAsTutorController extends Controller
             'subject_id' => $request['subject_id'],
             'rate' => $request['rate'],
         ]);
+        $admins = User::where('is_admin',1)->get();
+        foreach ($admins as $admin)
+        {
+            $admin->notify(new TutorRequest());
+        }
         return redirect()->intended('/tutor');
 
     }
