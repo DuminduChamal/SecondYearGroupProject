@@ -55,6 +55,7 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::patch('/student/{student}', 'StudentController@updateProfile')->name('student.updateDetails');
     Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
     Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
+    Route::post('/student/viewtutors/{tutor}/ratesubmit','StudentController@submitRate')->name('rateSubmit');
     //testing >
     Route::get('/student/viewtutors/{tutor}/timeslots','StudentController@timeslots')->name('student.viewTimeSlots');
     Route::post('/student/viewtutors/{tutor}/approve', 'StudentController@timeslotssubmit')->name('student.viewTimeSlotsSubmit');

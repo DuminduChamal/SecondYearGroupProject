@@ -119,4 +119,9 @@ class StudentController extends Controller
 
         return redirect()->back();
     }
+
+    public function submitRate(Request $arr, $id)
+    {
+        dd($id);
+    }
 }
