@@ -92,7 +92,7 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="#">
-                  <img src="/assets/img/avatar/tutors/{{$tutor->user->avatar}}" class="rounded-circle">
+                  <img src="/assets/img/avatar/{{$tutor->user->avatar}}" class="rounded-circle">
                 </a>
               </div>
             </div>
