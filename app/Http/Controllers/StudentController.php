@@ -123,6 +123,7 @@ class StudentController extends Controller
     public function submitRate(Request $arr, $user_id)
     {
         // dd($arr);
+        $student=Auth::user();
         $old_rating = DB::table('users')->where('id', $user_id)->value('rating');
         // dd($old_rating);
         $new_rating = $arr->data;
@@ -132,6 +133,6 @@ class StudentController extends Controller
         $tutor = User::find($user_id);
         $tutor->rating = $present_rating;
         $tutor->save();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Rating added! Thank you for your time');
     }
 }
