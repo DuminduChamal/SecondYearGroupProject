@@ -44,7 +44,7 @@
                                         <div class="col-sm-4">
                                             {{-- <div class="thumbnail"> --}}
                                                 <a href="viewtutors/{{$tutor->id}}" class="avatar rounded-circle mr-3">
-                                                    <img alt="Image placeholder" src="/assets/img/avatar/tutors/{{$tutor->user->avatar}}">
+                                                    <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->user->avatar}}">
                                                 </a>
                                             {{-- <img src="paris.jpg" alt="Paris"> --}}
                                             <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>

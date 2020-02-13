@@ -32,6 +32,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/tutors', 'AdminController@viewTutors')->name('viewtutors');
     Route::get('/admin/students', 'AdminController@viewStudents')->name('viewstudents');
     Route::get('/admin/unapprovedtutors', 'AdminController@viewUnapprovedTutors')->name('viewunapprovedtutors');
+    Route::get('/admin/unapprovedtutors/markasread', 'AdminController@markAsRead')->name('markasread');
     Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}', 'AdminController@viewUnapprovedTutorDetails')->name('viewunapprovedtutordetails');
     Route::get('/admin/unapprovedtutordetails/{unapprovedTutor}/approvetutor', 'AdminController@approveTutor')->name('admin.approved');
     Route::get('/admin/rejectTutor/{unapprovedTutor}', 'AdminController@adminRejectTutor')->name('admin.tutor.reject');
@@ -46,7 +47,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     });
 });
-Route::middleware(['auth','student'])->group( function(){
+Route::middleware(['auth','student','verified'])->group( function(){
     
     Route::get('/student','StudentController@index')->name('student.dashboard');
     Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
@@ -54,6 +55,7 @@ Route::middleware(['auth','student'])->group( function(){
     Route::patch('/student/{student}', 'StudentController@updateProfile')->name('student.updateDetails');
     Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
     Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
+    Route::post('/student/viewtutors/{tutor}/ratesubmit','StudentController@submitRate')->name('rateSubmit');
     //testing >
     Route::get('/student/viewtutors/{tutor}/timeslots','StudentController@timeslots')->name('student.viewTimeSlots');
     Route::post('/student/viewtutors/{tutor}/approve', 'StudentController@timeslotssubmit')->name('student.viewTimeSlotsSubmit');
@@ -67,7 +69,7 @@ Route::middleware(['auth','student'])->group( function(){
 
     
     //Route::get('/tutor/a', function () {
-    Route::middleware(['auth','tutor'])->group( function(){
+    Route::middleware(['auth','tutor','verified'])->group( function(){
             
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
     Route::get('/tutor/profile','TutorController@viewProfile')->name('tutor.profile');
@@ -87,7 +89,13 @@ Route::middleware(['auth','student'])->group( function(){
 Route::get('/register/student', 'Auth\RegisterStudentController@showRegistrationForm')->name('register.student');
 Route::post('/register/student', 'Auth\RegisterStudentController@register')->name('register.student.submit');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+// route for processing payment
+Route::post('payment/add-funds/paypal', 'PaymentController@payWithpaypal');
+
+// route for check status of the payment
+Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

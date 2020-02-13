@@ -33,8 +33,8 @@
             </a>
             </li>
             <li class="nav-item" id="markasread" >
-            <a class="nav-link" href="{{route('viewunapprovedtutors')}}">
-                <i class="ni ni-notification-70 text-red"></i>Requested Tutors 
+            <a class="nav-link" href="{{route('markasread')}}">
+                <i class="ni ni-notification-70 text-red"></i>Requested Tutors &nbsp; <span class="badge badge-success"> {{count(auth()->user()->unreadNotifications)}}</span>
             </a>
             </li>
             <li class="nav-item">

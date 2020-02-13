@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Notifications\TutorRequest;
 
 class RegisterController extends Controller
 {
@@ -102,6 +103,13 @@ class RegisterController extends Controller
             'subject_id' => $data['subject_id'],
             'rate' => $data['rate'],
         ]);
+
+        $admins = User::where('is_admin',1)->get();
+        foreach ($admins as $admin)
+        {
+            $admin->notify(new TutorRequest());
+        }
+
         return $user;
     }
 }

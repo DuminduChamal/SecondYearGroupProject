@@ -153,7 +153,7 @@
                                     <span>{{ __('Dashboard') }}</span>
                                 </a>
                                 <a class="dropdown-item" href="/admin/profile">
-                                    <i class="ni ni-glasses-2"></i>
+                                    <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
                             @endif

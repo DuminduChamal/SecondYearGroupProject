@@ -128,4 +128,20 @@ class StudentController extends Controller
             timeslot::where('tutor_id',$id)->where('day',$timeSlot->day)->where('time',$timeSlot->time)->delete();
         }
     }
+
+    public function submitRate(Request $arr, $user_id)
+    {
+        // dd($arr);
+        $student=Auth::user();
+        $old_rating = DB::table('users')->where('id', $user_id)->value('rating');
+        // dd($old_rating);
+        $new_rating = $arr->data;
+        // dd($new_rating);
+        $present_rating=ceil(($old_rating+$new_rating)/2);
+        // dd($present_rating);
+        $tutor = User::find($user_id);
+        $tutor->rating = $present_rating;
+        $tutor->save();
+        return redirect()->back()->with('success', 'Rating added! Thank you for your time');
+    }
 }
