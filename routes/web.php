@@ -55,6 +55,7 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::patch('/student/{student}', 'StudentController@updateProfile')->name('student.updateDetails');
     Route::get('/student/viewtutors','StudentController@showTutorList')->name('student.viewTutors');
     Route::get('/student/viewtutors/{tutor}','StudentController@viewTutorProfile')->name('student.viewTutorProfile');
+    Route::post('/student/viewtutors/{tutor}/ratesubmit','StudentController@submitRate')->name('rateSubmit');
     //testing >
     Route::get('/student/viewtutors/{tutor}/timeslots','StudentController@timeslots')->name('student.viewTimeSlots');
     Route::post('/student/viewtutors/{tutor}/approve', 'StudentController@timeslotssubmit')->name('student.viewTimeSlotsSubmit');
@@ -89,6 +90,12 @@ Route::get('/register/student', 'Auth\RegisterStudentController@showRegistration
 Route::post('/register/student', 'Auth\RegisterStudentController@register')->name('register.student.submit');
 
 Auth::routes(['verify' => true]);
+
+// route for processing payment
+Route::post('payment/add-funds/paypal', 'PaymentController@payWithpaypal');
+
+// route for check status of the payment
+Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

@@ -128,4 +128,9 @@ class StudentController extends Controller
             timeslot::where('tutor_id',$id)->where('day',$timeSlot->day)->where('time',$timeSlot->time)->delete();
         }
     }
+
+    public function submitRate(Request $arr, $id)
+    {
+        dd($id);
+    }
 }
