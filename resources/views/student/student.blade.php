@@ -23,7 +23,7 @@
                                     <h3>{{$ann->title}}</h3>
                                     {{$ann->announcement}}
                                     <br/>
-                                    <small>Written on {{$ann->created_at}}</small>
+                                    <small>Published on {{$ann->created_at}} by {{$ann->creator->FName}} {{$ann->creator->LName}}</small>
                                     <hr/>
                                 </div>
                             @endforeach
