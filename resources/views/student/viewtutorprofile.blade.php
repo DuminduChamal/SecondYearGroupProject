@@ -15,7 +15,7 @@
           <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
-          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
+          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>Available Timeslots</a>
         {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
         <a href="{{$tutor->id}}/timeslots">details</a>
         
@@ -223,6 +223,7 @@
           <div class="modal-body">
               <h1>select slots</h1>
               <p>Here you can see the available time slots for</p>
+              <p id="modelnote"></p>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -304,35 +305,52 @@
           
           <!-- Modal footer -->
           <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id='submit' onClick="submit()" data-dismiss="modal">Submit</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" style ="display:none" id='submit' onClick="submit()" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-secondary" style ="display:none" id='rmsubmit' onClick="rmsubmit()" data-dismiss="modal">remove</button>
+          <button type="button" class="btn btn-secondary" onClick="cls()" data-dismiss="modal">Close</button>
           </div>
           
       </div>
   </div>
 </div>
-<?php print_r($time_slots)?>
+<?php $id =  Auth::user()->id;?>
+<?php echo $id;?>
 {{--  --}}
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
   var selected = [];
+  var remove = [];
   function datetime() {
     var data = <?php echo json_encode($time_slots);?>;
     var date = ''
     var time = ''
     var date_time = ''
+    var stuId = ''
     data.map((obj,i)=>{
       date = obj.day.toString();
       time = obj.time.split(':')[0].toString();
+      stuId = obj.stu_id;
+      userId = <?php echo $id;?>;
       date_time = date+'_'+time;
       var btn = document.getElementById(date_time);
-      btn.innerHTML = 'Reserved'
-      btn.setAttribute('class','btn btn-warning')
-      btn.setAttribute('disabled',true)
+      if(stuId === userId)
+      {
+        var upt = "removea('"+date_time+"')"
+        btn.innerHTML = 'Remove'
+        btn.setAttribute('class','btn btn-primary')
+        btn.setAttribute('onClick',upt)
+      }
+      else{
+        btn.innerHTML = 'Reserved'
+        btn.setAttribute('class','btn btn-warning')
+        btn.setAttribute('disabled',true)
+      }
     })
   }
   function select(params) {
-    var rmv = "remove('"+params+"')"
+    note = document.getElementById('modelnote');
+    note.innerHTML = 'Please click Submit button to confirm!'
+    var rmv = "unselect('"+params+"')"
     var btn = document.getElementById(params);
     btn.innerHTML = 'Selected'
     btn.setAttribute('class','btn btn-primary')
@@ -344,10 +362,16 @@
       day:date,
       time:time
     }
+    sbtn = document.getElementById('submit');
+    sbtn.style.display = ''
+    rmbtn = document.getElementById('rmsubmit');
+    rmbtn.style.display = 'none'
     selected.push(obj);
     console.log(selected)
   }
-  function remove(params) {
+  function unselect(params) {
+    note = document.getElementById('modelnote');
+    note.innerHTML = ''
     var slct = "select('"+params+"')";
     var btn = document.getElementById(params);
     btn.innerHTML = 'Select'
@@ -372,9 +396,10 @@
     // dataType: "json",
     success: function(JSONObject) {
       console.log('Success');
-      document.open();
-      document.write(JSONObject);
-      document.close();
+      location.reload();
+      // document.open();
+      // document.write(JSONObject);
+      // document.close();
     },
     error: function(err) {
       console.log('Error');
@@ -384,7 +409,56 @@
       // w.document.close();
     }
   });
-  console.log('hello123')
+  }
+  function removea(params) {
+    note = document.getElementById('modelnote');
+    note.innerHTML = 'Please click remove button in below for confirm!';
+    var slct = "select('"+params+"')";
+    var btn = document.getElementById(params);
+    btn.innerHTML = 'Select'
+    btn.setAttribute('class','btn btn-block')
+    btn.setAttribute('onClick',slct)
+    date_time = params.split('_');
+    date = date_time[0];
+    time = date_time[1]+':00:00';
+    obj = {
+      day:date,
+      time:time
+    }
+    rmbtn = document.getElementById('rmsubmit');
+    rmbtn.style.display = ''
+    sbtn = document.getElementById('submit');
+    sbtn.style.display = 'none'
+    remove.push(obj);
+    console.log(remove)
+
+  }
+
+  function rmsubmit() {
+    $.ajax({
+    type: "POST",
+    data:{ 'data': JSON.stringify(remove), '_token':'<?=csrf_token()?>'},
+    url: "/student/viewtutors/{{$tutor->id}}/remove",
+    // dataType: "json",
+    success: function(JSONObject) {
+      console.log('Success');
+      location.reload();
+      // document.open();
+      // document.write(JSONObject);
+      // document.close();
+    },
+    error: function(err) {
+      console.log('Error');
+      // let w=window.open('about:blank');
+      // w.document.open();
+      // w.document.write(err.responseText);
+      // w.document.close();
+    }
+  });
+  }
+  function cls() {
+    console.log('hello');
+    location.reload();
   }
   datetime();
 </script>
