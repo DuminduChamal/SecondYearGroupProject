@@ -58,7 +58,7 @@ class StudentController extends Controller
     //method to view availble tutors when logged into the student account
     public function showTutorList()
     {
-        $tutors = Tutor::where('approved', '1')->get();
+        $tutors = Tutor::where('approved', '1')->paginate(3);
         //dd($tutors);
         return view('student.viewtutors')->with('tutors', $tutors);
     }
@@ -98,7 +98,7 @@ class StudentController extends Controller
     {
         $tutor = Tutor::find($id);
         //dd($tutor);
-        $time = DB::table('timeslots')->where('tutor_id', $id)->select('day', 'time')->get()->toArray();
+        $time = DB::table('timeslots')->where('tutor_id', $id)->select('day', 'time','stu_id')->get()->toArray();
         return $time;
     }
 
@@ -106,18 +106,27 @@ class StudentController extends Controller
     {
         $data = $arr->input('data');
         $data = json_decode($data);
-
+        $stuId = Auth::user()->id;
+        echo "<script>console.log('$stuId')</script>";
         foreach ($data as $timeSlot) {
             Timeslot::create([
                 'tutor_id' => $id,
                 'day' => $timeSlot->day,
-                'time' => $timeSlot->time
+                'time' => $timeSlot->time,
+                'stu_id'=> $stuId,
             ]);
         }
         // return redirect()->route('student.viewTutorProfile', compact('tutor'));
         // return redirect('/student/viewtutors/6');
 
-        return redirect()->back();
+    }
+
+    public function timeslotsremove(Request $arr,$id){
+        $data = $arr->input('data');
+        $data = json_decode($data);
+        foreach ($data as $timeSlot) {
+            timeslot::where('tutor_id',$id)->where('day',$timeSlot->day)->where('time',$timeSlot->time)->delete();
+        }
     }
 
     public function submitRate(Request $arr, $user_id)

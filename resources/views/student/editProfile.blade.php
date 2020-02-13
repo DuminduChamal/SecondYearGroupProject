@@ -76,7 +76,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                         </div>
-                        <input id="email" type="email" placeholder="Email Adress" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" placeholder="Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -97,7 +97,7 @@
                         @enderror
                     </div>
                 </div>
-                <button type="submit" onclick="return confirm('Are you sure to update your details ?')" class="btn btn-primary">update details</button>           
+                <button type="submit" onclick="return confirm('Are you sure you want to update your details ?')" class="btn btn-primary">update details</button>           
                 <hr class="my-4" />
             </form>
           </div>

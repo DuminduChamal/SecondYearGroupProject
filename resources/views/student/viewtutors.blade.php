@@ -23,12 +23,13 @@
                 <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
                     <h3 class="text-white mb-0">Tutors</h3>
+                    <br>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-dark table-flush">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Name</th>
+                            <th scope="col"></th>
                             <th scope="col">Qualification</th>
                             <th scope="col">Subject</th>
                             <th scope="col">Rate</th>
@@ -40,12 +41,15 @@
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <a href="#" class="avatar rounded-circle mr-3">
-                                        <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->user->avatar}}">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="mb-0 text-sm">{{$tutor->user->FName}} {{$tutor->user->LName}}</span>
-                                        </div>
+                                        <div class="col-sm-4">
+                                            {{-- <div class="thumbnail"> --}}
+                                                <a href="viewtutors/{{$tutor->id}}" class="avatar rounded-circle mr-3">
+                                                    <img alt="Image placeholder" src="/assets/img/avatar/tutors/{{$tutor->user->avatar}}">
+                                                </a>
+                                              {{-- <img src="paris.jpg" alt="Paris"> --}}
+                                              <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>
+                                              <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} LKR <br>Per session</b></button>
+                                            {{-- </div> --}}
                                     </div>
                                 </th>
                                 <td>
@@ -69,8 +73,9 @@
                                 </td>
                             </tr>
                             @endforeach
-                            </tbody>
+                        </tbody>
                     </table>
+                    {{$tutors->links()}}
                 </div>
                 </div>
             </div>
