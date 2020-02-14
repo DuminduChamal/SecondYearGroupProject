@@ -104,7 +104,7 @@ class AdminController extends Controller
     {
         $tutor = Tutor::find($id);
         $tutor->delete();
-        return redirect('admin/unapprovedtutors')->with('success', 'Tutor Rejected');
+        return redirect('admin/unapprovedtutors')->with('error', 'Tutor Rejected');
     }
 
     public function publishAnnouncement()

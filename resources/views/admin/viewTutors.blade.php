@@ -49,7 +49,7 @@
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">NIC</th>
-                      <th scope="col">DOB</th>
+                      <th scope="col">Subject</th>
                       <th scope="col">Qualification</th>
                       <th scope="col"></th>
                     </tr>
@@ -77,7 +77,7 @@
                           {{$tutor->NIC}}
                       </td>
                       <td>
-                          {{$tutor->DOB}}
+                        {!!$tutor->tutor ? $tutor->tutor->subject->subject : '' !!}
                       </td>
                       <td>
                           {!!$tutor->tutor ? $tutor->tutor->Qualification : '' !!}

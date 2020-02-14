@@ -12,7 +12,7 @@
               <b>{{$unapprovedTutor->user->FName}} {{$unapprovedTutor->user->LName}}</b>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><i>Subject Requested</i> : {{$unapprovedTutor->subject_id}}</li>
+                <li class="list-group-item"><i>Subject Requested</i> : {{$unapprovedTutor->subject->subject}}</li>
                 <li class="list-group-item"><i>Qualification</i> : {{$unapprovedTutor->Qualification}}</li>
                 <li class="list-group-item"><i>Referee Name</i> : {{$unapprovedTutor->referName}}</li>
                 <li class="list-group-item"><i>Status</i> : {{$unapprovedTutor->referStatus}}</li>
