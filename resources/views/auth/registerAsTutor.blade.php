@@ -104,7 +104,7 @@
                     @enderror
                 </div>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-controller"></i></span>
@@ -116,7 +116,31 @@
                         </span>
                     @enderror
                 </div>
-                </div>
+                </div> --}}
+
+                <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-controller"></i></span>
+                        </div>
+                        {{-- <input id="subject_id" type="integer" placeholder="Subject" class="form-control @error('subject_id') is-invalid @enderror" name="subject_id" value="{{ old('subject_id') }}" required autocomplete="subject_id" autofocus> --}}
+                        <select id="subject_id" class="form-control @error('subject_id') is-invalid @enderror" name="subject_id" value="{{ old('subject_id') }}">
+                            <option value="1">Mathamatics</option>
+                            <option value="2">Science</option>
+                            <option value="3">English</option>
+                            <option value="4">Sinhala</option>
+                            <option value="5">History</option>
+                            <option value="6">Buddhism</option>
+
+                        </select>
+                        @error('subject_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    </div>
+
                 <div class="form-group">
                 <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
