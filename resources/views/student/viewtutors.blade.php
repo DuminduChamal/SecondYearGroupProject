@@ -46,9 +46,9 @@
                                                 <a href="viewtutors/{{$tutor->id}}" class="avatar rounded-circle mr-3">
                                                     <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->user->avatar}}">
                                                 </a>
-                                              {{-- <img src="paris.jpg" alt="Paris"> --}}
-                                              <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>
-                                              <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} LKR <br>Per session</b></button>
+                                            {{-- <img src="paris.jpg" alt="Paris"> --}}
+                                            <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>
+                                            <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} LKR <br>Per session</b></button>
                                             {{-- </div> --}}
                                     </div>
                                 </th>
@@ -56,7 +56,7 @@
                                     {{$tutor->Qualification}}
                                 </td>
                                 <td>
-                                    {{$tutor->subject_id}}
+                                    {{$tutor->subject->subject}}
                                 </td>
                                 <td>
                                     {{$tutor->rate}}
