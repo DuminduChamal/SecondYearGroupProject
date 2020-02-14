@@ -6876,7 +6876,7 @@ button.bg-warning:focus {
 
 .bg-danger {
   background-color: #f5365c !important;
-}
+} 
 
 a.bg-danger:hover,
 a.bg-danger:focus,
@@ -6885,9 +6885,9 @@ button.bg-danger:focus {
   background-color: #ec0c38 !important;
 }
 
-.bg-light {
+ .bg-light {
   background-color: #adb5bd !important;
-}
+} 
 
 a.bg-light:hover,
 a.bg-light:focus,
@@ -6896,9 +6896,9 @@ button.bg-light:focus {
   background-color: #919ca6 !important;
 }
 
-.bg-dark {
+/.bg-dark {
   background-color: #212529 !important;
-}
+} 
 
 a.bg-dark:hover,
 a.bg-dark:focus,
@@ -6909,7 +6909,7 @@ button.bg-dark:focus {
 
 .bg-default {
   background-color: #172b4d !important;
-}
+} 
 
 a.bg-default:hover,
 a.bg-default:focus,
@@ -20681,5 +20681,24 @@ pre>code.highlight {
 .ct-footer-links li+li {
   margin-left: 1rem;
 }
+
+.pic{
+  position:absolute ;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.hero{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)),url("a.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+
 
 /*# sourceMappingURL=dashboard-free.css.map */

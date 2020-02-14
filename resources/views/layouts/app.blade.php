@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link rel="stylesheet" href= "././public/css/style.css"> -->
     <!-- Favicon -->
     <link href="{{ asset('assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -27,6 +28,7 @@
     <link href="{{asset('assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{asset('assets/css/argon-dashboard.css?v=1.1.0')}}" rel="stylesheet" />  
+  
 </head>
 <body class="bg-default">
         @if(Request::is('admin')||Request::is('admin/*'))
@@ -43,6 +45,10 @@
     <script src="{{asset('assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 
     {{-- <script src="{{asset('assets/js/argon-dashboard.min.js?v=1.1.0')}}"></script> --}}
+    <script type="text/javascript" src="./loadMap.js"></script>
+	
+	
+    
 </body>
 </html>
     {{-- <div id="app">
