@@ -107,22 +107,16 @@
             <div class="row">
               <div>
                 <br/><br/>
-                {{-- success messege when profile picture updated --}}
-                <div>
+                {{-- success messeges --}}
+                <div class="col">
                     @if (session('success'))
                       <div class="alert alert-success" role="alert">
                           {{ session('success') }}
                       </div>
                     @endif
                 </div>
-                  {{-- <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
-                    <label>Update Your Profile Picture(2MB max)</label><br/>
-                    <input type="file" name="avatar">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" class= "btn btn-sm btn-primary" disabled>
-                  </form> --}}
-                </div>
-                <hr/>
+              </div>
+              <hr>
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
