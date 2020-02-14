@@ -61,15 +61,16 @@
                                 <td>
                                     {{$tutor->rate}}
                                 </td>
-                                <td class="text-right">
-                                <div class="dropdown">
+                                <td>
+                                    <a type="button" href="viewtutors/{{$tutor->id}}" class="btn btn-primary">view tutor</a>
+                                {{-- <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <a class="dropdown-item" href="viewtutors/{{$tutor->id}}">View Tutor Profile</a>
                                     </div>
-                                </div>
+                                </div> --}}
                                 </td>
                             </tr>
                             @endforeach

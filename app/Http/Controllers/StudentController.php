@@ -68,7 +68,7 @@ class StudentController extends Controller
     {
         $tutor = Tutor::find($id);
         $time_slots = StudentController::timeslots($id);
-        //dd($tutor);
+        // dd($tutor);
         return view('student.viewtutorprofile', compact('tutor', 'time_slots'));
     }
 
