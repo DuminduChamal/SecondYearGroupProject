@@ -17,7 +17,7 @@
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>Available Timeslots</a>
         {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
-        <a href="{{$tutor->id}}/timeslots">details</a>
+        {{-- <a href="{{$tutor->id}}/timeslots">details</a> --}}
         
         <a class="btn btn-info" href="#" data-toggle='modal' data-target='#staticBackdrop'>Rate</a>
         {{--Payement form--}}
@@ -236,6 +236,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-first-name">Subject</label>
+                                  <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{$tutor->subject->subject}}" readonly>
+                              </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-last-name">Free space</label>
+                                  <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Any new content" value="" readonly>
+                              </div>
+                          </div>
+                      </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
