@@ -11,8 +11,13 @@
       {{-- success messege when tutor removed --}}
       <div>
           @if (session('success'))
-              <div class="alert alert-danger" role="alert">
+              <div class="alert alert-success" role="alert">
                   {{ session('success') }}
+              </div>
+          @endif
+          @if (session('error'))
+              <div class="alert alert-danger" role="alert">
+                  {{ session('error') }}
               </div>
           @endif
       </div>
@@ -32,7 +37,7 @@
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">NIC</th>
-                      <th scope="col">DOB</th>
+                      <th scope="col">Subject</th>
                       <th scope="col">Qualification</th>
                       <th scope="col"></th>
                     </tr>
@@ -60,7 +65,7 @@
                           {{$unapprovedTutor->user->NIC}}
                       </td>
                       <td>
-                          {{$unapprovedTutor->user->DOB}}
+                          {{$unapprovedTutor->subject->subject}}
                       </td>
                       <td>
                           {{$unapprovedTutor->Qualification}}
