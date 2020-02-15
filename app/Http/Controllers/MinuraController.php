@@ -8,9 +8,4 @@ class MinuraController extends Controller
 {
 
 
-    public function Minura()
-    {
-        return view('student.Minura');
-    }
-    //
-}
+

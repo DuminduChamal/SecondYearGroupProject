@@ -17,7 +17,7 @@
                     <img src="assets/img/brand/brand.png" width="300" height="200">
                     <h1 class="text-white">Welcome!</h1>
                     <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
-                </div>
+                </div>  
         </div>
         </div>
     

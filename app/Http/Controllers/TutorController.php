@@ -24,7 +24,7 @@ class TutorController extends Controller
     public function viewProfile()
     {
         $tutor = Auth::id();
-        //dd($tutor);
+        // dd($tutor);
         $time_slots = TutorController::timeslots($tutor);
         return view('tutor/profile', compact('time_slots'));
     }
@@ -32,9 +32,10 @@ class TutorController extends Controller
     public function timeslots($id)
     {
         $user = Auth::id();
-        $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
+        $tutor = DB::table('tutors')->where('user_id', '$user')->get();
+        // dd($tutor);
         $tutor_id = $tutor->id;
-        //dd($tutor->id);
+        // dd($tutor->id);
         $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time')->get()->toArray();
         return $time;
     }

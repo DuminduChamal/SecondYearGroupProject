@@ -20694,7 +20694,7 @@ pre>code.highlight {
 .hero{
   height: 80vh;
   width: 100%;
-  background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)),url("a.jpg");
+  background: linear-gradient(rgba(26,26,26,0.7), rgba(26,26,26,0.7)),url("/assets/img/a.jpg");
   background-size: cover; 
   background-repeat: no-repeat;
   background-position: center center;
