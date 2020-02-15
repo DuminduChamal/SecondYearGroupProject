@@ -1,0 +1,1 @@
+Your tutor {{$notification->data['setter']['FName']}} <strong>accepted</strong> your class on {{$notification->data['acceptedday']}} at {{$notification->data['acceptedtime']}}. Click here to do the payment.

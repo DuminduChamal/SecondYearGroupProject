@@ -11,6 +11,7 @@ use Image;
 use auth;
 use DB;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\TutorAccepted;
 
 class TutorController extends Controller
 {
@@ -110,7 +111,8 @@ class TutorController extends Controller
         $timeslot->isAccepted= 1;
         $timeslot->save();
         // dd($timeslot);
-        
+        $requestedStu=User::find($student);
+        $requestedStu->notify(new TutorAccepted($day,$time));
         return redirect('tutor/')->with('success','Requested Slot Accepted!');
     }
 }
