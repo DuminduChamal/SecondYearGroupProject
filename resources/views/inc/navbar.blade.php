@@ -97,6 +97,21 @@
                     @endif
                 @endif
                     <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                <span class="ni ni-world ni-2x"></span>
+                                <span class="badge badge-secondary">{{count(auth()->user()->unreadNotifications)}}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @foreach(auth()->user()->unreadNotifications as $notification)
+                            <a href="#" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.'.snake_case(class_basename($notification->type)))</span></a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
                                     <span class="avatar avatar-sm rounded-circle">

@@ -10,6 +10,7 @@ use DB;
 use auth;
 use Illuminate\Support\Facades\Validator;
 use Image;
+use App\Notifications\RequestForClass;
 
 use Illuminate\Http\Request;
 //use App\User;
@@ -119,6 +120,12 @@ class StudentController extends Controller
         // return redirect()->route('student.viewTutorProfile', compact('tutor'));
         // return redirect('/student/viewtutors/6');
 
+        //notification
+        $tutor=Tutor::find($id);
+        // $tutors=DB::table('tutors')->where('id', $id)->get();
+        echo "<script>console.log('new')</script>";
+        $tutor->user->notify(new RequestForClass($data));
+        
     }
 
     public function timeslotsremove(Request $arr,$id){

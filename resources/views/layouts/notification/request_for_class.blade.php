@@ -1,0 +1,1 @@
+{{$notification->data['setter']['FName']}} requested a class on <strong>{{$notification->data["data"][0]["day"]}}</strong> at <strong>{{$notification->data["data"][0]["time"]}}</strong>. Click here to accept.
