@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/contact','ContactFormController@create');
 Route::post('/contact','ContactFormController@store');
 
+Route::get('/about','HomeController@about');
 
 Route::middleware(['auth', 'admin'])->group(function () {
 

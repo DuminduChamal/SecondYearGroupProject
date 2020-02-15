@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="#">
+                        <a class="nav-link nav-link-icon" href="/about">
                         <span class="nav-link-inner--text">About Us</span>
                         </a>
                     </li>
