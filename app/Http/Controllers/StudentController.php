@@ -32,6 +32,14 @@ class StudentController extends Controller
         return view('student.editprofile')->with('user', $user);
     }
 
+
+   
+
+
+
+
+
+
     protected function validatorEdit(array $data)
     {
         return Validator::make($data, [

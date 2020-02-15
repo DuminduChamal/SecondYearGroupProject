@@ -48,6 +48,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     });
 });
 Route::middleware(['auth','student','verified'])->group( function(){
+    Route::get('student/Minura','MinuraController@Minura');
     
     Route::get('/student','StudentController@index')->name('student.dashboard');
     Route::get('/student/profile','StudentController@viewProfile')->name('student.profile');
@@ -62,6 +63,7 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
     Route::post('student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
+
 }); 
 
     

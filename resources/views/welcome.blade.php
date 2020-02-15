@@ -7,26 +7,20 @@
 @section('content')
 <!-- Header -->
 
-<div class="header bg-gradient-primary py-7 py-lg-8">
-    <div class="pic">
-    <div class="hero">
+<div class="hero header py-7 py-lg-8" >
+    <!-- <div class="pic"> -->
+    <!-- <div class="hero"> -->
     <div class="container">
         <div class="header-body text-center mb-7">
         <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-6">
+                    <img src="assets/img/brand/brand.png" width="300" height="200">
                     <h1 class="text-white">Welcome!</h1>
                     <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
                 </div>
-                
-
         </div>
         </div>
-    </div>
-    <left><h1 class="text-white">Our Office</h1></left>
-                
-                <div id="map"></div>
-    </div>
-
+    
     </div>
 
 
@@ -47,9 +41,9 @@
 	
 	<!-- <script type="text/javascript" src="./loadMap.js"></script> -->
 	
-	<style type="text/css">
+	<!-- <style type="text/css">
 		.container {
-			height: 700px;
+			height: 400px;
 		}
 		#map {
 
@@ -58,19 +52,12 @@
 			border: 1px solid red;
         }
 	
-	</style>
+    </style> -->
+  
 <!-- </head> -->
-<body>
-    
-    
-            <div class="container">
-                
-            </div>
- 
 
-</body>
 
-<script async defer
+<!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-lFGS9f5P9seokNpm7NHNBThS8xCo3oA&callback=loadMyMap">
 </script>
  </div>
@@ -82,7 +69,7 @@
         center: map
         
     });
-}
+} -->
 </script>
 
 </div>
