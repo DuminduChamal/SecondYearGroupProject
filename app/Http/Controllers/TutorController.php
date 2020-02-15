@@ -95,4 +95,22 @@ class TutorController extends Controller
         // return view('tutor.showProfile');
         return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Updated');
     }
+
+    public function acceptClass($student,$tutor,$day,$time)
+    {
+        $id=DB::table('tutors')->where('user_id', $tutor)->get()->first();
+        // dd($id);
+        $num=$id->id;
+        // dd($num);
+        $requestedTimeSlot = DB::table('timeslots')->where('tutor_id', $num)->where('stu_id', $student)->where('day', $day)->where('time', $time)->get()->first();
+        // dd($requestedTimeSlot);
+        $timeslot_id=$requestedTimeSlot->id;
+        // dd($timeslot_id);
+        $timeslot = Timeslot::find($timeslot_id);
+        $timeslot->isAccepted= 1;
+        $timeslot->save();
+        // dd($timeslot);
+        
+        return redirect('tutor/')->with('success','Requested Slot Accepted!');
+    }
 }

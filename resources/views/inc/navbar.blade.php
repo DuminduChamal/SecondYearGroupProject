@@ -107,7 +107,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @foreach(auth()->user()->unreadNotifications as $notification)
-                            <a href="#" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.'.snake_case(class_basename($notification->type)))</span></a>
+                            <a href="{{route('tutor.acceptslot',['student'=>$notification->data['setter']['id'], 'tutor'=>$notification->data['user']['id'],'day'=>$notification->data["data"][0]["day"], 'time'=>$notification->data["data"][0]["time"]])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.'.snake_case(class_basename($notification->type)))</span></a>
                             @endforeach
                         </div>
                     </li>
@@ -189,3 +189,6 @@
         </div>
     </div>
 </nav>
+
+
+{{-- href="/tutor/acceptslot/{{$notification->data['setter']['id']}}/{{$notification->data['user']['id']}}" --}}

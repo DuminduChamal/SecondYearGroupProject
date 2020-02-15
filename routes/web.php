@@ -77,6 +77,7 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/tutor/{tutor}/editprofile','TutorController@editProfile')->name('tutor.editProfile');
     Route::patch('/tutor/{tutor}', 'TutorController@updateProfile')->name('tutor.updateDetails');
     Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
+    Route::get('/tutor/acceptslot/{student}/{tutor}/{day}/{time}','TutorController@acceptClass')->name('tutor.acceptslot');
     Route::get('/tutor/a',function(){
 
         return view('tutor');
