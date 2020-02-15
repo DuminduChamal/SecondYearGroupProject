@@ -151,4 +151,13 @@ class StudentController extends Controller
         $tutor->save();
         return redirect()->back()->with('success', 'Rating added! Thank you for your time');
     }
+
+    public function payment($id)
+    {
+        $tutor = DB::table('tutors')->where('user_id', $id)->get()->first();
+        // dd($tutor);
+        $tutor_rate=$tutor->rate;
+        // dd($tutor_rate);
+        return view('student.paymentform')->with('tutor', $tutor);
+    }
 }
