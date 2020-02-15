@@ -26,4 +26,11 @@ class Tutor extends Model
         return $this->belongsTo(subject::class);
     }
 
+    public function timeslot()
+    {
+        // return $this->belongsTo('App\Timeslot','id','tutor_id');
+        return $this->belongsTo(timeslot::class);
+
+    }
+
 }

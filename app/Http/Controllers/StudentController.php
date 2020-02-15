@@ -154,10 +154,32 @@ class StudentController extends Controller
 
     public function payment($id)
     {
+        // dd($id);
         $tutor = DB::table('tutors')->where('user_id', $id)->get()->first();
         // dd($tutor);
         $tutor_rate=$tutor->rate;
         // dd($tutor_rate);
+        $student = auth()->user();
+        $student->unreadNotifications->markAsRead();
         return view('student.paymentform')->with('tutor', $tutor);
+    }
+
+    public function paymentSeparate($id)
+    {
+        // dd($id);
+        $tutor = DB::table('tutors')->where('id', $id)->get()->first();
+        // dd($tutor);
+        $tutor_rate=$tutor->rate;
+        // dd($tutor_rate);
+        $student = auth()->user();
+        $student->unreadNotifications->markAsRead();
+        return view('student.paymentform')->with('tutor', $tutor);
+    }
+
+    public function viewAcceptedClasses()
+    {
+        $id=Auth::user()->id;
+        $classes=DB::table('timeslots')->where('stu_id', $id)->where('isAccepted',1)->get();
+        return view('student.acceptedclasses')->with('classes', $classes);
     }
 }

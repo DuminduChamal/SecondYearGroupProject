@@ -34,7 +34,7 @@
                             <p>Your tutor has been accepted your requested timeslot with your tutor. Please do the payment to proceed further for the session</p>
                             <p>      
                             <label class="w3-text-blue"><b>Amount for the session :</b></label>
-                            <label class="w3-text-blue"><h3>{{$tutor->rate}}</h3></label></p>    
+                            <label class="w3-text-blue"><h3>USD {{$tutor->rate}}</h3></label></p>    
                             <button type="submit" class="btn btn-warning">Pay with PayPal</button></p>
                         </form>
                         {{--Payement form end--}}

@@ -66,6 +66,8 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
     Route::post('/student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
     Route::get('/student/pay/{tutor}','StudentController@payment')->name('student.pay');
+    Route::get('/student/paytutor/{tutor}','StudentController@paymentSeparate')->name('student.payment');
+    Route::get('/student/acceptedclasses','StudentController@viewAcceptedClasses')->name('student.classes');
 }); 
 
     
@@ -79,6 +81,8 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::patch('/tutor/{tutor}', 'TutorController@updateProfile')->name('tutor.updateDetails');
     Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
     Route::get('/tutor/acceptslot/{student}/{tutor}/{day}/{time}','TutorController@acceptClass')->name('tutor.acceptslot');
+    Route::get('/tutor/requestedclasses','TutorController@viewRequestedSlots')->name('tutor.viewslots');
+    Route::get('/tutor/requestedclasses/accept/{student}/{day}/{time}','TutorController@acceptRequestedSlots')->name('tutor.accept');
     Route::get('/tutor/a',function(){
 
         return view('tutor');

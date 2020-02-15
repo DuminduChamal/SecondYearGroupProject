@@ -113,6 +113,38 @@ class TutorController extends Controller
         // dd($timeslot);
         $requestedStu=User::find($student);
         $requestedStu->notify(new TutorAccepted($day,$time));
+
+        $tutor = auth()->user();
+        $tutor->unreadNotifications->markAsRead();
+
         return redirect('tutor/')->with('success','Requested Slot Accepted!');
+    }
+
+    public function viewRequestedSlots()
+    {
+        $user = Auth::id();
+        $tutor=DB::table('tutors')->where('user_id', $user)->get()->first();
+        $id=$tutor->id;
+        // dd($id);
+        $requestedTimeSlots=DB::table('timeslots')->where('tutor_id', $id)->where('isAccepted', 0)->get();
+        // dd($requestedTimeSlots);
+        return view('tutor.requestedclasses')->with('requestedTimeSlots', $requestedTimeSlots);
+    }
+
+    public function acceptRequestedSlots($student,$day,$time)
+    {
+        // dd($student);
+        $tutor_id=Auth::id();
+        $tutor=DB::table('tutors')->where('user_id', $tutor_id)->get()->first();
+        $num=$tutor->id;
+        $requestedTimeSlot=DB::table('timeslots')->where('tutor_id', $num)->where('stu_id', $student)->where('day', $day)->where('time', $time)->get()->first();
+        // dd($requestedTimeSlot);
+        $timeslot_id=$requestedTimeSlot->id;
+        // dd($timeslot_id);
+        $timeslot = Timeslot::find($timeslot_id);
+        $timeslot->isAccepted= 1;
+        $timeslot->save();
+        // dd($timeslot);
+        return redirect('tutor/requestedclasses')->with('success','Requested Slot Accepted!');
     }
 }

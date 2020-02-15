@@ -127,7 +127,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @forelse(auth()->user()->unreadNotifications as $notification)
-                            <a href="{{route('student.pay',['student'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                            <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
                             @empty
                                 <a class="dropdown-item" href="#">No unread notifications</a>
                             @endforelse
@@ -166,7 +166,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @forelse(auth()->user()->unreadNotifications as $notification)
-                                <a href="#" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                                <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
                                 @empty
                                     <a class="dropdown-item" href="#">No unread notifications</a>
                                 @endforelse
@@ -214,6 +214,10 @@
                                     <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
+                                <a class="dropdown-item" href="/student/acceptedclasses">
+                                    <i class="ni ni-notification-70"></i>
+                                    <span>{{ __('Accepted Sessions') }}</span>
+                                </a>
                             @endif
                             @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==1)
                                 <a class="dropdown-item" href="/tutor">
@@ -223,6 +227,10 @@
                                 <a class="dropdown-item" href="/tutor/profile">
                                     <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/tutor/requestedclasses">
+                                    <i class="ni ni-calendar-grid-58"></i>
+                                    <span>{{ __('Requested Sessions') }}</span>
                                 </a>
                             @endif
                             @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==0 && Auth::user()->is_admin==1)
