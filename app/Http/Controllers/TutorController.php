@@ -135,7 +135,9 @@ class TutorController extends Controller
     public function linksubmit(Request $request)
     {
         // dd($request->link);
-        $stu_id= 4;
+        // $stu_id= 4;
+        $stu_id_row=DB::table('timeslots')->where('tutor_id',$tutor_id)->get()->first();
+        $stu_id=$stu_id_row->id;
         $tutor_id= auth::user()->tutor->id;
         $session_link=$request->link;
         // dd($session_link);
