@@ -24,4 +24,9 @@ class Tutor extends Model
         return $this->belongsTo(subject::class);
     }
 
+    // public function timeslot()
+    // {
+    //     return $this->hasMany(timeslot::class);  testing
+    // }
+
 }
