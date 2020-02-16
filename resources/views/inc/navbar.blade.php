@@ -96,6 +96,84 @@
                         </li>
                     @endif
                 @endif
+                    @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==1)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                <span class="ni ni-world ni-2x"></span>
+                                <span class="badge badge-secondary">{{count(auth()->user()->unreadNotifications)}}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @forelse(auth()->user()->unreadNotifications as $notification)
+                            <a href="{{route('tutor.acceptslot',['student'=>$notification->data['setter']['id'], 'tutor'=>$notification->data['user']['id'],'day'=>$notification->data["data"][0]["day"], 'time'=>$notification->data["data"][0]["time"]])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.'.snake_case(class_basename($notification->type)))</span></a>
+                            @empty
+                                <a class="dropdown-item" href="#">No unread notifications</a>
+                            @endforelse
+                        </div>
+                    </li>
+                    @endif
+                    @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==0)
+                    <li class="nav-item dropdown">
+                        <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="media align-items-center">
+                                <div class="media-body ml-2 d-none d-lg-block">
+                                <span class="ni ni-world ni-2x"></span>
+                                <span class="badge badge-secondary">{{count(auth()->user()->unreadNotifications)}}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @forelse(auth()->user()->unreadNotifications as $notification)
+                            <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                            @empty
+                                <a class="dropdown-item" href="#">No unread notifications</a>
+                            @endforelse
+                        </div>
+                    </li>
+                    @endif                    
+                    @if(Auth::user()->is_student==1 && Auth::user()->is_tutor==1)
+                        @if(\Request::is('tutor/*')||\Request::is('tutor'))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="ni ni-world ni-2x"></span>
+                                    <span class="badge badge-secondary">{{count(auth()->user()->unreadNotifications)}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @forelse(auth()->user()->unreadNotifications as $notification)
+                                <a href="{{route('tutor.acceptslot',['student'=>$notification->data['setter']['id'], 'tutor'=>$notification->data['user']['id'],'day'=>$notification->data["data"][0]["day"], 'time'=>$notification->data["data"][0]["time"]])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.'.snake_case(class_basename($notification->type)))</span></a>
+                                @empty
+                                    <a class="dropdown-item" href="#">No unread notifications</a>
+                                @endforelse
+                            </div>
+                        </li>
+                        @endif
+                        @if(\Request::is('student/*')||\Request::is('student'))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <div class="media-body ml-2 d-none d-lg-block">
+                                    <span class="ni ni-world ni-2x"></span>
+                                    <span class="badge badge-secondary">{{count(auth()->user()->unreadNotifications)}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @forelse(auth()->user()->unreadNotifications as $notification)
+                                <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                                @empty
+                                    <a class="dropdown-item" href="#">No unread notifications</a>
+                                @endforelse
+                            </div>
+                        </li>
+                        @endif
+                    @endif
                     <li class="nav-item dropdown">
                             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="media align-items-center">
@@ -136,6 +214,10 @@
                                     <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
                                 </a>
+                                <a class="dropdown-item" href="/student/acceptedclasses">
+                                    <i class="ni ni-notification-70"></i>
+                                    <span>{{ __('Accepted Sessions') }}</span>
+                                </a>
                             @endif
                             @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==1)
                                 <a class="dropdown-item" href="/tutor">
@@ -145,6 +227,10 @@
                                 <a class="dropdown-item" href="/tutor/profile">
                                     <i class="ni ni-single-02"></i>
                                     <span>{{ __('Profile') }}</span>
+                                </a>
+                                <a class="dropdown-item" href="/tutor/requestedclasses">
+                                    <i class="ni ni-calendar-grid-58"></i>
+                                    <span>{{ __('Requested Sessions') }}</span>
                                 </a>
                             @endif
                             @if(Auth::user()->is_student==0 && Auth::user()->is_tutor==0 && Auth::user()->is_admin==1)
@@ -174,3 +260,6 @@
         </div>
     </div>
 </nav>
+
+
+{{-- href="/tutor/acceptslot/{{$notification->data['setter']['id']}}/{{$notification->data['user']['id']}}" --}}

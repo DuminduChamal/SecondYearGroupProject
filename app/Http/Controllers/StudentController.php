@@ -10,6 +10,7 @@ use DB;
 use auth;
 use Illuminate\Support\Facades\Validator;
 use Image;
+use App\Notifications\RequestForClass;
 
 use Illuminate\Http\Request;
 //use App\User;
@@ -119,6 +120,12 @@ class StudentController extends Controller
         // return redirect()->route('student.viewTutorProfile', compact('tutor'));
         // return redirect('/student/viewtutors/6');
 
+        //notification
+        $tutor=Tutor::find($id);
+        // $tutors=DB::table('tutors')->where('id', $id)->get();
+        echo "<script>console.log('new')</script>";
+        $tutor->user->notify(new RequestForClass($data));
+        
     }
 
     public function timeslotsremove(Request $arr,$id){
@@ -143,5 +150,38 @@ class StudentController extends Controller
         $tutor->rating = $present_rating;
         $tutor->save();
         return redirect()->back()->with('success', 'Rating added! Thank you for your time');
+    }
+
+    public function payment($id)
+    {
+        // dd($id);
+        $tutor = DB::table('tutors')->where('user_id', $id)->get()->first();
+        // dd($tutor);
+        $tutor_rate=$tutor->rate;
+        // dd($tutor_rate);
+        $student = auth()->user();
+        $student->unreadNotifications->markAsRead();
+        return view('student.paymentform')->with('tutor', $tutor);
+    }
+
+    public function paymentSeparate($id,$day,$time)
+    {
+        // dd($id);
+        // $tutor = DB::table('tutors')->where('id', $id)->get()->first();
+        // dd($tutor);
+        // $tutor_rate=$tutor->rate;
+        // dd($tutor_rate);
+        $class=Timeslot::where('tutor_id', $id)->where('day', $day)->where('time', $time)->get()->first();
+        // dd($class->tutor->referStatus);
+        $class_id=$class->id;
+        // dd($class_id);
+        return view('student.paymentform')->with('class', $class);
+    }
+
+    public function viewAcceptedClasses()
+    {
+        $id=Auth::user()->id;
+        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->get();
+        return view('student.acceptedclasses')->with('classes', $classes);
     }
 }
