@@ -69,6 +69,9 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/student/pay/{tutor}/{day}/{time}','StudentController@payment')->name('student.pay');
     Route::get('/student/paytutor/{tutor}/{day}/{time}','StudentController@paymentSeparate')->name('student.payment');
     Route::get('/student/acceptedclasses','StudentController@viewAcceptedClasses')->name('student.classes');
+    Route::post('/student/search','StudentController@searchSubject')->name('student.search');
+    Route::get('/student/livesearch', 'LiveSearch@index')->name('student.advancesearch');
+    Route::get('/student/livesearch/action', 'LiveSearch@action')->name('live_search.action');
 }); 
 
 
@@ -108,6 +111,8 @@ Route::post('payment/add-funds/paypal/{class}', 'PaymentController@payWithpaypal
 
 // route for check status of the payment
 Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
+
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

@@ -59,8 +59,8 @@ class StudentController extends Controller
     //method to view availble tutors when logged into the student account
     public function showTutorList()
     {
-        $tutors = Tutor::where('approved', '1')->paginate(3);
-        //dd($tutors);
+        $tutors = Tutor::where('approved', '1')->orderBy('rate', 'desc')->paginate(3);
+        // dd($tutors);
         return view('student.viewtutors')->with('tutors', $tutors);
     }
 
@@ -184,5 +184,15 @@ class StudentController extends Controller
         $id=Auth::user()->id;
         $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->latest()->get();
         return view('student.acceptedclasses')->with('classes', $classes);
+    }
+
+    public function searchSubject(Request $array)
+    {
+        // dd($array);
+        $subjectid=$array->subject_id;
+        // dd($subjectid);
+        $tutors=Tutor::where('subject_id', $subjectid)->where('approved', 1)->orderBy('rate', 'desc')->paginate(3);
+        // dd($tutors);
+        return view('student.viewtutors')->with('tutors', $tutors);
     }
 }
