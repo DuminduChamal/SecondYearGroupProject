@@ -16,4 +16,9 @@ class Timeslot extends Model
     {
         return $this->belongsTo('App\Tutor','tutor_id');
     }
+
+    public function Student()
+    {
+        return $this->belongsTo('App\User','stu_id');
+    }
 }

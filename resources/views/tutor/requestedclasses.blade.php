@@ -33,12 +33,11 @@
                 <table class="table align-items-center table-dark table-flush">
                   <thead class="thead-dark">
                     <tr>
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">NIC</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Qualification</th>
+                      <th scope="col">Student First Name</th>
+                      <th scope="col">Student Last Name</th>
+                      <th scope=col>Rating</th>
+                      <th scope="col">Day</th>
+                      <th scope="col">Time</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -48,30 +47,30 @@
                       <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            {{-- <img alt="Image placeholder" src="/assets/img/avatar/{{$unapprovedTutor->user->avatar}}"> --}}
+                            <img alt="Image placeholder" src="/assets/img/avatar/{{$requestedTimeSlot->student->avatar}}">
                           </a>
                           <div class="media-body">
-                            <span class="mb-0 text-sm">{{$requestedTimeSlot->day}}</span>
+                            <span class="mb-0 text-sm">{{$requestedTimeSlot->student->FName}}</span>
                           </div>
                         </div>
                       </th>
                       <td>
-                          {{$requestedTimeSlot->time}}
+                          {{$requestedTimeSlot->student->LName}}
                       </td>
                       <td>
                           {{-- {{$class->tutor->Qualification}} --}}
                       </td>
                       <td>
-                          {{-- {{$unapprovedTutor->user->NIC}} --}}
+                          {{$requestedTimeSlot->day}}
                       </td>
                       <td>
-                          {{-- {{$unapprovedTutor->subject->subject}} --}}
+                          {{$requestedTimeSlot->time}}
                       </td>
                       <td>
                           {{-- {{$unapprovedTutor->Qualification}} --}}
                       </td>
                       <td>
-                        <a href="{{route('tutor.accept',['student'=> $requestedTimeSlot->stu_id,'day'=> $requestedTimeSlot->day,'time'=> $requestedTimeSlot->time])}}" class="btn btn-info">Accept</a>
+                        <a onclick="return confirm('Are you sure to accept {{$requestedTimeSlot->student->FName}}\'s session on {{$requestedTimeSlot->day}} at {{$requestedTimeSlot->time}}?')" href="{{route('tutor.accept',['student'=> $requestedTimeSlot->stu_id,'day'=> $requestedTimeSlot->day,'time'=> $requestedTimeSlot->time])}}" class="btn btn-info">Accept</a>
                       </td>
                     </tr>
                     @endforeach
