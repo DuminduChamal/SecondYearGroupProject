@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
  <head>
   <title>Live search in laravel using AJAX</title>
@@ -55,8 +55,77 @@
             color: darkorange;
         }
     </style>
- </head>
- <body>
+ </head> --}}
+ @extends('layouts.app')
+
+@section('title')
+    Advanced Search
+@endsection
+
+@section('content')
+<div class="header bg-gradient-primary py-7 py-lg-8">
+    <div class="container">
+        <div class="header-body text-center mb-7">
+            <h3 align="center">Auto Complete Tutor Search</h3><br />
+            <div class="panel panel-default">
+                <div class="panel-body">
+                <div class="form-group">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search Tutor" />
+                </div>
+                <div class="table-responsive">
+                <h3 align="center">Total Tutors Found : <span id="total_records"></span></h3>
+                <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                    <tr>
+                    <th>Tutor First Name</th>
+                    <th>Tutor Last Name</th>
+                    <th>NIC</th>
+                    <th>Subject</th>
+                    <th>Qualification</th>
+                    <th>Rate</th>
+                    <th>Rating</th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+                </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    
+     fetch_customer_data();
+    
+     function fetch_customer_data(query = '')
+     {
+      $.ajax({
+       url:"{{ route('live_search.action') }}",
+       method:'GET',
+       data:{query:query},
+       dataType:'json',
+       success:function(data)
+       {
+        $('tbody').html(data.table_data);
+        $('#total_records').text(data.total_data);
+       }
+      })
+     }
+    
+     $(document).on('keyup', '#search', function(){
+      var query = $(this).val();
+      fetch_customer_data(query);
+     });
+    });
+</script>
+@endsection
+
+ {{-- <body>
   <br />
   <div class="container box">
    <h3 align="center">Tutor Search</h3><br />
@@ -116,4 +185,4 @@ $(document).ready(function(){
   fetch_customer_data(query);
  });
 });
-</script>
+</script> --}}

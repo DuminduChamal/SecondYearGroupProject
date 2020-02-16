@@ -15,23 +15,25 @@
                     {{ session('success') }}
                 </div>
                 @endif --}}
-        {{-- <div class="col-lg-6 col-md-8"> --}}
-        {{-- <div class="input-group input-group-alternative mb-3"> --}}
-        <form method="POST" id="payment-form"  action="{{ route('student.search')}}" value="{{ old('subject_id') }}">
-            @csrf
-            <select id="subject_id" class="form-control" name="subject_id" >
-                <option value="1">Mathamatics</option>
-                <option value="2">Science</option>
-                <option value="3">English</option>
-                <option value="4">Sinhala</option>
-                <option value="5">History</option>
-                <option value="6">Buddhism</option>
-            </select>
-            <button class="btn btn-info" type="submit">Search</button>
-        </form>
-        {{-- </div> --}}
-                {{-- </div> --}}
-
+        {{-- <div> --}}
+        <div class="row">
+            <div class="col">
+                <form method="POST" id="payment-form"  action="{{ route('student.search')}}" value="{{ old('subject_id') }}">
+                    @csrf
+                    <select id="subject_id" class="form-control" name="subject_id" >
+                        <option value="1">Mathamatics</option>
+                        <option value="2">Science</option>
+                        <option value="3">English</option>
+                        <option value="4">Sinhala</option>
+                        <option value="5">History</option>
+                        <option value="6">Buddhism</option>
+                    </select>
+                    <button class="btn btn-info float-right" type="submit">Search</button>
+                </form>
+                <a class="btn btn-danger btn-sm float-right" href="{{ route('student.advancesearch')}}">Advance Search</a>
+                <a class="btn btn-dark btn-sm float-right" href="{{ route('student.viewTutors')}}">Back to all tutors</a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="row mt-5">
             @if(count($tutors)>0)

@@ -52,7 +52,10 @@ class LiveSearch extends Controller
         $level=$row->rating;
         $output .= '
         <tr>
-         <td>'.$row->FName.'</td>
+         <td><div class="media align-items-center"><a class="avatar rounded-circle mr-3">
+         <img alt="Image placeholder" src="/assets/img/avatar/'.$row->avatar.'"></a>
+         <div class="media-body">'.$row->FName.'</div>
+         </div></td>
          <td>'.$row->LName.'</td>
          <td>'.$row->NIC.'</td>
          <td>'.$tutor->subject->subject.'</td>
