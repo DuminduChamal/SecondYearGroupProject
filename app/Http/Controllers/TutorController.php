@@ -146,7 +146,8 @@ class TutorController extends Controller
         Mail::to($user)->send(new LinkShareMail($session_link));
 
         DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
-        return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');;
+        return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
+    }
 
     public function acceptClass($student,$tutor,$day,$time)
     {
