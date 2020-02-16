@@ -127,7 +127,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @forelse(auth()->user()->unreadNotifications as $notification)
-                            <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                            <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id'],'day'=>$notification->data['acceptedday'],'time'=>$notification->data['acceptedtime']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
                             @empty
                                 <a class="dropdown-item" href="#">No unread notifications</a>
                             @endforelse
@@ -166,7 +166,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @forelse(auth()->user()->unreadNotifications as $notification)
-                                <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
+                                <a href="{{route('student.pay',['tutor'=>$notification->data['setter']['id'],'day'=>$notification->data['acceptedday'],'time'=>$notification->data['acceptedtime']])}}" style="font-size:15px" class="dropdown-item"><span class="ni ni-bold-right">@include('layouts.notification.student.'.snake_case(class_basename($notification->type)))</span></a>
                                 @empty
                                     <a class="dropdown-item" href="#">No unread notifications</a>
                                 @endforelse

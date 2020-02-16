@@ -152,16 +152,17 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Rating added! Thank you for your time');
     }
 
-    public function payment($id)
+    public function payment($id,$day,$time)
     {
         // dd($id);
-        $tutor = DB::table('tutors')->where('user_id', $id)->get()->first();
+        $tutor = Tutor::where('user_id', $id)->get()->first();
         // dd($tutor);
-        $tutor_rate=$tutor->rate;
-        // dd($tutor_rate);
+        $tutor_id=$tutor->id;
+        // dd($tutor_id);
         $student = auth()->user();
         $student->unreadNotifications->markAsRead();
-        return view('student.paymentform')->with('tutor', $tutor);
+        $class=Timeslot::where('tutor_id', $tutor_id)->where('day', $day)->where('time', $time)->get()->first();
+        return view('student.paymentform')->with('class', $class);
     }
 
     public function paymentSeparate($id,$day,$time)
@@ -181,7 +182,7 @@ class StudentController extends Controller
     public function viewAcceptedClasses()
     {
         $id=Auth::user()->id;
-        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->get();
+        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->latest()->get();
         return view('student.acceptedclasses')->with('classes', $classes);
     }
 }
