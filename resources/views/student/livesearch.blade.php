@@ -66,7 +66,7 @@
 <div class="header bg-gradient-primary py-7 py-lg-8">
     <div class="container">
         <div class="header-body text-center mb-7">
-            <h3 align="center">Auto Complete Tutor Search</h3><br />
+            <h2 align="center">Auto Complete Tutor Search</h2><br />
             <div class="panel panel-default">
                 <div class="panel-body">
                 <div class="form-group">

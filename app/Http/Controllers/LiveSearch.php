@@ -110,7 +110,7 @@ class LiveSearch extends Controller
         }
        
        $output .= '</td>
-        <td> <a type="button" href="student/viewtutors/'.$tutorid.'" class="btn btn-primary">view tutor</a> </td>
+        <td> <a type="button" href="viewtutors/'.$tutorid.'" class="btn btn-primary">view tutor</a> </td>
        </tr>';
        }
       }
