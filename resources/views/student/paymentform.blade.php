@@ -35,7 +35,7 @@
                             <p>      
                             <label class="w3-text-blue"><b>Amount for the session :</b></label>
                             <label class="w3-text-blue"><h3>USD {{$class->tutor->rate}}</h3></label></p>    
-                            <button type="submit" class="btn btn-warning">Pay with PayPal</button></p>
+                            <button onclick="return confirm('Are you sure to proceed payment with PayPal USD {{$class->tutor->rate}}?')" type="submit" class="btn btn-warning">Pay with PayPal</button></p>
                         </form>
                         {{--Payement form end--}}
                     </div>
