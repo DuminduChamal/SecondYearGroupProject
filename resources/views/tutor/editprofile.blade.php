@@ -37,7 +37,7 @@
                 <label>Update Your Profile Picture(2MB max)</label><br/>
                 <input type="file" name="avatar">
                 <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <input type="submit" class="pull-right btn btn-sm btn-primary" disabled>
+                <input type="submit" class="pull-right btn btn-sm btn-primary">
               </form>
               <hr style="height:1px;border:none;color:#333;background-color:#333;"/>
               <form action="{{route('tutor.updateDetails',['user'=>Auth::user()->id])}}" method="POST" class="pb-5">                         

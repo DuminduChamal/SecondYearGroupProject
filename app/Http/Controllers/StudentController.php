@@ -90,9 +90,14 @@ class StudentController extends Controller
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
+            return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Successfully Updated!');
+        }
+        else
+        {
+            return redirect('student/profile')->with('error', 'No file attached! Please attach a file to upload.');
         }
         // return view('student.showProfile', compact('user'));
-        return redirect()->action('StudentController@showProfile', compact('user'))->with('success', 'Profile Picture Updated');
+        // return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Updated');
     }
 
     public function timeslots($id)

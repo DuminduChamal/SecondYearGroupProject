@@ -37,14 +37,14 @@
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-              <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+              {{-- <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+              <a href="#" class="btn btn-sm btn-default float-right">Message</a> --}}
             </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
             <div class="row">
               <div>
-                <br/><br/>
+                <br/><br/><br/>
                 {{-- success messege when profile picture updated --}}
                 <div>
                     @if (session('success'))
@@ -52,42 +52,78 @@
                           {{ session('success') }}
                       </div>
                     @endif
+                    @if (session('error'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ session('error') }}
+                      </div>
+                    @endif
                 </div>
+                <hr/>
                   <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
                     <label>Update Your Profile Picture(2MB max)</label><br/>
                     <input type="file" name="avatar">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" class= "btn btn-sm btn-primary" disabled>
+                    <input type="submit" class= "btn btn-sm btn-primary">
                   </form>
                 </div>
-                <hr/>
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
+                    <span class="heading"><h1>{{Auth::user()->session}}</h1></span>
+                    <span class="description">Successful Participated Sessions</span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="text-center">
               <h3>
-                  {{Auth::user()->FName}}<span class="font-weight-light">, 27</span>
+                Your Current Rating
               </h3>
-              <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
-              </div>
-              <hr class="my-4" />
-              <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-              <a href="#">Show more</a>
+              @if((Auth::user()->rating)=='1')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='2')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='3')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='4')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                      <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='5')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                      <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                      <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                  </div>
+                </fieldset>
+              @endif
             </div>
           </div>
         </div>

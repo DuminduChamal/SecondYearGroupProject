@@ -97,9 +97,13 @@ class TutorController extends Controller
             $tutor = Auth::user();
             $tutor->avatar = $filename;
             $tutor->save();
+            return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Successfully Updated!');
         }
-        // return view('tutor.showProfile');
-        return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Updated');
+        else
+        {
+            return redirect('tutor/profile')->with('error', 'No file attached! Please attach a file to upload.');
+        }
+        
     }
 
     public function session()
