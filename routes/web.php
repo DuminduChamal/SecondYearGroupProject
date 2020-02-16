@@ -72,6 +72,8 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::post('/student/search','StudentController@searchSubject')->name('student.search');
     Route::get('/student/livesearch', 'LiveSearch@index')->name('student.advancesearch');
     Route::get('/student/livesearch/action', 'LiveSearch@action')->name('live_search.action');
+    Route::get('/student/{student}/deleteprofile','StudentController@deleteProfile')->name('student.deleteProfile');
+    Route::get('/student/{student}/deleteconfirm','StudentController@deleteProfileConfirm')->name('student.deleteConfirm');
 }); 
 
 
@@ -96,7 +98,8 @@ Route::middleware(['auth','student','verified'])->group( function(){
 
         return view('tutor');
     });
-
+    Route::get('/tutor/{tutor}/deleteprofile','TutorController@deleteProfile')->name('tutor.deleteProfile');
+    Route::get('/tutor/{tutor}/deleteconfirm','TutorController@deleteProfileConfirm')->name('tutor.deleteConfirm');
     Route::get('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
     Route::post('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
 });

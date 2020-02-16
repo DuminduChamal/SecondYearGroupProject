@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
-          <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+          <p class="text-white mt-0 mb-5">This is {{$tutor->user->FName}}'s profile page. You can see {{$tutor->user->FName}}'s details and available time slots for the sessions. Reserve a time slot for your session from below button.</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>Available Timeslots</a>
         {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
@@ -87,19 +87,24 @@
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="d-flex justify-content-between">
-              <a href="skype:live:bavindu96?call" class="btn btn-sm btn-info mr-4">Connect</a>  
-              <a href="skype:live:bavindu96?chat" class="btn btn-sm btn-default float-right">Message</a>
+              {{-- <a href="skype:live:bavindu96?call" class="btn btn-sm btn-info mr-4">Connect</a>  
+              <a href="skype:live:bavindu96?chat" class="btn btn-sm btn-default float-right">Message</a> --}}
             </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
             <div class="row">
               <div>
-                <br/><br/>
+                <br/><br/><br/>
                 {{-- success messeges --}}
                 <div class="col">
                     @if (session('success'))
                       <div class="alert alert-success" role="alert">
                           {{ session('success') }}
+                      </div>
+                    @endif
+                    @if (session('error'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ session('error') }}
                       </div>
                     @endif
                 </div>
@@ -108,23 +113,16 @@
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
-                    <span class="heading">22</span>
-                    <span class="description">Successful Sessions</span>
+                    <span class="heading"><h1>{{$tutor->user->session}}</h1></span>
+                    <span class="description">Successful Participated Sessions</span>
                   </div>
-                  {{-- <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
-                  </div> --}}
                 </div>
               </div>
             </div>
+            <hr class="my-4" />
             <div class="text-center">
               <h3>
-                  {{$tutor->user->FName}} {{$tutor->user->LName}}
+                  {{$tutor->user->FName}} {{$tutor->user->LName}}'s Overall Rating
               </h3>
               <div class="h5 font-weight-300">
                 @if(($tutor->user->rating)=='1')
@@ -173,9 +171,6 @@
                   </fieldset>
                 @endif
               </div>
-              <hr class="my-4" />
-              <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-              <a href="#">Show more</a>
             </div>
           </div>
         </div>
@@ -185,21 +180,21 @@
           <div class="card-header bg-white border-0">
             <div class="row align-items-center">
               <div class="col-8">
-                <h3 class="mb-0">My account</h3>
+                <h3 class="mb-0">{{$tutor->user->FName}} {{$tutor->user->LName}}'s Profile</h3>
               </div>
               <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                {{-- <a href="#!" class="btn btn-sm btn-primary">Settings</a> --}}
               </div>
             </div>
           </div>
           <div class="card-body">
             <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <h6 class="heading-small text-muted mb-4">Tutor information</h6>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Username</label>
+                                    <label class="form-control-label" for="input-username">Full Name</label>
                                     <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="{{$tutor->user->FName}} {{$tutor->user->LName}}" value="{{$tutor->user->FName}} {{$tutor->user->LName}}"  readonly >
                                 </div>
                             </div>
@@ -254,47 +249,6 @@
                         </div>
                     </div>
                     <hr class="my-4" />
-                    <!-- Address -->
-                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-address">Address</label>
-                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-city">City</label>
-                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-country">Country</label>
-                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-country">Postal code</label>
-                                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4" />
-                    <!-- Description -->
-                    <h6 class="heading-small text-muted mb-4">About me</h6>
-                    <div class="pl-lg-4">
-                        <div class="form-group">
-                            <label>About Me</label>
-                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -313,8 +267,7 @@
                                       background: -moz-linear-gradient(left, #6819e8 0%, #7437d0 35%, #615fde 68%, #6980f2 100%);
                                       background: -webkit-linear-gradient(left, #6819e8 0%,#7437d0 35%,#615fde 68%,#6980f2 100%);
                                       background: linear-gradient(to right, #6819e8 0%,#7437d0 35%,#615fde 68%,#6980f2 100%);
-                                      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6819e8', endColorstr='#6980f2',GradientType=1 );
-      ">
+                                      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6819e8', endColorstr='#6980f2',GradientType=1 );">
           <h4 class="modal-title" style="color: #FFFFFF;">Time shedule</h4>
           <button type="button" class="close" data-dismiss="modal" style="margin-top: -45px;margin-right: -40px;">&times;</button>
           </div>
@@ -414,7 +367,7 @@
   </div>
 </div>
 <?php $id =  Auth::user()->id;?>
-<?php echo $id;?>
+
 {{--  --}}
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>

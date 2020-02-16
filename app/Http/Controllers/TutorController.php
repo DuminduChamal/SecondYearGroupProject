@@ -207,4 +207,17 @@ class TutorController extends Controller
         $requestedStu->notify(new TutorAccepted($day,$time));
         return redirect('tutor/requestedclasses')->with('success','Requested Slot Accepted!');
     }
+
+    public function deleteProfile($id)
+    {
+        return view('tutor.delete');
+    }
+
+    public function deleteProfileConfirm($id)
+    {
+        $student = User::find($id);
+        $student->delete();
+        Auth::logout();
+        return redirect('/');
+    }
 }
