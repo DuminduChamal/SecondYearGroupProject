@@ -65,7 +65,10 @@ Route::middleware(['auth','student','verified'])->group( function(){
     
     Route::get('/student/registerastutor','Auth\RegisterAsTutorController@showRegistrationForm')->name('registerAsTutor');
     Route::post('/student/registerastutor','Auth\RegisterAsTutorController@registerAsTutorSubmit')->name('student.register.tutor');
-    Route::post('student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
+    Route::post('/student/{user}/profilepicture', 'StudentController@updatePicture')->name('student.updatePicture');
+    Route::get('/student/pay/{tutor}/{day}/{time}','StudentController@payment')->name('student.pay');
+    Route::get('/student/paytutor/{tutor}/{day}/{time}','StudentController@paymentSeparate')->name('student.payment');
+    Route::get('/student/acceptedclasses','StudentController@viewAcceptedClasses')->name('student.classes');
 }); 
 
 
@@ -83,6 +86,9 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/tutor/{tutor}/editprofile','TutorController@editProfile')->name('tutor.editProfile');
     Route::patch('/tutor/{tutor}', 'TutorController@updateProfile')->name('tutor.updateDetails');
     Route::post('tutor/{user}/profilepicture', 'TutorController@updatePicture')->name('tutor.updatePicture');
+    Route::get('/tutor/acceptslot/{student}/{tutor}/{day}/{time}','TutorController@acceptClass')->name('tutor.acceptslot');
+    Route::get('/tutor/requestedclasses','TutorController@viewRequestedSlots')->name('tutor.viewslots');
+    Route::get('/tutor/requestedclasses/accept/{student}/{day}/{time}','TutorController@acceptRequestedSlots')->name('tutor.accept');
     Route::get('/tutor/a',function(){
 
         return view('tutor');
@@ -98,7 +104,7 @@ Route::post('/register/student', 'Auth\RegisterStudentController@register')->nam
 Auth::routes(['verify' => true]);
 
 // route for processing payment
-Route::post('payment/add-funds/paypal', 'PaymentController@payWithpaypal');
+Route::post('payment/add-funds/paypal/{class}', 'PaymentController@payWithpaypal')->name('payment');
 
 // route for check status of the payment
 Route::get('status', 'PaymentController@getPaymentStatus')->name('status');

@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 class Tutor extends Model
 {
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,9 +26,11 @@ class Tutor extends Model
         return $this->belongsTo(subject::class);
     }
 
-    // public function timeslot()
-    // {
-    //     return $this->hasMany(timeslot::class);  testing
-    // }
+    public function timeslot()
+    {
+        // return $this->belongsTo('App\Timeslot','id','tutor_id');
+        return $this->hasMany('App\Timeslot','tutor_id');
+
+    }
 
 }

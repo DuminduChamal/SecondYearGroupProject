@@ -9,6 +9,10 @@ use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
 
+use App\Timeslot;
+use App\Tutor;
+use DB;
+
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
@@ -35,20 +39,25 @@ class PaymentController extends Controller
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
 
-    public function payWithpaypal(Request $request)
+    public function payWithpaypal(Request $request,$id)
     {
+        $session=Timeslot::where('id', $id)->get()->first();
+        $rate=$session->tutor->rate;
+        // dd($rate);
+        $session->isPaid=1;
+        $session->save();
         $payer = new Payer();
                 $payer->setPaymentMethod('paypal');
         $item_1 = new Item();
         $item_1->setName('Item 1') /** item name **/
                     ->setCurrency('USD')
                     ->setQuantity(1)
-                    ->setPrice($request->get('amount')); /** unit price **/
+                    ->setPrice($rate); /** unit price **/
         $item_list = new ItemList();
                 $item_list->setItems(array($item_1));
         $amount = new Amount();
                 $amount->setCurrency('USD')
-                    ->setTotal($request->get('amount'));
+                    ->setTotal($rate);
         $transaction = new Transaction();
                 $transaction->setAmount($amount)
                     ->setItemList($item_list)
@@ -110,7 +119,8 @@ class PaymentController extends Controller
         // }
         // \Session::put('error', 'Payment failed');
         //         return view('student/profile');
-                return redirect('student/profile')->with('success','Payement Success');
+                
+                return redirect('student')->with('success','Payement Success');
         }
         }
 }
