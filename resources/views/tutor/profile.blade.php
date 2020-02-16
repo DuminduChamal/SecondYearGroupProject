@@ -136,6 +136,20 @@
                             </div>
                         </div>
                         <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-first-name">Subject Stream</label>
+                                  <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="" value="{{Auth::user()->tutor->subject->subject}}" readonly>
+                              </div>
+                          </div>
+                          {{-- <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-last-name">Last name</label>
+                                  <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{Auth::user()->LName}}" readonly>
+                              </div>
+                          </div> --}}
+                      </div>
+                        <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-DOB">Date of Birth</label>

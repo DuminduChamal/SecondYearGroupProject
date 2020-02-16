@@ -15,10 +15,58 @@
           <h1 class="display-2 text-white">{{$tutor->user->FName}}'s Profile</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
-          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
+          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>Available Timeslots</a>
         {{-- <a href="{{route('student.viewTimeSlots')}}">details</a> --}}
-        <a href="{{$tutor->id}}/timeslots">details</a>
+        {{-- <a href="{{$tutor->id}}/timeslots">details</a> --}}
         
+        <a class="btn btn-info" href="#" data-toggle='modal' data-target='#staticBackdrop'>Rate</a>
+        {{-- Rate Modal --}}
+        <form role="form" id="better-rating-form" method="POST" action="{{ route('rateSubmit',['tutor'=>$tutor->user->id])}}">
+        @csrf
+         <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title" id="staticBackdropLabel">Rate {{$tutor->user->FName}}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="container">   
+                  <fieldset class="rating">
+                  
+                    <input id="demo-1" type="radio" name="demo" value="1"> 
+                    <label for="demo-1">1 star</label>
+                    <input id="demo-2" type="radio" name="demo" value="2">
+                    <label for="demo-2">2 stars</label>
+                    <input id="demo-3" type="radio" name="demo" value="3">
+                    <label for="demo-3">3 stars</label>
+                    <input id="demo-4" type="radio" name="demo" value="4">
+                    <label for="demo-4">4 stars</label>
+                    <input id="demo-5" type="radio" name="demo" value="5">
+                    <label for="demo-5">5 stars</label>
+                    
+                    <div class="stars">
+                        <label for="demo-1" onClick="rat(1)" aria-label="1 star" title="1 star"></label>
+                        <label for="demo-2" onClick="rat(2)" aria-label="2 stars" title="2 stars"></label>
+                        <label for="demo-3" onClick="rat(3)" aria-label="3 stars" title="3 stars"></label>
+                        <label for="demo-4" onClick="rat(4)" aria-label="4 stars" title="4 stars"></label>
+                        <label for="demo-5" onClick="rat(5)" aria-label="5 stars" title="5 stars"></label>   
+                    </div>
+                    
+                </fieldset>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick="rateSubmit()">Rate</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+        {{-- End of Rate Modal --}}
         </div>
       </div>
     </div>
@@ -32,7 +80,7 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="#">
-                  <img src="/assets/img/avatar/tutors/{{$tutor->user->avatar}}" class="rounded-circle">
+                  <img src="/assets/img/avatar/{{$tutor->user->avatar}}" class="rounded-circle">
                 </a>
               </div>
             </div>
@@ -47,45 +95,83 @@
             <div class="row">
               <div>
                 <br/><br/>
-                {{-- success messege when profile picture updated --}}
-                <div>
+                {{-- success messeges --}}
+                <div class="col">
                     @if (session('success'))
                       <div class="alert alert-success" role="alert">
                           {{ session('success') }}
                       </div>
                     @endif
                 </div>
-                  {{-- <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
-                    <label>Update Your Profile Picture(2MB max)</label><br/>
-                    <input type="file" name="avatar">
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" class= "btn btn-sm btn-primary" disabled>
-                  </form> --}}
-                </div>
-                <hr/>
+              </div>
+              <hr>
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
                     <span class="heading">22</span>
-                    <span class="description">Friends</span>
+                    <span class="description">Successful Sessions</span>
                   </div>
-                  <div>
+                  {{-- <div>
                     <span class="heading">10</span>
                     <span class="description">Photos</span>
                   </div>
                   <div>
                     <span class="heading">89</span>
                     <span class="description">Comments</span>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
             <div class="text-center">
               <h3>
-                  {{$tutor->FName}}<span class="font-weight-light">, 27</span>
+                  {{$tutor->user->FName}} {{$tutor->user->LName}}
               </h3>
               <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                @if(($tutor->user->rating)=='1')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='2')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='3')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='4')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                        <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                    </div>
+                  </fieldset>
+                @endif
+                @if(($tutor->user->rating)=='5')
+                  <fieldset class="rating">
+                    <div class="stars">
+                        <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                        <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                        <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                        <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                        <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                    </div>
+                  </fieldset>
+                @endif
               </div>
               <hr class="my-4" />
               <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
@@ -138,6 +224,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-first-name">Subject</label>
+                                  <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{$tutor->subject->subject}}" readonly>
+                              </div>
+                          </div>
+                          <div class="col-lg-6">
+                              <div class="form-group">
+                                  <label class="form-control-label" for="input-last-name">Free space</label>
+                                  <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Any new content" value="" readonly>
+                              </div>
+                          </div>
+                      </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -223,6 +323,7 @@
           <div class="modal-body">
               <h1>select slots</h1>
               <p>Here you can see the available time slots for</p>
+              <p id="modelnote"></p>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -304,35 +405,80 @@
           
           <!-- Modal footer -->
           <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id='submit' onClick="submit()" data-dismiss="modal">Submit</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" style ="display:none" id='submit' onClick="submit()" data-dismiss="modal">Submit</button>
+          <button type="button" class="btn btn-secondary" style ="display:none" id='rmsubmit' onClick="rmsubmit()" data-dismiss="modal">remove</button>
+          <button type="button" class="btn btn-secondary" onClick="cls()" data-dismiss="modal">Close</button>
           </div>
           
       </div>
   </div>
 </div>
-<?php print_r($time_slots)?>
+<?php $id =  Auth::user()->id;?>
+<?php echo $id;?>
 {{--  --}}
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+  var rate = '';
+  function rat(params){
+    rate = params;
+    console.log(rate);
+  }
+
+  function rateSubmit() {
+    console.log('submit')
+    $.ajax({
+    type: "POST",
+    data:{ 'data': JSON.stringify(rate), '_token':'<?=csrf_token()?>'},
+    url: "/student/viewtutors/{{$tutor->user->id}}/ratesubmit",
+    // dataType: "json",
+    success: function(JSONObject) {
+      console.log('Success');
+      document.open();
+      document.write(JSONObject);
+      document.close();
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+  console.log('rate done')
+  }
+
+</script>
+<script>
   var selected = [];
+  var remove = [];
   function datetime() {
     var data = <?php echo json_encode($time_slots);?>;
     var date = ''
     var time = ''
     var date_time = ''
+    var stuId = ''
     data.map((obj,i)=>{
       date = obj.day.toString();
       time = obj.time.split(':')[0].toString();
+      stuId = obj.stu_id;
+      userId = <?php echo $id;?>;
       date_time = date+'_'+time;
       var btn = document.getElementById(date_time);
-      btn.innerHTML = 'Reserved'
-      btn.setAttribute('class','btn btn-warning')
-      btn.setAttribute('disabled',true)
+      if(stuId === userId)
+      {
+        var upt = "removea('"+date_time+"')"
+        btn.innerHTML = 'Remove'
+        btn.setAttribute('class','btn btn-primary')
+        btn.setAttribute('onClick',upt)
+      }
+      else{
+        btn.innerHTML = 'Reserved'
+        btn.setAttribute('class','btn btn-warning')
+        btn.setAttribute('disabled',true)
+      }
     })
   }
   function select(params) {
-    var rmv = "remove('"+params+"')"
+    note = document.getElementById('modelnote');
+    note.innerHTML = 'Please click Submit button to confirm!'
+    var rmv = "unselect('"+params+"')"
     var btn = document.getElementById(params);
     btn.innerHTML = 'Selected'
     btn.setAttribute('class','btn btn-primary')
@@ -344,10 +490,16 @@
       day:date,
       time:time
     }
+    sbtn = document.getElementById('submit');
+    sbtn.style.display = ''
+    rmbtn = document.getElementById('rmsubmit');
+    rmbtn.style.display = 'none'
     selected.push(obj);
     console.log(selected)
   }
-  function remove(params) {
+  function unselect(params) {
+    note = document.getElementById('modelnote');
+    note.innerHTML = ''
     var slct = "select('"+params+"')";
     var btn = document.getElementById(params);
     btn.innerHTML = 'Select'
@@ -372,9 +524,10 @@
     // dataType: "json",
     success: function(JSONObject) {
       console.log('Success');
-      document.open();
-      document.write(JSONObject);
-      document.close();
+      location.reload();
+      // document.open();
+      // document.write(JSONObject);
+      // document.close();
     },
     error: function(err) {
       console.log('Error');
@@ -384,7 +537,56 @@
       // w.document.close();
     }
   });
-  console.log('hello123')
+  }
+  function removea(params) {
+    note = document.getElementById('modelnote');
+    note.innerHTML = 'Please click remove button in below for confirm!';
+    var slct = "select('"+params+"')";
+    var btn = document.getElementById(params);
+    btn.innerHTML = 'Select'
+    btn.setAttribute('class','btn btn-block')
+    btn.setAttribute('onClick',slct)
+    date_time = params.split('_');
+    date = date_time[0];
+    time = date_time[1]+':00:00';
+    obj = {
+      day:date,
+      time:time
+    }
+    rmbtn = document.getElementById('rmsubmit');
+    rmbtn.style.display = ''
+    sbtn = document.getElementById('submit');
+    sbtn.style.display = 'none'
+    remove.push(obj);
+    console.log(remove)
+
+  }
+
+  function rmsubmit() {
+    $.ajax({
+    type: "POST",
+    data:{ 'data': JSON.stringify(remove), '_token':'<?=csrf_token()?>'},
+    url: "/student/viewtutors/{{$tutor->id}}/remove",
+    // dataType: "json",
+    success: function(JSONObject) {
+      console.log('Success');
+      location.reload();
+      // document.open();
+      // document.write(JSONObject);
+      // document.close();
+    },
+    error: function(err) {
+      console.log('Error');
+      // let w=window.open('about:blank');
+      // w.document.open();
+      // w.document.write(err.responseText);
+      // w.document.close();
+    }
+  });
+  }
+  function cls() {
+    console.log('hello');
+    location.reload();
   }
   datetime();
 </script>
