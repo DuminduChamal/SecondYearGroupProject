@@ -126,7 +126,7 @@ class TutorController extends Controller
         $tutor=DB::table('tutors')->where('user_id', $user)->get()->first();
         $id=$tutor->id;
         // dd($id);
-        $requestedTimeSlots=Timeslot::where('tutor_id', $id)->where('isAccepted', 0)->get();
+        $requestedTimeSlots=Timeslot::where('tutor_id', $id)->where('isAccepted', 0)->latest()->get();
         // dd($requestedTimeSlots);
         return view('tutor.requestedclasses')->with('requestedTimeSlots', $requestedTimeSlots);
     }

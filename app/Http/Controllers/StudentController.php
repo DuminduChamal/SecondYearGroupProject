@@ -182,7 +182,7 @@ class StudentController extends Controller
     public function viewAcceptedClasses()
     {
         $id=Auth::user()->id;
-        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->get();
+        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->latest()->get();
         return view('student.acceptedclasses')->with('classes', $classes);
     }
 }
