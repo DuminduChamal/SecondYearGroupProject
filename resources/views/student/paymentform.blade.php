@@ -28,13 +28,13 @@
                         @endif
     
                         {{--Payement form--}}
-                        <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="{{ route('payment',['tutor'=>$tutor->id])}}">
+                        <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="{{ route('payment',['class'=>$class->id])}}">
                             {{ csrf_field() }}
                             <h2 class="w3-text-blue">Payment Form</h2>
-                            <p>Your tutor has been accepted your requested timeslot with your tutor. Please do the payment to proceed further for the session</p>
+                            <p>Your tutor has been accepted your requested timeslot with your tutor <strong>{{$class->tutor->user->FName}} {{$class->tutor->user->LName}}</strong> on <strong>{{$class->day}}</strong> at <strong>{{$class->time}}</strong>. Please do the payment to proceed further for the session</p>
                             <p>      
                             <label class="w3-text-blue"><b>Amount for the session :</b></label>
-                            <label class="w3-text-blue"><h3>USD {{$tutor->rate}}</h3></label></p>    
+                            <label class="w3-text-blue"><h3>USD {{$class->tutor->rate}}</h3></label></p>    
                             <button type="submit" class="btn btn-warning">Pay with PayPal</button></p>
                         </form>
                         {{--Payement form end--}}

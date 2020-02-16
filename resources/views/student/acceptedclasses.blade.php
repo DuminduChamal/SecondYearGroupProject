@@ -33,12 +33,13 @@
                 <table class="table align-items-center table-dark table-flush">
                   <thead class="thead-dark">
                     <tr>
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">NIC</th>
+                      <th scope="col">Tutor First Name</th>
+                      <th scope="col">Tutor Last Name</th>
                       <th scope="col">Subject</th>
-                      <th scope="col">Qualification</th>
+                      <th scope="col">Rating</th>
+                      <th scope="col">Day</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Rate</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -48,30 +49,77 @@
                       <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            {{-- <img alt="Image placeholder" src="/assets/img/avatar/{{$unapprovedTutor->user->avatar}}"> --}}
+                            <img alt="Image placeholder" src="/assets/img/avatar/{{$class->tutor->user->avatar}}">
                           </a>
                           <div class="media-body">
-                            <span class="mb-0 text-sm">{{$class->day}}</span>
+                            <span class="mb-0 text-sm">{{$class->tutor->user->FName}}</span>
                           </div>
                         </div>
                       </th>
                       <td>
-                          {{$class->time}}
+                        <span class="mb-0 text-sm">{{$class->tutor->user->LName}}</span>
                       </td>
                       <td>
-                          {{-- {{$class->tutor->Qualification}} --}}
+                        <span class="mb-0 text-sm">{{$class->tutor->subject->subject}}</span>
                       </td>
                       <td>
-                          {{-- {{$unapprovedTutor->user->NIC}} --}}
+                        @if(($class->tutor->user->rating)=='1')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($class->tutor->user->rating)=='2')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($class->tutor->user->rating)=='3')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($class->tutor->user->rating)=='4')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                                    <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($class->tutor->user->rating)=='5')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                                    <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                                    <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                                </div>
+                            </fieldset>
+                            @endif
                       </td>
                       <td>
-                          {{-- {{$unapprovedTutor->subject->subject}} --}}
+                        {{$class->day}}
                       </td>
                       <td>
-                          {{-- {{$unapprovedTutor->Qualification}} --}}
+                        {{$class->time}}
                       </td>
                       <td>
-                        <a href="{{route('student.payment',['tutor'=> $class->tutor_id])}}" class="btn btn-info">Pay</a>
+                        <span class="mb-0 text-sm">{{$class->tutor->rate}}</span>
+                      </td>
+                      <td>
+                        <a href="{{route('student.payment',['tutor'=> $class->tutor_id,'day'=> $class->day,'time'=> $class->time])}}" class="btn btn-info">Pay</a>
                       </td>
                     </tr>
                     @endforeach
@@ -81,7 +129,7 @@
             </div>
           </div>
           @else
-              <h1>No Accepted Sessions</h1>
+              <h1>No Accepted Sessions Yet!</h1>
           @endif
         </div>
       </div>

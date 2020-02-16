@@ -29,7 +29,7 @@ class Tutor extends Model
     public function timeslot()
     {
         // return $this->belongsTo('App\Timeslot','id','tutor_id');
-        return $this->belongsTo(timeslot::class);
+        return $this->hasMany('App\Timeslot','tutor_id');
 
     }
 

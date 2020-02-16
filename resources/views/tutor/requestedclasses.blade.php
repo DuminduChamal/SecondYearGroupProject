@@ -81,7 +81,7 @@
             </div>
           </div>
           @else
-              <h1>No Accepted Sessions</h1>
+              <h1>No Requested Sessions Yet!</h1>
           @endif
         </div>
       </div>

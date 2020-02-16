@@ -14,6 +14,6 @@ class Timeslot extends Model
     // }
     public function tutor()
     {
-        return $this->hasMany(tutor::class);
+        return $this->belongsTo('App\Tutor','tutor_id');
     }
 }
