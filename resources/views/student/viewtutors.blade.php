@@ -15,10 +15,26 @@
                     {{ session('success') }}
                 </div>
                 @endif --}}
-
+        {{-- <div class="col-lg-6 col-md-8"> --}}
+        {{-- <div class="input-group input-group-alternative mb-3"> --}}
+        <form method="POST" id="payment-form"  action="{{ route('student.search')}}" value="{{ old('subject_id') }}">
+            @csrf
+            <select id="subject_id" class="form-control" name="subject_id" >
+                <option value="1">Mathamatics</option>
+                <option value="2">Science</option>
+                <option value="3">English</option>
+                <option value="4">Sinhala</option>
+                <option value="5">History</option>
+                <option value="6">Buddhism</option>
+            </select>
+            <button class="btn btn-info" type="submit">Search</button>
+        </form>
+        {{-- </div> --}}
+                {{-- </div> --}}
 
         <div class="row justify-content-center">
             <div class="row mt-5">
+            @if(count($tutors)>0)
             <div class="col">
                 <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
@@ -49,7 +65,7 @@
                                                 </a>
                                             {{-- <img src="paris.jpg" alt="Paris"> --}}
                                             <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>
-                                            <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} LKR <br>Per session</b></button>
+                                            <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} USD <br>Per Session</b></button>
                                             {{-- </div> --}}
                                     </div>
                                 </th>
@@ -107,10 +123,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{$tutor->rate}}
+                                    USD {{$tutor->rate}}
                                 </td>
                                 <td>
-                                    <a type="button" href="viewtutors/{{$tutor->id}}" class="btn btn-primary">view tutor</a>
+                                    <a type="button" href="{{ route('student.viewTutorProfile',['tutor'=>$tutor->id])}}" class="btn btn-primary">view tutor</a>
                                 {{-- <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
@@ -128,6 +144,9 @@
                 </div>
                 </div>
             </div>
+            @else
+                <h1>No Tutors Yet</h1>
+            @endif
             </div>
         </div>
         </div>
