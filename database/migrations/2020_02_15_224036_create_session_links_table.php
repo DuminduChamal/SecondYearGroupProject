@@ -15,7 +15,7 @@ class CreateSessionLinksTable extends Migration
     {
         Schema::create('session_links', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('stu_id');
+            $table->biginteger('stu_id')->unsigned();
             $table->integer('tutor_id');
             $table->string('link');
             $table->foreign('stu_id')->references('id')->on('users')->onDelete('cascade');

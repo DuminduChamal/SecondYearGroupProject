@@ -36,12 +36,12 @@
             </div>
             <div class="col-sm-9 col-md-6 col-lg-8">
 
-                <h1>Dumindu Chamal</h1>
+                <h1>Dumindu Muthukumarage</h1>
                 <i class="ni ni-chat-round"><a href="https://www.linkedin.com/in/dumindumuthukumage/"> linkedin</a></i>
                 <p class="title"><strong>BSc Information Systems (Reading)</strong></p>
                 <strong>University of Colombo School of Computing</strong>
                 <br/><br/>
-                <p><button class="btn btn-light">Contact</button></p>
+                <p><a href="{{route('contact')}}" class="btn btn-dark">Contact</a></p>
             </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <p class="title"><strong>BSc Information Systems (Reading)</strong></p>
                 <strong>University of Colombo School of Computing</strong>
                 <br/><br/>
-                <p><button class="btn btn-light">Contact</button></p>
+                <p><a href="{{route('contact')}}" class="btn btn-dark">Contact</a></p>
             </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
             <p class="title"><strong>BSc Information Systems (Reading)</strong></p>
             <strong>University of Colombo School of Computing</strong>
             <br/><br/>
-            <p><button class="btn btn-light">Contact</button></p>
+            <p><a href="{{route('contact')}}" class="btn btn-dark">Contact</a></p>
         </div>
         </div>
     </div>
@@ -94,7 +94,7 @@
                 <p class="title"><strong>BSc Information Systems (Reading)</strong></p>
                 <strong>University of Colombo School of Computing</strong>
                 <br/><br/>
-                <p><button class="btn btn-light">Contact</button></p>
+                <p><a href="{{route('contact')}}" class="btn btn-dark">Contact</a></p>
             </div>
             </div>
         </div>
