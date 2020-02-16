@@ -145,6 +145,8 @@ class TutorController extends Controller
         $timeslot->isAccepted= 1;
         $timeslot->save();
         // dd($timeslot);
+        $requestedStu=User::find($student);
+        $requestedStu->notify(new TutorAccepted($day,$time));
         return redirect('tutor/requestedclasses')->with('success','Requested Slot Accepted!');
     }
 }
