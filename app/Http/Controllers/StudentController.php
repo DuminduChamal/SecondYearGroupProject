@@ -200,4 +200,17 @@ class StudentController extends Controller
         // dd($tutors);
         return view('student.viewtutors')->with('tutors', $tutors);
     }
+
+    public function deleteProfile($id)
+    {
+        return view('student.delete');
+    }
+
+    public function deleteProfileConfirm($id)
+    {
+        $student = User::find($id);
+        $student->delete();
+        Auth::logout();
+        return redirect('/');
+    }
 }
