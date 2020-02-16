@@ -58,16 +58,57 @@
                           {{$requestedTimeSlot->student->LName}}
                       </td>
                       <td>
-                          {{-- {{$class->tutor->Qualification}} --}}
+                            @if(($requestedTimeSlot->student->rating)=='1')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($requestedTimeSlot->student->rating)=='2')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($requestedTimeSlot->student->rating)=='3')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($requestedTimeSlot->student->rating)=='4')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                                    <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                                </div>
+                            </fieldset>
+                            @endif
+                            @if(($requestedTimeSlot->student->rating)=='5')
+                            <fieldset class="rating">
+                                <div class="stars">
+                                    <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                                    <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                                    <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                                    <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                                    <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                                </div>
+                            </fieldset>
+                            @endif
                       </td>
                       <td>
                           {{$requestedTimeSlot->day}}
                       </td>
                       <td>
                           {{$requestedTimeSlot->time}}
-                      </td>
-                      <td>
-                          {{-- {{$unapprovedTutor->Qualification}} --}}
                       </td>
                       <td>
                         <a onclick="return confirm('Are you sure to accept {{$requestedTimeSlot->student->FName}}\'s session on {{$requestedTimeSlot->day}} at {{$requestedTimeSlot->time}}?')" href="{{route('tutor.accept',['student'=> $requestedTimeSlot->stu_id,'day'=> $requestedTimeSlot->day,'time'=> $requestedTimeSlot->time])}}" class="btn btn-info">Accept</a>
