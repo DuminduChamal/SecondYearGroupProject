@@ -7,11 +7,16 @@ use App\Tutor;
 use App\User;
 use App\Announcement;
 use App\Timeslot;
+use App\Session_link;
+use App\Mail\LinkShareMail;
 use Image;
 use auth;
 use DB;
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Facades\Mail;
 use App\Notifications\TutorAccepted;
+
 
 class TutorController extends Controller
 {
@@ -41,12 +46,12 @@ class TutorController extends Controller
         return $time;
     }
 
-    // public function viewProfileSlots($id)
-    // {
-    //     $tutor = Tutor::find($id);
-    //     $time_slots = TutorController::timeslots($id);
-    //     return view('tutor/profile', compact('tutor', 'time_slots'));
-    // }
+    public function viewProfileSlots($id)
+    {
+        $tutor = Tutor::find($id);
+        $time_slots = TutorController::timeslots($id);
+        return view('tutor/profile', compact('tutor', 'time_slots'));
+    }
     public function editProfile(User $user)
     {
         return view('tutor.editprofile')->with('user',$user);
@@ -96,6 +101,53 @@ class TutorController extends Controller
         }
         // return view('tutor.showProfile');
         return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Updated');
+    }
+
+    public function session()
+    {
+        return view('tutor.session');
+    }
+
+    public function sessionDetails()
+    {
+        ///////////////
+        //$user_id= auth::user()->tutor->timeslot->day;
+        // $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
+        //$tutor = DB::table('tutors')->where('referName', 'werty')->first();
+//////////////////
+
+        // dd($user_id);
+        // dd($tutor);
+        
+        $stu_id=10;
+        $tutor_id= auth::user()->tutor->id;
+        // dd($stu_id);
+
+
+            $stu_id = DB::table('timeslots')->where('id', $stu_id)->get();
+            $stu_mail_address;
+
+    }
+
+    public function linksubmit(Request $request)
+    {
+        // dd($request->link);
+        $stu_id= 4;
+        $tutor_id= auth::user()->tutor->id;
+        $session_link=$request->link;
+        // dd($session_link);
+
+        session_link::create([
+            'stu_id'=> $stu_id,
+            'tutor_id'=> $tutor_id,
+            'link'=> $session_link,
+        ]);
+
+        $user = DB::table('users')->where('id', $stu_id)->get();
+        Mail::to($user)->send(new LinkShareMail($session_link));
+
+        DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
+        return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
     }
 
     public function acceptClass($student,$tutor,$day,$time)
