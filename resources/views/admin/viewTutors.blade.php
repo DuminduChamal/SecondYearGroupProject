@@ -7,6 +7,7 @@
 @section('content')
 <div class="header bg-gradient-primary py-7 py-lg-8">
   <div class="container">
+    <label class="btn btn-dark">Number of Tutors in TUTORLAND : {{count($tutors)}}</label>
     <div class="header-body text-center mb-7">
       {{-- success messege when tutor removed --}}
         <div>
@@ -17,24 +18,6 @@
             @endif
         </div>
       <div class="row justify-content-center">
-      {{-- <h3>System Users</h3>
-      
-      <table class="table table-striped">
-          <tr>
-              <th>Name</th>
-              <th>Email adress</th>
-              <th></th>
-          </tr>
-          @foreach ($users as $user)
-              <tr>
-                  <td>{{$user->FName}}</td>
-                  <td>{{$user->email}}</td>
-                  <td>
-                  <a href="deleteUser/{{$user->id}}" class="btn btn-warning">Delete</a>
-                  </td>
-              </tr>
-          @endforeach
-      </table>  --}}
       <div class="row mt-5">
           <div class="col">
             <div class="card bg-default shadow">
@@ -61,37 +44,38 @@
                       <th scope="row">
                         <div class="media align-items-center">
                           <a href="#" class="avatar rounded-circle mr-3">
-                            <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->avatar}}">
+                            <img alt="Image placeholder" src="/assets/img/avatar/{{$tutor->user->avatar}}">
                           </a>
                           <div class="media-body">
-                            <span class="mb-0 text-sm">{{$tutor->FName}}</span>
+                            <span class="mb-0 text-sm">{{$tutor->user->FName}}</span>
                           </div>
                         </div>
                       </th>
                       <td>
-                          {{$tutor->LName}}
+                          {{$tutor->user->LName}}
                       </td>
                       <td>
-                          {{$tutor->email}}
+                          {{$tutor->user->email}}
                       </td>
                       <td>
-                          {{$tutor->NIC}}
+                          {{$tutor->user->NIC}}
                       </td>
                       <td>
-                        {!!$tutor->tutor ? $tutor->tutor->subject->subject : '' !!}
+                        {{-- {!!$tutor->tutor ? $tutor->tutor->subject->subject : '' !!} --}}
+                        {!!$tutor ? $tutor->subject->subject : '' !!}
                       </td>
                       <td>
-                          {!!$tutor->tutor ? $tutor->tutor->Qualification : '' !!}
+                          {!!$tutor ? $tutor->Qualification : '' !!}
                       </td>
                       <td>
-                        @if(($tutor->rating)=='1')
+                        @if(($tutor->user->rating)=='1')
                           <fieldset class="rating">
                             <div class="stars">
                                 <label for="demo-1" aria-label="1 star" title="1 star"></label>
                             </div>
                           </fieldset>
                         @endif
-                        @if(($tutor->rating)=='2')
+                        @if(($tutor->user->rating)=='2')
                           <fieldset class="rating">
                             <div class="stars">
                                 <label for="demo-1" aria-label="1 star" title="2 star"></label>
@@ -99,7 +83,7 @@
                             </div>
                           </fieldset>
                         @endif
-                        @if(($tutor->rating)=='3')
+                        @if(($tutor->user->rating)=='3')
                           <fieldset class="rating">
                             <div class="stars">
                                 <label for="demo-1" aria-label="1 star" title="3 star"></label>
@@ -108,7 +92,7 @@
                             </div>
                           </fieldset>
                         @endif
-                        @if(($tutor->rating)=='4')
+                        @if(($tutor->user->rating)=='4')
                           <fieldset class="rating">
                             <div class="stars">
                                 <label for="demo-1" aria-label="1 star" title="4 star"></label>
@@ -118,7 +102,7 @@
                             </div>
                           </fieldset>
                         @endif
-                        @if(($tutor->rating)=='5')
+                        @if(($tutor->user->rating)=='5')
                           <fieldset class="rating">
                             <div class="stars">
                                 <label for="demo-1" aria-label="1 star" title="5 star"></label>
@@ -136,8 +120,8 @@
                             <i class="fas fa-ellipsis-v"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="{{route('admin.viewtutorprofile',['tutor'=>$tutor->id])}}">View</a>
-                            <a class="dropdown-item" onclick="return confirm('Are you sure to remove {{$tutor->FName}}?')" href="{{route('admin.removetutor',['tutor'=>$tutor->id])}}">Remove</a>
+                            <a class="dropdown-item" href="{{route('admin.viewtutorprofile',['tutor'=>$tutor->user->id])}}">View</a>
+                            <a class="dropdown-item" onclick="return confirm('Are you sure to remove {{$tutor->user->FName}}?')" href="{{route('admin.removetutor',['tutor'=>$tutor->user->id])}}">Remove</a>
                           </div>
                         </div>
                       </td>

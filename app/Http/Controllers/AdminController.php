@@ -44,7 +44,7 @@ class AdminController extends Controller
 
      //method to view all the tutors
      public function viewTutors(){
-        $tutors = User::where('is_tutor', '1')->get();
+        $tutors = Tutor::where('approved', '1')->get();
         // dd($tutors);
         return view('admin/viewTutors')->with('tutors', $tutors);
     }
@@ -155,5 +155,13 @@ class AdminController extends Controller
         // dd($editann);
         $deleteann->delete();
         return redirect('admin/')->with('danger','Announcement Deleted');
+    }
+
+    public function countUsers()
+    {
+        $tutors = Tutor::where('approved',1)->get();
+        $students = User::where('is_student', '1')->get();
+        $unapprovedtutors = Tutor::where('approved',0)->get();
+        return view('admin.counts')->with(compact('tutors','students','unapprovedtutors'));
     }
 }
