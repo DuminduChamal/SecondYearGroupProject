@@ -43,8 +43,8 @@
             </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="../examples/register.html">
-                <i class="ni ni-circle-08 text-pink"></i> Register
+            <a class="nav-link" href="{{route('admin.count')}}">
+                <i class="ni ni-circle-08 text-pink"></i> User Counts
             </a>
             </li>
         </ul>

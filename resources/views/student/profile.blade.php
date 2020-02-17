@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">Hello {{Auth::user()->FName}}</h1>
-          <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+          <p class="text-white mt-0 mb-5">This is your profile page. You can view your details from here. These details will be showed to your tutor as well.</p>
           {{-- <a  href="{{route('student.profile.edit',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           {{-- href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" --}}
         </div>

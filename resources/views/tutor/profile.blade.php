@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">Hello {{Auth::user()->FName}}</h1>
-          <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+          <p class="text-white mt-0 mb-5">This is your profile page. You can view your details from here. These are the details which will be shown to the students.</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
           <a href="{{route('tutor.session')}}">Live session</a>
@@ -142,12 +142,12 @@
           </div>
           <div class="card-body">
             <form>
-                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <h6 class="heading-small text-muted mb-4">Your information</h6>
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-username">Username</label>
+                                    <label class="form-control-label" for="input-username">Full Name</label>
                                     <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="{{Auth::user()->FName}} {{Auth::user()->LName}}" value="{{Auth::user()->FName}} {{Auth::user()->LName}}"  readonly >
                                 </div>
                             </div>
