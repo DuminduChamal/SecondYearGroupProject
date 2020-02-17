@@ -8,6 +8,7 @@ use App\Tutor;
 use App\Announcement;
 use Auth;
 use DB;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -163,5 +164,20 @@ class AdminController extends Controller
         $students = User::where('is_student', '1')->get();
         $unapprovedtutors = Tutor::where('approved',0)->get();
         return view('admin.counts')->with(compact('tutors','students','unapprovedtutors'));
+    }
+
+    public function countUsersPDF()
+    {
+        $students = User::where('is_student',1)->get();
+        $studentCount = count($students);
+
+        $approveTutors = Tutor::where('approved',1)->get();
+        $approveTutorCount = count($approveTutors);
+
+        $unapproveTutors = Tutor::where('approved',0)->get();
+        $unapproveTutorCount = count($unapproveTutors);
+
+        $pdf = PDF::loadView('pdf', compact('studentCount','approveTutorCount','unapproveTutorCount'));
+        return $pdf->download('UserCount.pdf');
     }
 }
