@@ -31,20 +31,20 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
-                          Approved Tutors
-                      </td>
-                      <td>
-                          {{count($tutors)}}
-                      </td>
-                    </tr>
-                    <tr>
                         <td>
                             Students
                         </td>
                         <td>
                             {{count($students)}}
                         </td>
+                    </tr>
+                    <tr>
+                      <td>
+                          Approved Tutors
+                      </td>
+                      <td>
+                          {{count($tutors)}}
+                      </td>
                     </tr>
                     <tr>
                         <td>
@@ -57,6 +57,7 @@
                   </tbody>
                 </table>
               </div>
+              <a class="btn btn-light" href="#">Print PDF</a>
             </div>
           </div>
         </div>
