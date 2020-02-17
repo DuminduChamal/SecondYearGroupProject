@@ -16,8 +16,63 @@
                 <div class="col-lg-5 col-md-6">
                     <img src="assets/img/brand/brand.png" width="300" height="200">
                     <h1 class="text-white">Welcome!</h1>
-                    <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+                    <p class="text-lead text-light">Create account ! Start learning... Learn from the academic professionals,
+anytime, anywhere</p>
                 </div>  
+        </div>
+        <div>
+        <style>
+            .grid-container {
+            display: grid;
+            justify-content: space-evenly;
+            grid-template-columns: 300px 300px 300px;/* Make the grid smaller than the container */
+            grid-gap: 10px;
+            /* background-color: #2196F3; */
+            /* padding: 10px; */
+            }
+
+            .grid-container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 35px ;
+            
+            }
+
+        </style>
+
+            <div class="grid-container">
+                <div class="card rounded" style="opacity:0.7">
+                    <h2>Matthew G.</h2>
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/img/tutor/mathew.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                    </div>
+                    <h1>ENGLISH</h1>
+                    <p>6 Year(s) of experience</p>
+                </div>
+
+            <!-- <div class="grid-container"> -->
+                <div class="card rounded" style="opacity:0.7">
+
+                    <h2>Misbah M.</h2>
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/img/tutor/mishab.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                    </div>
+                    <h1>MATHEMATICS</h1>
+                    <p>Computer Science, St Andrews University</p>
+                </div>    
+            <!-- </div> -->
+
+            <div class="card rounded" style="opacity:0.7">
+                    <h2>Henry C.</h2>
+                    <div class="d-flex justify-content-center">
+                        <img src="assets/img/tutor/henry.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                    </div>
+                    <h1>SCIENCE</h1>
+                    <p>Medicine, Liverpool University</p>
+            
+            </div>  
+                
+            </div>
         </div>
         </div>
     
@@ -69,8 +124,9 @@
         center: map
         
     });
-} -->
+} 
 </script>
+-->
 
 </div>
 
