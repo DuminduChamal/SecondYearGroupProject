@@ -16,7 +16,7 @@
           <p class="text-white mt-0 mb-5">This is your profile page. You can view your details from here. These are the details which will be shown to the students.</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
-          <a href="{{route('tutor.session')}}">Live session</a>
+          {{-- <a href="{{route('tutor.session')}}">Live session</a> --}}
         </div>
       </div>
     </div>
@@ -330,19 +330,33 @@
   console.log('fghjkl')
   function datetime() {
     var data = <?php echo json_encode($time_slots);?>;
+    console.log(data);  
     var date = ''
     var time = ''
     var date_time = ''
+    var stu_id=''
     data.map((obj,i)=>{
       date = obj.day.toString();
       time = obj.time.split(':')[0].toString();
       date_time = date+'_'+time;
+      stu_id = obj.stu_id;
+      console.log(stu_id);
+      date_time_stu = date_time+'_'+stu_id;
       var btn = document.getElementById(date_time);
+      // var btn_stu_id  
       btn.innerHTML = 'Requested'
       btn.setAttribute('class','btn btn-warning')
-      btn.setAttribute('disabled',true)
+      if(stu_id!==0)
+      {
+        id = stu_id.toString(); 
+        // console.log(id);
+        var redirect = "window.location.href = "+"'/tutor/profile/room/"+id+"'"
+        // console.log(redirect);
+        btn.setAttribute('onClick',redirect);
+      }
     })
   }
+
   datetime();
 </script>
 

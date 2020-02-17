@@ -81,10 +81,10 @@ Route::middleware(['auth','student','verified'])->group( function(){
 
 //Route::get('/tutor/a', function () {
     Route::middleware(['auth','tutor','verified'])->group( function(){
-    Route::get('/tutor/profile/session','TutorController@session')->name('tutor.session');  
-    Route::post('/tutor/profile/session', 'TutorController@linksubmit')->name('link.submit');
+    Route::get('/tutor/profile/room/{id}','TutorController@room')->name('tutor.room');  
+    Route::post('/tutor/profile/room/{id}', 'TutorController@linksubmit')->name('link.submit');
     
-    Route::get('/tutor/profile/session/getstudent','TutorController@sessionDetails')->name('tutor.session.details');  
+    Route::get('/tutor/profile/room/getstudent','TutorController@roomDetails')->name('tutor.room.details');  
     
     
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
