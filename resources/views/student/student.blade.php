@@ -45,7 +45,63 @@
                         @endif
                     </div>
                 </div>
-                <a href="{{route('student.viewTutors')}}" class="btn btn-primary" type="button">TUTORS LIST</a>
+                {{-- <a href="{{route('student.viewTutors')}}" class="btn btn-primary" type="button">TUTORS LIST</a> --}}
+                <style>
+                    .grid-container {
+                    display: grid;
+                    justify-content: space-evenly;
+                    grid-template-columns: 300px 300px 300px;/* Make the grid smaller than the container */
+                    grid-gap: 10px;
+                      /* background-color: #2196F3; */
+                      /* padding: 10px; */
+                    }
+                    
+                    .grid-container > div {
+                    background-color: rgba(255, 255, 255, 0.8);
+                    text-align: center;
+                    padding: 35px ;
+                    
+                    }
+                    
+                    </style>
+
+                <div class="grid-container pt-5">
+                    <div>
+                    {{-- <h1>STEP 1</h1> --}}
+                    <a href="student/viewtutors/{{$tutor2[0]->id}}">
+                        <img src="/assets/img/avatar/1581887220.jpg" width="100" height="100" >
+                    </a>
+                    <a href="student/viewtutors/{{$tutor2[0]->id}}">
+                        <h1>{{$tutor2[0]->user->FName}} {{$tutor2[0]->user->LName}}</h1>
+                    </a>
+                    <p>Qualification : {{$tutor2[0]->Qualification}}</p>
+                    </div>
+                    
+                    <div>
+                    {{-- <h1>STEP 2</h1> --}}
+                    <a href="student/viewtutors/{{$tutor1[0]->id}}">
+                        <img src="assets/img/avatar/1581887756.jpg" width="100" height="100" >
+                    </a>
+                    <a href="student/viewtutors/{{$tutor1[0]->id}}">
+                        <h1>{{$tutor1[0]->user->FName}} {{$tutor1[0]->user->LName}}</h1>
+                    </a>
+                    <p>Qualification : {{$tutor1[0]->Qualification}} </p>
+                    </div>
+                    
+                    <div>
+                    {{-- <h1>STEP 3</h1> --}}
+                    <a href="student/viewtutors/{{$tutor3[0]->id}}">
+                        <img src="assets/img/avatar/tutors/young-male-teacher.jpg" width="100" height="100" >
+                    </a>
+                    <a href="student/viewtutors/{{$tutor3[0]->id}}">
+                        <h1>{{$tutor3[0]->user->FName}} {{$tutor3[0]->user->LName}}</h1>
+                    </a>
+                    <p>Qualification : {{$tutor3[0]->Qualification}}</p>
+                    </div>  
+                    </div>
+                    <div class="col text-center pt-3 ">
+                        <a href="{{route('student.viewTutors')}}" type="button" class="col text-center btn btn-info" >View More</a>
+                    </div>
             </div>
         </div>
     </div>

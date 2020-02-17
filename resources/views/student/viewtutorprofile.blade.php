@@ -403,6 +403,8 @@
   var remove = [];
   function datetime() {
     var data = <?php echo json_encode($time_slots);?>;
+    console.log('array');
+    console.log(data);
     var date = ''
     var time = ''
     var date_time = ''

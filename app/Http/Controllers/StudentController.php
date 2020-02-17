@@ -20,7 +20,15 @@ class StudentController extends Controller
     public function index()
     {
         $anns=Announcement::orderBy('created_at','desc')->paginate(3);
-        return view('student/student')->with('anns',$anns);
+
+        $tutor1=Tutor::where('approved',1)->where('id',1)->get();
+        $tutor2=Tutor::where('approved',1)->where('id',2)->get();
+        $tutor3=Tutor::where('approved',1)->where('id',3)->get();
+
+        // dd($tutor1);
+
+        return view('student/student')->with(compact('anns','tutor1','tutor2','tutor3'));
+
     }
 
     public function viewProfile()
