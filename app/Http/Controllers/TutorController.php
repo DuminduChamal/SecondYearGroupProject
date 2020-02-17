@@ -38,7 +38,7 @@ class TutorController extends Controller
     public function timeslots($id)
     {
         $user = Auth::id();
-        $tutor = DB::table('tutors')->where('user_id', '$user')->get();
+        $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
         // dd($tutor);
         $tutor_id = $tutor->id;
         // dd($tutor->id);
