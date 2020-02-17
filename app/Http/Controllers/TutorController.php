@@ -41,7 +41,7 @@ class TutorController extends Controller
         $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
         $tutor_id = $tutor->id;
         //dd($tutor->id);
-        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time','stu_id')->get()->toArray();
+        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time','stu_id','isPaid')->get()->toArray();
         return $time;
     }
 
@@ -159,7 +159,7 @@ class TutorController extends Controller
         $user = DB::table('users')->where('id', $stu_id)->get();
         Mail::to($user)->send(new LinkShareMail($session_link));
 
-        // DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
+        DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
         return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
     }
 
