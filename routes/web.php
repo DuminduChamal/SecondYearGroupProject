@@ -43,6 +43,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/viewtutor/{tutor}', 'AdminController@viewTutorProfile')->name('admin.viewtutorprofile');
     Route::get('/admin/removetutor/{tutor}', 'AdminController@removeTutor')->name('admin.removetutor');
     Route::get('/admin/countusers', 'AdminController@countUsers')->name('admin.count');
+    Route::get('/admin/countusers/pdf', 'AdminController@countUsersPDF')->name('admin.countprint');
     Route::get('/admin/a', function () {
 
         return view('admin');

@@ -21,12 +21,6 @@
                     <tr>
                       <th scope="col">User types</th>
                       <th scope="col">Count</th>
-                      {{-- <th scope="col">Email</th>
-                      <th scope="col">NIC</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Qualification</th>
-                      <th scope="col">Rating</th>
-                      <th scope="col"></th> --}}
                     </tr>
                   </thead>
                   <tbody>
@@ -57,7 +51,7 @@
                   </tbody>
                 </table>
               </div>
-              <a class="btn btn-light" href="#">Print PDF</a>
+              <a class="btn btn-light" href="{{route('admin.countprint')}}">Print PDF</a>
             </div>
           </div>
         </div>
