@@ -15,9 +15,9 @@
                 <p class="text-white">3. Enter any name and continue</p>
                 <p class="text-white">4. Click Join meeting</p>
                 <p class="text-white">5. Copy joining info</p>
-                <p class="text-white">6. Paste it in the given text box </p>
+                <p class="text-white">6. Paste it in the given text box</p>
 
-                <a href="{{route('tutor.session.details')}}">get user</a>
+                <a href="{{route('tutor.room.details')}}">get user</a>
             </div>
         </div>
         <div class="container">
@@ -28,7 +28,7 @@
             @endif
 
             @if (! session()->has('messege'))
-            <form action="{{route('link.submit')}}" method="POST">
+            <form action="{{route('link.submit',['id'=>$stu->id])}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Paste the link here</label>
