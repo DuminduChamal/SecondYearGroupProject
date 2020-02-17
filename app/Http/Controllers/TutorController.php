@@ -41,7 +41,7 @@ class TutorController extends Controller
         $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
         $tutor_id = $tutor->id;
         //dd($tutor->id);
-        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time','stu_id')->get()->toArray();
+        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time','stu_id','isPaid')->get()->toArray();
         return $time;
     }
 
