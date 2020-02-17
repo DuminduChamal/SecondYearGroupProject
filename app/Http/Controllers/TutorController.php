@@ -136,9 +136,11 @@ class TutorController extends Controller
     {
         // dd($request->link);
         // $stu_id= 4;
-        $stu_id_row=DB::table('timeslots')->where('tutor_id',$tutor_id)->get()->first();
-        $stu_id=$stu_id_row->id;
         $tutor_id= auth::user()->tutor->id;
+        $stu_id_row=DB::table('timeslots')->where('tutor_id',$tutor_id)->get()->first();
+        // dd($stu_id_row);
+        $stu_id=$stu_id_row->stu_id;
+        // dd($stu_id);
         $session_link=$request->link;
         // dd($session_link);
 
