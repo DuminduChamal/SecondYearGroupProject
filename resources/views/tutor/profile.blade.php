@@ -15,7 +15,7 @@
           <h1 class="display-2 text-white">Hello {{Auth::user()->FName}}</h1>
           <p class="text-white mt-0 mb-5">This is your profile page. You can view your details from here. These are the details which will be shown to the students.</p>
           {{-- <a href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
-          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My</a>
+          <a class="btn btn-info" href="#" data-toggle='modal' data-target='#retModal'>View My Schedule</a>
           {{-- <a href="{{route('tutor.session')}}">Live session</a> --}}
         </div>
       </div>
@@ -335,24 +335,32 @@
     var time = ''
     var date_time = ''
     var stu_id=''
+    var is_paid=''
     data.map((obj,i)=>{
       date = obj.day.toString();
       time = obj.time.split(':')[0].toString();
       date_time = date+'_'+time;
       stu_id = obj.stu_id;
-      console.log(stu_id);
+      is_paid = obj.isPaid;
+      console.log(is_paid);
       date_time_stu = date_time+'_'+stu_id;
       var btn = document.getElementById(date_time);
       // var btn_stu_id  
-      btn.innerHTML = 'Requested'
-      btn.setAttribute('class','btn btn-warning')
-      if(stu_id!==0)
+      
+      if(stu_id!==0 && is_paid==1)
       {
         id = stu_id.toString(); 
         // console.log(id);
+        btn.setAttribute('class','btn btn-primary')
+        btn.innerHTML = '$_Paid_$'
         var redirect = "window.location.href = "+"'/tutor/profile/room/"+id+"'"
         // console.log(redirect);
         btn.setAttribute('onClick',redirect);
+      }
+      else
+      {
+        btn.innerHTML = 'Asked'
+        btn.setAttribute('class','btn btn-warning')
       }
     })
   }

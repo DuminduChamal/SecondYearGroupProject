@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
             <h1 class="text-white">About Us!</h1>
-            <p class="text-lead text-light">Well experience, techy guys who solves commiunity problems</p>
+            <p class="text-lead text-light">Well experienced, techy guys who solves commiunity problems</p>
             </div>
         </div>
         <br><br>

@@ -8,6 +8,8 @@ use App\Tutor;
 use App\Announcement;
 use Auth;
 use DB;
+use App\Mail\ApprovedMail;
+use Illuminate\Support\Facades\Mail;
 use PDF;
 
 class AdminController extends Controller
@@ -97,6 +99,13 @@ class AdminController extends Controller
         $approvedTutor = Tutor::find($id);
         $approvedTutor->approved = 1;
         $approvedTutor->save();
+
+        $user_id=$approvedTutor->user_id;
+        // dd($user_id);
+        $user1 = DB::table('users')->where('id',$user_id)->get();
+        $user = $user1[0];
+        // dd($user);
+        Mail::to($user)->send(new ApprovedMail($user));
         return redirect('admin/unapprovedtutors')->with('success', 'Tutor Approved');
     }
 
