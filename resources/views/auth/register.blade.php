@@ -165,7 +165,7 @@
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-money-coins"></i></span>
                     </div>
-                    <input id="rate" type="integer" placeholder="Rate" class="form-control @error('rate') is-invalid @enderror" name="rate" value="{{ old('rate') }}" required autocomplete="rate" autofocus>
+                    <input id="rate" type="integer" placeholder="Rate in USD" class="form-control @error('rate') is-invalid @enderror" name="rate" value="{{ old('rate') }}" required autocomplete="rate" autofocus>
                     @error('rate')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

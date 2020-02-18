@@ -228,4 +228,18 @@ class TutorController extends Controller
         Auth::logout();
         return redirect('/');
     }
+
+    public function RateStudent(Request $arr,$id)
+    {
+        // dd($arr);
+        $new_rating = $arr->demo;
+        // dd($new_rating);
+        $student = User::find($id);
+        $old_rating=$student->rating;
+        $present_rating=ceil(($old_rating+$new_rating)/2);
+        // dd($present_rating);
+        $student->rating = $present_rating;
+        $student->save();
+        return redirect('tutor')->with('success', 'Rating added! Thank you for your time');
+    }
 }

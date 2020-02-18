@@ -96,6 +96,7 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/tutor/acceptslot/{student}/{tutor}/{day}/{time}','TutorController@acceptClass')->name('tutor.acceptslot');
     Route::get('/tutor/requestedclasses','TutorController@viewRequestedSlots')->name('tutor.viewslots');
     Route::get('/tutor/requestedclasses/accept/{student}/{day}/{time}','TutorController@acceptRequestedSlots')->name('tutor.accept');
+    Route::post('/tutor/ratestudent/{id}','TutorController@RateStudent')->name('tutor.rate.student');
     Route::get('/tutor/a',function(){
 
         return view('tutor');
