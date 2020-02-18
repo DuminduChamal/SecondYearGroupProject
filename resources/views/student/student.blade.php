@@ -69,7 +69,7 @@
                     <div>
                     {{-- <h1>STEP 1</h1> --}}
                     <a href="student/viewtutors/{{$tutor2[0]->id}}">
-                        <img src="/assets/img/avatar/tutors/{{$tutor2[0]->user->avatar}}" height="100" >
+                        <img src="/assets/img/avatar/{{$tutor2[0]->user->avatar}}" height="100" >
                     </a>
                     <a href="student/viewtutors/{{$tutor2[0]->id}}">
                         <h1>{{$tutor2[0]->user->FName}} {{$tutor2[0]->user->LName}}</h1>
@@ -80,7 +80,7 @@
                     <div>
                     {{-- <h1>STEP 2</h1> --}}
                     <a href="student/viewtutors/{{$tutor1[0]->id}}">
-                        <img src="assets/img/avatar/tutors/{{$tutor1[0]->user->avatar}}" width="100" height="100" >
+                        <img src="assets/img/avatar/{{$tutor1[0]->user->avatar}}" width="100" height="100" >
                     </a>
                     <a href="student/viewtutors/{{$tutor1[0]->id}}">
                         <h1>{{$tutor1[0]->user->FName}} {{$tutor1[0]->user->LName}}</h1>
@@ -91,7 +91,7 @@
                     <div>
                     {{-- <h1>STEP 3</h1> --}}
                     <a href="student/viewtutors/{{$tutor3[0]->id}}">
-                        <img src="assets/img/avatar/tutors/{{$tutor2[0]->user->avatar}}" width="100" height="100" >
+                        <img src="assets/img/avatar/{{$tutor2[0]->user->avatar}}" width="100" height="100" >
                     </a>
                     <a href="student/viewtutors/{{$tutor3[0]->id}}">
                         <h1>{{$tutor3[0]->user->FName}} {{$tutor3[0]->user->LName}}</h1>
