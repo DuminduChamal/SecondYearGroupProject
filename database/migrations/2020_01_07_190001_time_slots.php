@@ -15,10 +15,11 @@ class TimeSlots extends Migration
     {
         Schema::create('timeslots', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('tutor_id');
+            $table->biginteger('tutor_id')->unsigned();
             $table->string('day');
             $table->time('time');
             $table->timestamps();
+            $table->foreign('tutor_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
