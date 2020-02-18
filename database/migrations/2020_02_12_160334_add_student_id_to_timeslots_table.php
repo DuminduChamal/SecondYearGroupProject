@@ -14,8 +14,8 @@ class AddStudentIdToTimeslotsTable extends Migration
     public function up()
     {
         Schema::table('timeslots', function (Blueprint $table) {
-            $table->integer('stu_id');
-            
+            $table->biginteger('stu_id')->unsigned();
+            $table->foreign('stu_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

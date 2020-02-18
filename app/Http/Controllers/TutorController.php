@@ -159,7 +159,7 @@ class TutorController extends Controller
         $user = DB::table('users')->where('id', $stu_id)->get();
         Mail::to($user)->send(new LinkShareMail($session_link));
 
-        DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
+        // DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
         return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
     }
 
@@ -227,5 +227,19 @@ class TutorController extends Controller
         $student->delete();
         Auth::logout();
         return redirect('/');
+    }
+
+    public function RateStudent(Request $arr,$id)
+    {
+        // dd($arr);
+        $new_rating = $arr->demo;
+        // dd($new_rating);
+        $student = User::find($id);
+        $old_rating=$student->rating;
+        $present_rating=ceil(($old_rating+$new_rating)/2);
+        // dd($present_rating);
+        $student->rating = $present_rating;
+        $student->save();
+        return redirect('tutor')->with('success', 'Rating added! Thank you for your time');
     }
 }
