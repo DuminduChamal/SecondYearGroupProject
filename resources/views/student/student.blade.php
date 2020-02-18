@@ -91,7 +91,7 @@
                     <div>
                     {{-- <h1>STEP 3</h1> --}}
                     <a href="student/viewtutors/{{$tutor3[0]->id}}">
-                        <img src="assets/img/avatar/{{$tutor2[0]->user->avatar}}" width="100" height="100" >
+                        <img src="assets/img/avatar/{{$tutor3[0]->user->avatar}}" width="100" height="100" >
                     </a>
                     <a href="student/viewtutors/{{$tutor3[0]->id}}">
                         <h1>{{$tutor3[0]->user->FName}} {{$tutor3[0]->user->LName}}</h1>
