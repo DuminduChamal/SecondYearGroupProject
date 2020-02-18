@@ -20,6 +20,7 @@ Route::get('/contact','ContactFormController@create')->name('contact');
 Route::post('/contact','ContactFormController@store');
 
 Route::get('/about','HomeController@about')->name('about');
+Route::get('/how','HomeController@Howitworks')->name('how');
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
