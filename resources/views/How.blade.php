@@ -53,7 +53,7 @@
   <h1>STEP 2</h1>
   <img src="assets/img/tutor.png" width="100" height="100" >
   <h1>Choose a Tutor</h1>
-  <p>From the best academic performers in the countrye</p>
+  <p>From the best academic performers in the country</p>
 </div>
 
 <div><h1>STEP 3</h1>

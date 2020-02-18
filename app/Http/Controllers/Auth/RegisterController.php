@@ -66,7 +66,7 @@ class RegisterController extends Controller
             'referName' => ['required', 'string', 'max:255'],
             'referStatus' => ['required', 'string', 'max:255'],
             'referEmail' => ['required', 'string', 'max:255', 'email'],
-            'referNumber' => ['required', 'integer', 'digits:10'],
+            'referNumber' => ['required', 'string'],
             
         ]);
     }

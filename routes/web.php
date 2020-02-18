@@ -14,13 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 
-});
+})->name('home');
 
-Route::get('/Howitworks','HomeController@Howitworks');
-Route::get('/contact','ContactFormController@create');
+Route::get('/contact','ContactFormController@create')->name('contact');
 Route::post('/contact','ContactFormController@store');
 
-Route::get('/about','HomeController@about');
+Route::get('/about','HomeController@about')->name('about');
+Route::get('/how','HomeController@Howitworks')->name('how');
 
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -44,6 +44,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/removestudent/{student}', 'AdminController@removeStudent')->name('admin.removestudent');
     Route::get('/admin/viewtutor/{tutor}', 'AdminController@viewTutorProfile')->name('admin.viewtutorprofile');
     Route::get('/admin/removetutor/{tutor}', 'AdminController@removeTutor')->name('admin.removetutor');
+    Route::get('/admin/countusers', 'AdminController@countUsers')->name('admin.count');
+    Route::get('/admin/countusers/pdf', 'AdminController@countUsersPDF')->name('admin.countprint');
     Route::get('/admin/a', function () {
 
         return view('admin');
@@ -71,15 +73,20 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/student/pay/{tutor}/{day}/{time}','StudentController@payment')->name('student.pay');
     Route::get('/student/paytutor/{tutor}/{day}/{time}','StudentController@paymentSeparate')->name('student.payment');
     Route::get('/student/acceptedclasses','StudentController@viewAcceptedClasses')->name('student.classes');
+    Route::post('/student/search','StudentController@searchSubject')->name('student.search');
+    Route::get('/student/livesearch', 'LiveSearch@index')->name('student.advancesearch');
+    Route::get('/student/livesearch/action', 'LiveSearch@action')->name('live_search.action');
+    Route::get('/student/{student}/deleteprofile','StudentController@deleteProfile')->name('student.deleteProfile');
+    Route::get('/student/{student}/deleteconfirm','StudentController@deleteProfileConfirm')->name('student.deleteConfirm');
 }); 
 
 
 //Route::get('/tutor/a', function () {
     Route::middleware(['auth','tutor','verified'])->group( function(){
-    Route::get('/tutor/profile/session','TutorController@session')->name('tutor.session');  
-    Route::post('/tutor/profile/session', 'TutorController@linksubmit')->name('link.submit');
+    Route::get('/tutor/profile/room/{id}','TutorController@room')->name('tutor.room');  
+    Route::post('/tutor/profile/room/{id}', 'TutorController@linksubmit')->name('link.submit');
     
-    Route::get('/tutor/profile/session/getstudent','TutorController@sessionDetails')->name('tutor.session.details');  
+    Route::get('/tutor/profile/room/getstudent','TutorController@roomDetails')->name('tutor.room.details');  
     
     
     Route::get('/tutor','TutorController@index')->name('tutor.dashboard');
@@ -91,11 +98,13 @@ Route::middleware(['auth','student','verified'])->group( function(){
     Route::get('/tutor/acceptslot/{student}/{tutor}/{day}/{time}','TutorController@acceptClass')->name('tutor.acceptslot');
     Route::get('/tutor/requestedclasses','TutorController@viewRequestedSlots')->name('tutor.viewslots');
     Route::get('/tutor/requestedclasses/accept/{student}/{day}/{time}','TutorController@acceptRequestedSlots')->name('tutor.accept');
+    Route::post('/tutor/ratestudent/{id}','TutorController@RateStudent')->name('tutor.rate.student');
     Route::get('/tutor/a',function(){
 
         return view('tutor');
     });
-
+    Route::get('/tutor/{tutor}/deleteprofile','TutorController@deleteProfile')->name('tutor.deleteProfile');
+    Route::get('/tutor/{tutor}/deleteconfirm','TutorController@deleteProfileConfirm')->name('tutor.deleteConfirm');
     Route::get('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@showRegistrationForm')->name('registerAsStudent');
     Route::post('/tutor/registerasstudent', 'Auth\RegisterAsStudentController@registerAsStudentSubmit')->name('tutor.register.student');
 });
@@ -110,6 +119,8 @@ Route::post('payment/add-funds/paypal/{class}', 'PaymentController@payWithpaypal
 
 // route for check status of the payment
 Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
+
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

@@ -15,7 +15,7 @@
                 <li class="list-group-item"><i>Subject Requested</i> : {{$unapprovedTutor->subject->subject}}</li>
                 <li class="list-group-item"><i>Qualification</i> : {{$unapprovedTutor->Qualification}}</li>
                 <li class="list-group-item"><i>Referee Name</i> : {{$unapprovedTutor->referName}}</li>
-                <li class="list-group-item"><i>Status</i> : {{$unapprovedTutor->referStatus}}</li>
+                <li class="list-group-item"><i>Referee Status</i> : {{$unapprovedTutor->referStatus}}</li>
                 <li class="list-group-item"><i>Referee Email</i> : {{$unapprovedTutor->referEmail}}</li>
                 <li class="list-group-item"><i>Referee Number</i> : {{$unapprovedTutor->referNumber}}</li>
             </ul>

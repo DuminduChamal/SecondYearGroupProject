@@ -41,13 +41,14 @@ class TutorController extends Controller
         $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
         // dd($tutor);
         $tutor_id = $tutor->id;
-        // dd($tutor->id);
-        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time')->get()->toArray();
+        //dd($tutor->id);
+        $time = DB::table('timeslots')->where('tutor_id', $tutor_id)->select('day', 'time','stu_id','isPaid')->get()->toArray();
         return $time;
     }
 
     public function viewProfileSlots($id)
     {
+        dd($id);
         $tutor = Tutor::find($id);
         $time_slots = TutorController::timeslots($id);
         return view('tutor/profile', compact('tutor', 'time_slots'));
@@ -98,17 +99,25 @@ class TutorController extends Controller
             $tutor = Auth::user();
             $tutor->avatar = $filename;
             $tutor->save();
+            return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Successfully Updated!');
         }
-        // return view('tutor.showProfile');
-        return redirect()->action('TutorController@viewProfile', compact('tutor'))->with('success', 'Profile Picture Updated');
+        else
+        {
+            return redirect('tutor/profile')->with('error', 'No file attached! Please attach a file to upload.');
+        }
+        
     }
 
-    public function session()
+    public function room($id)
     {
-        return view('tutor.session');
+        // $stu_id = $id;
+        // dd($stu_id);
+        $stu = User::find($id);
+        // dd($stu);
+        return view('tutor.session')->with('stu',$stu);
     }
 
-    public function sessionDetails()
+    public function roomDetails()
     {
         ///////////////
         //$user_id= auth::user()->tutor->timeslot->day;
@@ -129,11 +138,16 @@ class TutorController extends Controller
 
     }
 
-    public function linksubmit(Request $request)
+    public function linksubmit(Request $request,$id)
     {
+        // dd($id);
         // dd($request->link);
-        $stu_id= 4;
+        // $stu_id= 4;
         $tutor_id= auth::user()->tutor->id;
+        // $stu_id_row=DB::table('timeslots')->where('tutor_id',$tutor_id)->get()->first();
+        // dd($stu_id_row);
+        $stu_id=$id;
+        // dd($stu_id);
         $session_link=$request->link;
         // dd($session_link);
 
@@ -146,7 +160,7 @@ class TutorController extends Controller
         $user = DB::table('users')->where('id', $stu_id)->get();
         Mail::to($user)->send(new LinkShareMail($session_link));
 
-        DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
+        // DB::table('session_links')->where('tutor_id', '=', $tutor_id)->delete();
         return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
     }
 
@@ -201,5 +215,32 @@ class TutorController extends Controller
         $requestedStu=User::find($student);
         $requestedStu->notify(new TutorAccepted($day,$time));
         return redirect('tutor/requestedclasses')->with('success','Requested Slot Accepted!');
+    }
+
+    public function deleteProfile($id)
+    {
+        return view('tutor.delete');
+    }
+
+    public function deleteProfileConfirm($id)
+    {
+        $student = User::find($id);
+        $student->delete();
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function RateStudent(Request $arr,$id)
+    {
+        // dd($arr);
+        $new_rating = $arr->demo;
+        // dd($new_rating);
+        $student = User::find($id);
+        $old_rating=$student->rating;
+        $present_rating=ceil(($old_rating+$new_rating)/2);
+        // dd($present_rating);
+        $student->rating = $present_rating;
+        $student->save();
+        return redirect('tutor')->with('success', 'Rating added! Thank you for your time');
     }
 }

@@ -8,6 +8,9 @@ use App\Tutor;
 use App\Announcement;
 use Auth;
 use DB;
+use App\Mail\ApprovedMail;
+use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -44,7 +47,7 @@ class AdminController extends Controller
 
      //method to view all the tutors
      public function viewTutors(){
-        $tutors = User::where('is_tutor', '1')->get();
+        $tutors = Tutor::where('approved', '1')->get();
         // dd($tutors);
         return view('admin/viewTutors')->with('tutors', $tutors);
     }
@@ -96,6 +99,13 @@ class AdminController extends Controller
         $approvedTutor = Tutor::find($id);
         $approvedTutor->approved = 1;
         $approvedTutor->save();
+
+        $user_id=$approvedTutor->user_id;
+        // dd($user_id);
+        $user1 = DB::table('users')->where('id',$user_id)->get();
+        $user = $user1[0];
+        // dd($user);
+        Mail::to($user)->send(new ApprovedMail($user));
         return redirect('admin/unapprovedtutors')->with('success', 'Tutor Approved');
     }
 
@@ -155,5 +165,28 @@ class AdminController extends Controller
         // dd($editann);
         $deleteann->delete();
         return redirect('admin/')->with('danger','Announcement Deleted');
+    }
+
+    public function countUsers()
+    {
+        $tutors = Tutor::where('approved',1)->get();
+        $students = User::where('is_student', '1')->get();
+        $unapprovedtutors = Tutor::where('approved',0)->get();
+        return view('admin.counts')->with(compact('tutors','students','unapprovedtutors'));
+    }
+
+    public function countUsersPDF()
+    {
+        $students = User::where('is_student',1)->get();
+        $studentCount = count($students);
+
+        $approveTutors = Tutor::where('approved',1)->get();
+        $approveTutorCount = count($approveTutors);
+
+        $unapproveTutors = Tutor::where('approved',0)->get();
+        $unapproveTutorCount = count($unapproveTutors);
+
+        $pdf = PDF::loadView('pdf', compact('studentCount','approveTutorCount','unapproveTutorCount'));
+        return $pdf->download('UserCount.pdf');
     }
 }

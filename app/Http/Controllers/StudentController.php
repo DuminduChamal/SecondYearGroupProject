@@ -20,7 +20,15 @@ class StudentController extends Controller
     public function index()
     {
         $anns=Announcement::orderBy('created_at','desc')->paginate(3);
-        return view('student/student')->with('anns',$anns);
+
+        $tutor1=Tutor::where('approved',1)->where('id',1)->get();
+        $tutor2=Tutor::where('approved',1)->where('id',2)->get();
+        $tutor3=Tutor::where('approved',1)->where('id',3)->get();
+
+        // dd($tutor1);
+
+        return view('student/student')->with(compact('anns','tutor1','tutor2','tutor3'));
+
     }
 
     public function viewProfile()
@@ -67,8 +75,8 @@ class StudentController extends Controller
     //method to view availble tutors when logged into the student account
     public function showTutorList()
     {
-        $tutors = Tutor::where('approved', '1')->paginate(3);
-        //dd($tutors);
+        $tutors = Tutor::where('approved', '1')->orderBy('rate', 'desc')->paginate(3);
+        // dd($tutors);
         return view('student.viewtutors')->with('tutors', $tutors);
     }
 
@@ -98,9 +106,14 @@ class StudentController extends Controller
             $user = Auth::user();
             $user->avatar = $filename;
             $user->save();
+            return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Successfully Updated!');
+        }
+        else
+        {
+            return redirect('student/profile')->with('error', 'No file attached! Please attach a file to upload.');
         }
         // return view('student.showProfile', compact('user'));
-        return redirect()->action('StudentController@showProfile', compact('user'))->with('success', 'Profile Picture Updated');
+        // return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Updated');
     }
 
     public function timeslots($id)
@@ -192,5 +205,28 @@ class StudentController extends Controller
         $id=Auth::user()->id;
         $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->latest()->get();
         return view('student.acceptedclasses')->with('classes', $classes);
+    }
+
+    public function searchSubject(Request $array)
+    {
+        // dd($array);
+        $subjectid=$array->subject_id;
+        // dd($subjectid);
+        $tutors=Tutor::where('subject_id', $subjectid)->where('approved', 1)->orderBy('rate', 'desc')->paginate(3);
+        // dd($tutors);
+        return view('student.viewtutors')->with('tutors', $tutors);
+    }
+
+    public function deleteProfile($id)
+    {
+        return view('student.delete');
+    }
+
+    public function deleteProfileConfirm($id)
+    {
+        $student = User::find($id);
+        $student->delete();
+        Auth::logout();
+        return redirect('/');
     }
 }

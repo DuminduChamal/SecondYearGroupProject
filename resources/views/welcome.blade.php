@@ -7,7 +7,7 @@
 @section('content')
 <!-- Header -->
 
-<div class="hero header py-7 py-lg-8" >
+<div class="hero header py-7 py-lg-5" >
     <!-- <div class="pic"> -->
     <!-- <div class="hero"> -->
     <div class="container">
@@ -41,32 +41,32 @@ anytime, anywhere</p>
         </style>
 
             <div class="grid-container">
-                <div class="card rounded" style="opacity:0.7">
+                <div class="card rounded" style="opacity:0.8">
                     <h2>Matthew G.</h2>
-                    <div class="d-flex justify-content-center">
-                        <img src="assets/img/tutor/mathew.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/img/tutor/mathew.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                        </div>
                     <h1>ENGLISH</h1>
                     <p>6 Year(s) of experience</p>
                 </div>
 
             <!-- <div class="grid-container"> -->
-                <div class="card rounded" style="opacity:0.7">
+                <div class="card rounded" style="opacity:0.8">
 
                     <h2>Misbah M.</h2>
-                    <div class="d-flex justify-content-center">
-                        <img src="assets/img/tutor/mishab.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/img/tutor/mishab.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                        </div>
                     <h1>MATHEMATICS</h1>
                     <p>Computer Science, St Andrews University</p>
                 </div>    
             <!-- </div> -->
 
-            <div class="card rounded" style="opacity:0.7">
+            <div class="card rounded" style="opacity:0.8">
                     <h2>Henry C.</h2>
-                    <div class="d-flex justify-content-center">
-                        <img src="assets/img/tutor/henry.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
-                    </div>
+                        <div class="d-flex justify-content-center">
+                            <img src="assets/img/tutor/henry.jpg" class="rounded" style="border: solid 3px royalblue" width="100" height="100" >
+                        </div>
                     <h1>SCIENCE</h1>
                     <p>Medicine, Liverpool University</p>
             

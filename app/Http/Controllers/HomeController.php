@@ -25,6 +25,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function Howitworks()
+    {
+        return view('How');
+    }
+
 
     public function Howitworks()
     {

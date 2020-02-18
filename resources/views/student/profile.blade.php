@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">Hello {{Auth::user()->FName}}</h1>
-          <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
+          <p class="text-white mt-0 mb-5">This is your profile page. You can view your details from here. These details will be showed to your tutor as well.</p>
           {{-- <a  href="{{route('student.profile.edit',['user'=>Auth::user()->id])}}" class="btn btn-info">Edit profile</a> --}}
           {{-- href="{{route('tutor.editProfile',['user'=>Auth::user()->id])}}" --}}
         </div>
@@ -36,14 +36,14 @@
           </div>
           <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
             <div class="d-flex justify-content-between">
-              <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-              <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+              {{-- <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+              <a href="#" class="btn btn-sm btn-default float-right">Message</a> --}}
             </div>
           </div>
           <div class="card-body pt-0 pt-md-4">
             <div class="row">
               <div>
-                <br/><br/>
+                <br/><br/><br/>
                 {{-- success messege when profile picture updated --}}
                 <div>
                     @if (session('success'))
@@ -51,42 +51,78 @@
                           {{ session('success') }}
                       </div>
                     @endif
+                    @if (session('error'))
+                      <div class="alert alert-danger" role="alert">
+                          {{ session('error') }}
+                      </div>
+                    @endif
                 </div>
-                  <form enctype="multipart/form-data" action="{{route('tutor.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
+                  <form enctype="multipart/form-data" action="{{route('student.updatePicture',['user'=>Auth::user()->id])}}" method="POST">
                     <label>Update Your Profile Picture(2MB max)</label><br/>
                     <input type="file" name="avatar">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
-                    <input type="submit" class= "btn btn-sm btn-primary" disabled>
+                    <input type="submit" class= "btn btn-sm btn-primary">
                   </form>
                 </div>
                 <hr/>
               <div class="col">
                 <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                   <div>
-                    <span class="heading">22</span>
-                    <span class="description">Friends</span>
-                  </div>
-                  <div>
-                    <span class="heading">10</span>
-                    <span class="description">Photos</span>
-                  </div>
-                  <div>
-                    <span class="heading">89</span>
-                    <span class="description">Comments</span>
+                    <span class="heading"><h1>{{Auth::user()->session}}</h1></span>
+                    <span class="description">Successful Participated Sessions</span>
                   </div>
                 </div>
               </div>
             </div>
             <div class="text-center">
               <h3>
-                  {{Auth::user()->FName}}<span class="font-weight-light">, 27</span>
+                Your Current Rating
               </h3>
-              <div class="h5 font-weight-300">
-                <i class="ni location_pin mr-2"></i>Bucharest, Romania
-              </div>
-              <hr class="my-4" />
-              <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-              <a href="#">Show more</a>
+              @if((Auth::user()->rating)=='1')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='2')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='3')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='4')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                      <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                  </div>
+                </fieldset>
+              @endif
+              @if((Auth::user()->rating)=='5')
+                <fieldset class="rating">
+                  <div class="stars">
+                      <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                      <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                      <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                      <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                      <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                  </div>
+                </fieldset>
+              @endif
             </div>
           </div>
         </div>
@@ -153,48 +189,10 @@
                         </div>
                     </div>
                     <hr class="my-4" />
-                    <!-- Address -->
-                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                    <div class="pl-lg-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-address">Address</label>
-                                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-city">City</label>
-                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-country">Country</label>
-                                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-country">Postal code</label>
-                                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="my-4" />
-                    <!-- Description -->
-                    <h6 class="heading-small text-muted mb-4">About me</h6>
-                    <div class="pl-lg-4">
-                        <div class="form-group">
-                            <label>About Me</label>
-                            <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
-                        </div>
-                    </div>
                 </form>
+                <div class="col-4 float-left">
+                  <a href="{{route('student.deleteProfile',['user'=>Auth::user()->id])}}" class="btn btn-sm btn-danger">Delete Profile</a>
+                </div>
             </div>
         </div>
     </div>

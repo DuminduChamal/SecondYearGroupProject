@@ -7,6 +7,7 @@
 @section('content')
 <div class="header bg-gradient-primary py-7 py-lg-8">
   <div class="container">
+    <label class="btn btn-dark">Number of Requested Tutors in TUTORLAND : {{count($unapprovedtutors)}}</label>
     <div class="header-body text-center mb-7">
       {{-- success messege when tutor removed --}}
       <div>

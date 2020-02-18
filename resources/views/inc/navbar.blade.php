@@ -29,7 +29,7 @@
             <ul class="navbar-nav mr-auto">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="/Howitworks">
+                        <a class="nav-link nav-link-icon" href="/how">
                             <span class="nav-link-inner--text">How it works</span>
 
                         </a>

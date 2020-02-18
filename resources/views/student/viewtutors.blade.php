@@ -15,10 +15,28 @@
                     {{ session('success') }}
                 </div>
                 @endif --}}
-
-
+        {{-- <div> --}}
+        <div class="row">
+            <div class="col">
+                <form method="POST" id="payment-form"  action="{{ route('student.search')}}" value="{{ old('subject_id') }}">
+                    @csrf
+                    <select id="subject_id" class="form-control" name="subject_id" >
+                        <option value="1">Mathamatics</option>
+                        <option value="2">Science</option>
+                        <option value="3">English</option>
+                        <option value="4">Sinhala</option>
+                        <option value="5">History</option>
+                        <option value="6">Buddhism</option>
+                    </select>
+                    <button class="btn btn-info float-right" type="submit">Search</button>
+                </form>
+                <a class="btn btn-danger btn-sm float-right" href="{{ route('student.advancesearch')}}">Advance Search</a>
+                <a class="btn btn-dark btn-sm float-right" href="{{ route('student.viewTutors')}}">Back to all tutors</a>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="row mt-5">
+            @if(count($tutors)>0)
             <div class="col">
                 <div class="card bg-default shadow">
                 <div class="card-header bg-transparent border-0">
@@ -32,6 +50,7 @@
                             <th scope="col"></th>
                             <th scope="col">Qualification</th>
                             <th scope="col">Subject</th>
+                            <th scope="col">Rating</th>
                             <th scope="col">Rate</th>
                             <th scope="col"></th>
                         </tr>
@@ -48,7 +67,7 @@
                                                 </a>
                                             {{-- <img src="paris.jpg" alt="Paris"> --}}
                                             <p><strong>{{$tutor->user->FName}} {{$tutor->user->LName}}</strong></p>
-                                            <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} LKR <br>Per session</b></button>
+                                            <button type="button" class="btn btn-warning"><b>{{$tutor->rate}} USD <br>Per Session</b></button>
                                             {{-- </div> --}}
                                     </div>
                                 </th>
@@ -59,10 +78,57 @@
                                     {{$tutor->subject->subject}}
                                 </td>
                                 <td>
-                                    {{$tutor->rate}}
+                                    @if(($tutor->user->rating)=='1')
+                                    <fieldset class="rating">
+                                        <div class="stars">
+                                            <label for="demo-1" aria-label="1 star" title="1 star"></label>
+                                        </div>
+                                    </fieldset>
+                                    @endif
+                                    @if(($tutor->user->rating)=='2')
+                                    <fieldset class="rating">
+                                        <div class="stars">
+                                            <label for="demo-1" aria-label="1 star" title="2 star"></label>
+                                            <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                                        </div>
+                                    </fieldset>
+                                    @endif
+                                    @if(($tutor->user->rating)=='3')
+                                    <fieldset class="rating">
+                                        <div class="stars">
+                                            <label for="demo-1" aria-label="1 star" title="3 star"></label>
+                                            <label for="demo-2" aria-label="2 stars" title="3 stars"></label>
+                                            <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                                        </div>
+                                    </fieldset>
+                                    @endif
+                                    @if(($tutor->user->rating)=='4')
+                                    <fieldset class="rating">
+                                        <div class="stars">
+                                            <label for="demo-1" aria-label="1 star" title="4 star"></label>
+                                            <label for="demo-2" aria-label="2 stars" title="4 stars"></label>
+                                            <label for="demo-3" aria-label="3 stars" title="4 stars"></label>
+                                            <label for="demo-4" aria-label="4 stars" title="4 stars"></label>   
+                                        </div>
+                                    </fieldset>
+                                    @endif
+                                    @if(($tutor->user->rating)=='5')
+                                    <fieldset class="rating">
+                                        <div class="stars">
+                                            <label for="demo-1" aria-label="1 star" title="5 star"></label>
+                                            <label for="demo-2" aria-label="2 stars" title="5 stars"></label>
+                                            <label for="demo-3" aria-label="3 stars" title="5 stars"></label>
+                                            <label for="demo-4" aria-label="4 stars" title="5 stars"></label>
+                                            <label for="demo-5" aria-label="5 stars" title="5 stars"></label>   
+                                        </div>
+                                    </fieldset>
+                                    @endif
                                 </td>
                                 <td>
-                                    <a type="button" href="viewtutors/{{$tutor->id}}" class="btn btn-primary">view tutor</a>
+                                    USD {{$tutor->rate}}
+                                </td>
+                                <td>
+                                    <a type="button" href="{{ route('student.viewTutorProfile',['tutor'=>$tutor->id])}}" class="btn btn-primary">view tutor</a>
                                 {{-- <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
@@ -80,6 +146,9 @@
                 </div>
                 </div>
             </div>
+            @else
+                <h1>No Tutors Yet</h1>
+            @endif
             </div>
         </div>
         </div>
