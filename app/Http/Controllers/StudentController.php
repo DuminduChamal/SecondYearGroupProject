@@ -13,34 +13,39 @@ use Image;
 use App\Notifications\RequestForClass;
 
 use Illuminate\Http\Request;
+
 //use App\User;
 
 class StudentController extends Controller
 {
+    //student homepage
     public function index()
     {
-        $anns=Announcement::orderBy('created_at','desc')->paginate(3);
+        $anns=Announcement::orderBy('created_at', 'desc')->paginate(3);
 
-        $tutor1=Tutor::where('approved',1)->where('id',1)->get();
-        $tutor2=Tutor::where('approved',1)->where('id',2)->get();
-        $tutor3=Tutor::where('approved',1)->where('id',3)->get();
+        $tutor1=Tutor::where('approved', 1)->where('id', 1)->get();
+        $tutor2=Tutor::where('approved', 1)->where('id', 4)->get();
+        $tutor3=Tutor::where('approved', 1)->where('id', 3)->get();
 
-        // dd($tutor1);
+        // dd($tutor2[0]->user->FName);
+        // dd($tutor1[0]->id->user->avatar);
 
-        return view('student/student')->with(compact('anns','tutor1','tutor2','tutor3'));
-
+        return view('student/student')->with(compact('anns', 'tutor1', 'tutor2', 'tutor3'));
     }
 
+    //student profile view function
     public function viewProfile()
     {
         return view('student/profile');
     }
 
+    //edit profile view-student
     public function editProfile(User $user)
     {
         return view('student.editprofile')->with('user', $user);
     }
 
+    //function to validate-student edit form
     protected function validatorEdit(array $data)
     {
         return Validator::make($data, [
@@ -50,6 +55,7 @@ class StudentController extends Controller
         ]);
     }
 
+    //update student details with edit profile request
     public function updateProfile(Request $request, $id)
     {
         $this->validatorEdit($request->all())->validate();
@@ -81,7 +87,7 @@ class StudentController extends Controller
         return view('student.viewtutorprofile', compact('tutor', 'time_slots'));
     }
 
-    //method to update student profile picture 
+    //method to update student profile picture
     public function updatePicture(Request $request)
     {
         // dd($request);
@@ -99,23 +105,23 @@ class StudentController extends Controller
             $user->avatar = $filename;
             $user->save();
             return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Successfully Updated!');
-        }
-        else
-        {
+        } else {
             return redirect('student/profile')->with('error', 'No file attached! Please attach a file to upload.');
         }
         // return view('student.showProfile', compact('user'));
         // return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Updated');
     }
 
+    //method to get timeslots from timeslots table
     public function timeslots($id)
     {
         $tutor = Tutor::find($id);
         //dd($tutor);
-        $time = DB::table('timeslots')->where('tutor_id', $id)->select('day', 'time','stu_id')->get()->toArray();
+        $time = DB::table('timeslots')->where('tutor_id', $id)->select('day', 'time', 'stu_id')->get()->toArray();
         return $time;
     }
 
+    //method to submit timeslots to table which enter by student
     public function timeslotssubmit(Request $arr, $id)
     {
         $data = $arr->input('data');
@@ -138,17 +144,19 @@ class StudentController extends Controller
         // $tutors=DB::table('tutors')->where('id', $id)->get();
         echo "<script>console.log('new')</script>";
         $tutor->user->notify(new RequestForClass($data));
-        
     }
 
-    public function timeslotsremove(Request $arr,$id){
+    //remove timeslots which selected by same student
+    public function timeslotsremove(Request $arr, $id)
+    {
         $data = $arr->input('data');
         $data = json_decode($data);
         foreach ($data as $timeSlot) {
-            timeslot::where('tutor_id',$id)->where('day',$timeSlot->day)->where('time',$timeSlot->time)->delete();
+            timeslot::where('tutor_id', $id)->where('day', $timeSlot->day)->where('time', $timeSlot->time)->delete();
         }
     }
 
+    //method to submit the rate:stars
     public function submitRate(Request $arr, $user_id)
     {
         // dd($arr);
@@ -165,7 +173,8 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Rating added! Thank you for your time');
     }
 
-    public function payment($id,$day,$time)
+    //method to payment via notification
+    public function payment($id, $day, $time)
     {
         // dd($id);
         $tutor = Tutor::where('user_id', $id)->get()->first();
@@ -178,7 +187,8 @@ class StudentController extends Controller
         return view('student.paymentform')->with('class', $class);
     }
 
-    public function paymentSeparate($id,$day,$time)
+    //method to pay from requested sessions tab
+    public function paymentSeparate($id, $day, $time)
     {
         // dd($id);
         // $tutor = DB::table('tutors')->where('id', $id)->get()->first();
@@ -192,13 +202,15 @@ class StudentController extends Controller
         return view('student.paymentform')->with('class', $class);
     }
 
+    //method to view accepted classes
     public function viewAcceptedClasses()
     {
         $id=Auth::user()->id;
-        $classes=Timeslot::where('stu_id', $id)->where('isAccepted',1)->where('isPaid',0)->latest()->get();
+        $classes=Timeslot::where('stu_id', $id)->where('isAccepted', 1)->where('isPaid', 0)->latest()->get();
         return view('student.acceptedclasses')->with('classes', $classes);
     }
 
+    //method to view tutors by searching
     public function searchSubject(Request $array)
     {
         // dd($array);
@@ -209,11 +221,13 @@ class StudentController extends Controller
         return view('student.viewtutors')->with('tutors', $tutors);
     }
 
+    //method to delete student profile page
     public function deleteProfile($id)
     {
         return view('student.delete');
     }
 
+    //method to confirm delete
     public function deleteProfileConfirm($id)
     {
         $student = User::find($id);
