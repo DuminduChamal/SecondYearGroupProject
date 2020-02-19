@@ -14,6 +14,7 @@ use PDF;
 
 class AdminController extends Controller
 {
+    //dashboard 
     public function index(){
         $anns=Announcement::orderBy('created_at','desc')->paginate(3);
         return view('admin/admin')->with('anns',$anns);
@@ -117,11 +118,13 @@ class AdminController extends Controller
         return redirect('admin/unapprovedtutors')->with('error', 'Tutor Rejected');
     }
 
+    //method to view announcement page
     public function publishAnnouncement()
     {
         return view('admin/announcements');
     }
 
+    //method to submit announcement
     public function publishAnnouncementSubmit(Request $request)
     {
         $this->validate($request,[
@@ -137,6 +140,7 @@ class AdminController extends Controller
         return redirect('admin/')->with('success','Announcement Published!');
     }
 
+    //method to edit announcement
     public function announcementEdit($id)
     {
         $editann = Announcement::find($id);
@@ -144,6 +148,7 @@ class AdminController extends Controller
         return view('admin/annoucementEdit', compact('editann'));
     }
     
+    //method to update announcement
     public function announcementUpdate(Request $request, $id)
     {
         $this->validate($request,[
@@ -159,6 +164,7 @@ class AdminController extends Controller
         return redirect('admin/')->with('success','Announcement Updated');
     }
 
+    //method to delete announcement
     public function announcementDelete($id)
     {
         $deleteann = Announcement::find($id);
@@ -167,6 +173,7 @@ class AdminController extends Controller
         return redirect('admin/')->with('danger','Announcement Deleted');
     }
 
+    //method to view count user page
     public function countUsers()
     {
         $tutors = Tutor::where('approved',1)->get();
@@ -175,6 +182,7 @@ class AdminController extends Controller
         return view('admin.counts')->with(compact('tutors','students','unapprovedtutors'));
     }
 
+    //method to download the count user pdf
     public function countUsersPDF()
     {
         $students = User::where('is_student',1)->get();

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    //method to view the dashboard of student
     public function index()
     {
         $anns=Announcement::orderBy('created_at','desc')->paginate(3);
@@ -31,25 +32,29 @@ class StudentController extends Controller
 
     }
 
+    //method to view student his profile
     public function viewProfile()
     {
         return view('student/profile');
     }
 
+    //method to view edit page
     public function editProfile(User $user)
     {
         return view('student.editprofile')->with('user', $user);
     }
 
+    //method to validate the user input for edit profile 
     protected function validatorEdit(array $data)
     {
         return Validator::make($data, [
             'FName' => ['required', 'string', 'max:255'],
             'LName' => ['required', 'string', 'max:255'],
-            'DOB' => ['required', 'date',],
+            'DOB' => ['required', 'date','before:today'],
         ]);
     }
 
+    //method to update the user details
     public function updateProfile(Request $request, $id)
     {
         $this->validatorEdit($request->all())->validate();
@@ -108,6 +113,7 @@ class StudentController extends Controller
         // return redirect()->action('StudentController@viewProfile', compact('user'))->with('success', 'Profile Picture Updated');
     }
 
+    //method to get timeslots for the tutor
     public function timeslots($id)
     {
         $tutor = Tutor::find($id);
@@ -116,6 +122,7 @@ class StudentController extends Controller
         return $time;
     }
 
+    //method to submit a timeslot 
     public function timeslotssubmit(Request $arr, $id)
     {
         $data = $arr->input('data');
@@ -141,6 +148,7 @@ class StudentController extends Controller
         
     }
 
+    //method to remove the timeslot selected
     public function timeslotsremove(Request $arr,$id){
         $data = $arr->input('data');
         $data = json_decode($data);
@@ -149,6 +157,7 @@ class StudentController extends Controller
         }
     }
 
+    //method to submit the rating for tutor
     public function submitRate(Request $arr, $user_id)
     {
         // dd($arr);
@@ -165,6 +174,7 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Rating added! Thank you for your time');
     }
 
+    //method to do the payment from notification
     public function payment($id,$day,$time)
     {
         // dd($id);
@@ -178,6 +188,7 @@ class StudentController extends Controller
         return view('student.paymentform')->with('class', $class);
     }
 
+    //method to do the payment separately
     public function paymentSeparate($id,$day,$time)
     {
         // dd($id);
@@ -192,6 +203,7 @@ class StudentController extends Controller
         return view('student.paymentform')->with('class', $class);
     }
 
+    //method to view tutor accepted sessions
     public function viewAcceptedClasses()
     {
         $id=Auth::user()->id;
@@ -199,6 +211,7 @@ class StudentController extends Controller
         return view('student.acceptedclasses')->with('classes', $classes);
     }
 
+    //method for the view of search
     public function searchSubject(Request $array)
     {
         // dd($array);
@@ -209,11 +222,13 @@ class StudentController extends Controller
         return view('student.viewtutors')->with('tutors', $tutors);
     }
 
+    //method view delete confirmation page
     public function deleteProfile($id)
     {
         return view('student.delete');
     }
 
+    //method to delete the student profile
     public function deleteProfileConfirm($id)
     {
         $student = User::find($id);

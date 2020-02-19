@@ -81,7 +81,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
             <h1 class="text-white">Welcome!</h1>
-            <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+            <p class="text-lead text-light">You can log in to system from here.</p>
             </div>
         </div>
         </div>
@@ -146,7 +146,7 @@
             <a href="{{ route('password.request') }}" class="text-light"><small>Forgot password?</small></a>
             </div>
             <div class="col-6 text-right">
-            <a href="#" class="text-light"><small>Create new account</small></a>
+            <a href="{{ route('password.request') }}" class="text-light"><small>Create new account</small></a>
             </div>
         </div>
         </div>

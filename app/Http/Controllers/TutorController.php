@@ -20,13 +20,14 @@ use App\Notifications\TutorAccepted;
 
 class TutorController extends Controller
 {
-
+    //view the dashboard page
     public function index()
     {
         $anns=Announcement::orderBy('created_at','desc')->paginate(3);
         return view('tutor/tutor')->with('anns',$anns);
     }
 
+    //view profile method
     public function viewProfile()
     {
         $tutor = Auth::id();
@@ -35,6 +36,7 @@ class TutorController extends Controller
         return view('tutor/profile', compact('time_slots'));
     }
 
+    //method to get the timeslots for the tutor
     public function timeslots($id)
     {
         $user = Auth::id();
@@ -45,28 +47,33 @@ class TutorController extends Controller
         return $time;
     }
 
+    //method to view the timeslots
     public function viewProfileSlots($id)
     {
-        dd($id);
+        // dd($id);
         $tutor = Tutor::find($id);
         $time_slots = TutorController::timeslots($id);
         return view('tutor/profile', compact('tutor', 'time_slots'));
     }
+
+    //method to edit the profile
     public function editProfile(User $user)
     {
         return view('tutor.editprofile')->with('user',$user);
     }
 
+    //method to validate the user input for profile edit
     protected function validatorEdit(array $data)
     {
         return Validator::make($data, [
             'FName' => ['required', 'string', 'max:255'],
             'LName' => ['required', 'string', 'max:255'],
-            'DOB' => ['required', 'date',],
+            'DOB' => ['required', 'date','before:today'],
             'NIC' => ['required', 'string'],
         ]);
     }
     
+    //method for update the profile
     public function updateProfile(Request $request, $id)
     {
         $this->validatorEdit($request->all())->validate();
@@ -107,6 +114,7 @@ class TutorController extends Controller
         
     }
 
+    //method to go to session page
     public function room($id)
     {
         // $stu_id = $id;
@@ -116,8 +124,9 @@ class TutorController extends Controller
         return view('tutor.session')->with('stu',$stu);
     }
 
-    public function roomDetails()
-    {
+    //
+    // public function roomDetails()
+    // {
         ///////////////
         //$user_id= auth::user()->tutor->timeslot->day;
         // $tutor = DB::table('tutors')->where('user_id', $user)->get()->first();
@@ -127,16 +136,17 @@ class TutorController extends Controller
         // dd($user_id);
         // dd($tutor);
         
-        $stu_id=10;
-        $tutor_id= auth::user()->tutor->id;
-        // dd($stu_id);
+    //     $stu_id=10;
+    //     $tutor_id= auth::user()->tutor->id;
+    //     // dd($stu_id);
 
 
-            $stu_id = DB::table('timeslots')->where('id', $stu_id)->get();
-            $stu_mail_address;
+    //         $stu_id = DB::table('timeslots')->where('id', $stu_id)->get();
+    //         $stu_mail_address;
 
-    }
+    // }
 
+    //method to submit the google meet link
     public function linksubmit(Request $request,$id)
     {
         // dd($id);
@@ -163,6 +173,7 @@ class TutorController extends Controller
         return back()->with('messege', 'Link has been sent to the student ! Please wait for the connection in NEW TAB');
     }
 
+    //method to accept the requested time slots
     public function acceptClass($student,$tutor,$day,$time)
     {
         $id=DB::table('tutors')->where('user_id', $tutor)->get()->first();
@@ -186,6 +197,7 @@ class TutorController extends Controller
         return redirect('tutor/')->with('success','Requested Slot Accepted!');
     }
 
+    //method to view the requested time slots
     public function viewRequestedSlots()
     {
         $user = Auth::id();
@@ -197,6 +209,7 @@ class TutorController extends Controller
         return view('tutor.requestedclasses')->with('requestedTimeSlots', $requestedTimeSlots);
     }
 
+    //method toaccept the requested time slots
     public function acceptRequestedSlots($student,$day,$time)
     {
         // dd($student);
@@ -216,11 +229,13 @@ class TutorController extends Controller
         return redirect('tutor/requestedclasses')->with('success','Requested Slot Accepted!');
     }
 
+    //method to view delete confirmation page
     public function deleteProfile($id)
     {
         return view('tutor.delete');
     }
 
+    //method to delete the profile
     public function deleteProfileConfirm($id)
     {
         $student = User::find($id);
@@ -229,6 +244,7 @@ class TutorController extends Controller
         return redirect('/');
     }
 
+    //method to rate the students after the session
     public function RateStudent(Request $arr,$id)
     {
         // dd($arr);
