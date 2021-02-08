@@ -255,7 +255,7 @@
     </div>
 </div>
 </div>
-{{-- modal --}}
+{{--timeslot modal --}}
 <div class="modal fade" id="retModal">
   <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -368,7 +368,7 @@
 </div>
 <?php $id =  Auth::user()->id;?>
 
-{{--  --}}
+{{-- Rating script --}}
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
   var rate = '';
@@ -398,12 +398,13 @@
   }
 
 </script>
+{{-- script for timeslot --}}
 <script>
   var selected = [];
   var remove = [];
   function datetime() {
     var data = <?php echo json_encode($time_slots);?>;
-    console.log('array');
+    console.log('arraytype testing');
     console.log(data);
     var date = ''
     var time = ''
